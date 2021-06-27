@@ -16,6 +16,7 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
-        "chota": "^0.8.0"
+        "chota": "^0.8.0",
+        "mysql": "^2.18.1"
     }
 }
