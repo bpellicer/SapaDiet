@@ -32560,14 +32560,122 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/*************************  ELEMENTS DEL DOM    *************************/
+
 body{
-  background:url("/imatges/homePageBack.png") repeat;
+  background:url("/imatges/homePageBack.png");
   font-family:Poppins !important;
+  min-height:100%;
 }
 
 a{
   cursor: pointer;
 }
+
+/*************************  CLASSES     *************************/
+
+.link{
+  margin-right: 1rem;
+  display: block;
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+
+.link:hover {
+  --tw-text-opacity: 1;
+  color: rgba(93, 202, 83, var(--tw-text-opacity));
+}
+
+@media (min-width: 640px) {
+  .link {
+    margin-top: 0px;
+    display: inline-block;
+  }
+}
+
+.logosTecno{
+  margin-top: 0.5rem;
+  display: inline-block;
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+
+.logosTecno:hover {
+  text-decoration: underline;
+}
+
+.link2{
+  font-weight: 400;
+}
+
+.link2:hover {
+  text-decoration: underline;
+}
+
+.registre{
+  margin-right: 1rem;
+  display: inline-block;
+  border-radius: 9999px;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 640px) {
+  .registre {
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .registre {
+    display: block;
+  }
+}
+
+.registre:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(133, 220, 165, var(--tw-bg-opacity));
+}
+
+.registre {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover > .logoKiwi{
+  transition: 2s ease;
+  transform: rotate(360deg)
+}
+
+.footer{
+  background:url("/imatges/pentagon.png") repeat;
+}
+
+.copyright{
+  margin-top: 1.25rem;
+  width: 100%;
+  border-top-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(107, 114, 128, var(--tw-border-opacity));
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
+/************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 

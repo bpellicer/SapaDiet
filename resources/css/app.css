@@ -5,62 +5,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+
+/*************************  ELEMENTS DEL DOM    *************************/
+
 body{
-    background:url("/imatges/homePageBack.png") repeat;
+    background:url("/imatges/homePageBack.png");
     font-family:Poppins !important;
+    min-height:100%;
 }
 a{
     cursor: pointer;
 }
 
+/*************************  CLASSES     *************************/
 
+.link{
+    @apply block sm:inline-block text-black hover:text-green3 mr-4 sm:mt-0;
+}
 
+.logosTecno{
+    @apply inline-block text-black hover:underline mt-2;
+}
 
+.link2{
+    @apply hover:underline font-normal;
+}
+.registre{
+    @apply md:block inline-block shadow mr-4 bg-green1 px-5 py-2 rounded-full border-black border-2 sm:mt-0;
+    @apply transition duration-200 ease-in-out hover:bg-green2;
+}
+.logo:hover > .logoKiwi{
+    transition: 2s ease;
+    transform: rotate(360deg)
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.footer{
+    background:url("/imatges/pentagon.png") repeat;
+}
+.copyright{
+   @apply border-t-2 border-gray-500 mt-5 pt-2 text-center w-full;
+}
+/************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 

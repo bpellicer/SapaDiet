@@ -1842,6 +1842,16 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+"use strict";
+
+document.getElementById("navbarBtn").onclick = function toggleMenu() {
+  var navToggle = document.getElementsByClassName("toggle");
+
+  for (var i = 0; i < navToggle.length; i++) {
+    navToggle.item(i).classList.toggle("hidden");
+  }
+};
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
