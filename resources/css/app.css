@@ -19,27 +19,50 @@ a{
 
 /*************************  CLASSES     *************************/
 
-.link{
-    @apply block sm:inline-block text-black hover:text-green3 sm:mr-4 sm:mt-0;
+
+/***************     Links de les pàgines    ***************/
+
+.linksHome, .linksApp{
+    @apply block sm:inline-block text-black hover:text-green3;
+}
+.linksHome{
+    @apply sm:mr-4 sm:mt-0;
+}
+.linksApp{
+    @apply lg:mr-4 lg:mt-0;
 }
 
-.logosTecno{
-    @apply inline-block text-black hover:underline mt-2 p-2;
-    @apply transform hover:scale-125 transition ease-in-out;
-}
-
-.link2{
+.linkMapaWeb{
     @apply hover:underline font-normal;
 }
-.registre{
-    @apply md:block inline-block shadow sm:mr-10 bg-green1 px-5 py-2 rounded-full border-black border-2 sm:mt-0;
+
+
+/***************    Botons      ***************/
+
+.botoNavApp, .botoNavHome{
+    @apply px-5 py-2 inline-block bg-green1 rounded-full border-black border-2;
     @apply transition duration-200 ease-in-out hover:bg-green2;
     @apply transform hover:scale-110 transition ease-in-out;
 }
+
+.botoNavHome{
+    @apply md:block sm:mt-0 sm:mr-10;
+}
+
+.botoNavApp{
+    @apply lg:block lg:mt-0 lg:mr-10;
+}
+
+
+/***************    Logo Web    ***************/
+
 .logo:hover > .logoKiwi{
     transition: 2s ease;
     transform: rotate(360deg)
 }
+
+
+/***************    Elements del Footer     ***************/
 
 .footer{
     background:url("/imatges/pentagon.png") repeat;
@@ -47,6 +70,24 @@ a{
 .copyright{
    @apply border-t-2 border-gray-500 mt-5 pt-2;
 }
+
+/**     Logos Footer Tecnologies     **/
+.logosTecno{
+    @apply inline-block text-black hover:underline mt-2 p-2;
+    @apply transform hover:scale-125 transition ease-in-out;
+
+}
+
+.mapaWeb{
+    @apply w-full overflow-hidden sm:w-1/3 order-3 pt-3;
+}
+
+
+
+
+
+
+
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
