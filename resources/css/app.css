@@ -20,19 +20,21 @@ a{
 /*************************  CLASSES     *************************/
 
 .link{
-    @apply block sm:inline-block text-black hover:text-green3 mr-4 sm:mt-0;
+    @apply block sm:inline-block text-black hover:text-green3 sm:mr-4 sm:mt-0;
 }
 
 .logosTecno{
-    @apply inline-block text-black hover:underline mt-2;
+    @apply inline-block text-black hover:underline mt-2 p-2;
+    @apply transform hover:scale-125 transition ease-in-out;
 }
 
 .link2{
     @apply hover:underline font-normal;
 }
 .registre{
-    @apply md:block inline-block shadow mr-4 bg-green1 px-5 py-2 rounded-full border-black border-2 sm:mt-0;
+    @apply md:block inline-block shadow sm:mr-10 bg-green1 px-5 py-2 rounded-full border-black border-2 sm:mt-0;
     @apply transition duration-200 ease-in-out hover:bg-green2;
+    @apply transform hover:scale-110 transition ease-in-out;
 }
 .logo:hover > .logoKiwi{
     transition: 2s ease;
@@ -43,7 +45,7 @@ a{
     background:url("/imatges/pentagon.png") repeat;
 }
 .copyright{
-   @apply border-t-2 border-gray-500 mt-5 pt-2 text-center w-full;
+   @apply border-t-2 border-gray-500 mt-5 pt-2;
 }
 /************************* NORMALIZE     *************************/
 
