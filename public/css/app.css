@@ -32713,6 +32713,57 @@ a{
   }
 }
 
+.botoEstandar{
+  display: inline-block;
+  border-radius: 9999px;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.botoEstandar:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(133, 220, 165, var(--tw-bg-opacity));
+}
+
+.botoEstandar {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.botoEstandar:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+}
+
+.botoEstandar {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /***************    Logo Web    ***************/
 
 .logo:hover > .logoKiwi{
@@ -32724,6 +32775,8 @@ a{
 
 .footer{
   background:url("/imatges/pentagon.png") repeat;
+  padding-bottom: 1.25rem;
+  text-align: center;
 }
 
 .copyright{
@@ -32784,6 +32837,12 @@ a{
   .mapaWeb {
     width: 33.333333%;
   }
+}
+
+/***************    Main Page DIV    ***************/
+
+.mainPage{
+  background:url("/imatges/pentagon.png") repeat;
 }
 
 /************************* NORMALIZE     *************************/

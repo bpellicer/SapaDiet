@@ -1,10 +1,10 @@
-        <footer class="footer absolute inset-x-0 bottom-0 pb-5 overflow-hidden text-center">
+        <footer class="footer">
             <div class="flex flex-wrap ">
                 <div class="w-full overflow-hidden sm:w-1/3 order-2 sm:order-1">
                     <h1 class="mb-2 underline font-bold text-2xl pt-3">Tecnologies</h1>
                     <div class="text-center">
-                        <a href="https://laravel.com/" class="logosTecno"><img src="/imatges/laravel.png" alt="Logo de Laravel" height="40" width="40"></a>
-                        <a href="https://tailwindcss.com/" class="logosTecno"><img src="/imatges/tailwind.png" alt="Logo de TailwindCSS" height="40" width="40"></a>
+                        <a href="https://laravel.com/" class="logosTecno inline-block"><img src="/imatges/laravel.png" alt="Logo de Laravel" height="40" width="40"></a>
+                        <a href="https://tailwindcss.com/" class="logosTecno inline-block"><img src="/imatges/tailwind.png" alt="Logo de TailwindCSS" height="40" width="40"></a>
                         <a href="https://www.javascript.com/"class="logosTecno"><img src="/imatges/javascript.png" alt="Logo de Javascript" height="40" width="40"></a>
                     </div>
                 </div>

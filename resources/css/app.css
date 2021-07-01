@@ -70,6 +70,11 @@ a{
     @apply lg:block lg:mt-0 lg:mr-10;
 }
 
+.botoEstandar{
+    @apply px-5 py-2 inline-block bg-green1 rounded-full border-black border-2;
+    @apply transition duration-200 ease-in-out hover:bg-green2;
+    @apply transform hover:scale-110 transition ease-in-out;
+}
 
 /***************    Logo Web    ***************/
 
@@ -83,6 +88,7 @@ a{
 
 .footer{
     background:url("/imatges/pentagon.png") repeat;
+    @apply  pb-5 text-center;
 }
 .copyright{
    @apply border-t-2 border-gray-500 mt-5 pt-2;
@@ -100,8 +106,10 @@ a{
 }
 
 
-
-
+/***************    Main Page DIV    ***************/
+.mainPage{
+    background:url("/imatges/pentagon.png") repeat;
+}
 
 
 
