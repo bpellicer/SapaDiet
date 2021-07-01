@@ -71,7 +71,7 @@ a{
 }
 
 .botoEstandar{
-    @apply px-5 py-2 inline-block bg-green1 rounded-full border-black border-2;
+    @apply bg-green1 rounded-full border-black border-2;
     @apply transition duration-200 ease-in-out hover:bg-green2;
     @apply transform hover:scale-110 transition ease-in-out;
 }

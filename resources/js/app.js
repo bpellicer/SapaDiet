@@ -1,9 +1,11 @@
-require('./bootstrap');
+import './bootstrap';
 
 "use strict";
 
-document.getElementById("navbarBtn").onclick = function toggleMenu() {
-    const navToggle = document.getElementsByClassName("toggle");
+$("navbarBtn").on("click", toggleMenu())
+
+function toggleMenu() {
+    const navToggle = $(".toggle");
     for (let i = 0; i < navToggle.length; i++) {
       navToggle.item(i).classList.toggle("hidden");
     }

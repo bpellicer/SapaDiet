@@ -32714,17 +32714,12 @@ a{
 }
 
 .botoEstandar{
-  display: inline-block;
   border-radius: 9999px;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgba(0, 0, 0, var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .botoEstandar:hover {
