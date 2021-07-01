@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.gestioDieta');
+});
+
+Route::get('login', function () {
+    return view('pages.login');
+});
+
+Route::get('registre', function () {
+    return view('pages.registre');
+});
+
+Route::get('Gestió Dieta', function () {
+    return view('pages.gestioDieta');
 });

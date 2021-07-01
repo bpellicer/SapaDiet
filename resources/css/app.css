@@ -23,18 +23,35 @@ a{
 /***************     Links de les pàgines    ***************/
 
 .linksHome, .linksApp{
-    @apply block sm:inline-block text-black hover:text-green3;
+    @apply block text-black hover:text-green3;
 }
 .linksHome{
-    @apply sm:mr-4 sm:mt-0;
+    @apply sm:mr-4 sm:mt-0 sm:inline-block;
 }
+
 .linksApp{
-    @apply lg:mr-4 lg:mt-0;
+    @apply lg:mr-4 lg:mt-0 lg:inline-block;
 }
 
 .linkMapaWeb{
     @apply hover:underline font-normal;
 }
+
+/***************    NavBar  ***************/
+
+.navApp,.navHome{
+    @apply items-center text-center w-full mt-5;
+}
+
+.navApp{
+    @apply lg:flex lg:w-auto lg:text-right lg:mt-0;
+}
+
+.navHome{
+    @apply sm:flex sm:w-auto sm:text-right sm:mt-0 sm:ml-10;
+}
+
+
 
 
 /***************    Botons      ***************/

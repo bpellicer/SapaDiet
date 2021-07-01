@@ -32588,15 +32588,10 @@ a{
 }
 
 @media (min-width: 640px) {
-  .linksHome, .linksApp {
-    display: inline-block;
-  }
-}
-
-@media (min-width: 640px) {
   .linksHome {
     margin-top: 0px;
     margin-right: 1rem;
+    display: inline-block;
   }
 }
 
@@ -32604,6 +32599,7 @@ a{
   .linksApp {
     margin-top: 0px;
     margin-right: 1rem;
+    display: inline-block;
   }
 }
 
@@ -32613,6 +32609,34 @@ a{
 
 .linkMapaWeb:hover {
   text-decoration: underline;
+}
+
+/***************    NavBar  ***************/
+
+.navApp, .navHome {
+  margin-top: 1.25rem;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .navApp {
+    margin-top: 0px;
+    display: flex;
+    width: auto;
+    text-align: right;
+  }
+}
+
+@media (min-width: 640px) {
+  .navHome {
+    margin-top: 0px;
+    margin-left: 2.5rem;
+    display: flex;
+    width: auto;
+    text-align: right;
+  }
 }
 
 /***************    Botons      ***************/
