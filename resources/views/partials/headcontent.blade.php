@@ -7,6 +7,8 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="shortcut icon" href="imatges/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="imatges/favicon.ico" type="image/x-icon">
 
         <!-- Scripts -->
         <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>

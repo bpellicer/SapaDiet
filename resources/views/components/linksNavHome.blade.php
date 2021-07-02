@@ -10,7 +10,7 @@
 @endsection
 
 @section('linksNavBar')
-    <div class="toggle hidden navHome">
+    <div class="toggle navHome hidden">
         <a href="#" class="linksHome">Inici</a>
         <a href="#" class="linksHome mt-3">Login</a>
         <a href="#" class="botoNavHome mt-3">Registra't</a>
