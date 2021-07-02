@@ -29,7 +29,6 @@
                     <p class="text-gray-500 text-sm">Il·lustracions per Freepik Storyset & Flaticon</p>
                 </div>
             </div>
-
         </footer>
     </body>
 </html>

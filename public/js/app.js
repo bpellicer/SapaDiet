@@ -1847,17 +1847,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 
-$("navbarBtn").on("click", toggleMenu());
-
-function toggleMenu() {
-  var navToggle = $(".toggle");
-
-  for (var i = 0; i < navToggle.length; i++) {
-    navToggle.item(i).classList.toggle("hidden");
-  }
-}
-
-;
+$("#navbarBtn").on("click", function () {
+  $(".toggle").toggleClass("hidden");
+});
 
 /***/ }),
 

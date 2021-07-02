@@ -1,6 +1,6 @@
 @extends('partials.nav')
 
-@section('toggle')
+@section('botoNav')
     <div class="flex lg:hidden sm:mr-10">
         <button id="navbarBtn">
             <img class="toggle block" src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png" width="30" height="30">
