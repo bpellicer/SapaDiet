@@ -138,7 +138,22 @@ a{
     background:url("/imatges/pentagon.png") repeat;
 }
 
+.cuate{
+    width:600px;
+    height:auto;
+    @apply float-right hidden lg:flex pt-16;
+}
 
+@media (max-width: 1200px) {
+  .cuate{
+      width:550px;
+      height:auto;
+  }
+}
+
+.titolHomePage{
+    @apply xl:whitespace-pre-line leading-relaxed sm:leading-relaxed font-bold text-3xl sm:text-5xl lg:text-5xl xl:text-5xl md:leading-relaxed lg:leading-relaxed xl:leading-relaxed px-10 md:px-20 pt-20;
+}
 
 /************************* NORMALIZE     *************************/
 
