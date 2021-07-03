@@ -32936,39 +32936,6 @@ a{
 
 /***************    CONTENT 1    ***************/
 
-.carta1{
-  width:400px;
-  height:auto;
-}
-
-.carta2{
-  width:300px;
-  height:auto;
-}
-
-.carta3{
-  width:340px;
-  height:auto;
-}
-
-@media (max-width: 768px) {
-  .carta1, .carta2, .carta3{
-    height:auto;
-  }
-
-  .carta1{
-    width:450px;
-  }
-
-  .carta2{
-    width:350px;
-  }
-
-  .carta3{
-    width:350px;
-  }
-}
-
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
