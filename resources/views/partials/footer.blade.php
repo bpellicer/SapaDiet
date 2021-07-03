@@ -5,7 +5,7 @@
                     <div class="text-center">
                         <a href="https://laravel.com/" class="logosTecno inline-block"><img src="/imatges/laravel.png" alt="Logo de Laravel" height="40" width="40"></a>
                         <a href="https://tailwindcss.com/" class="logosTecno inline-block"><img src="/imatges/tailwind.png" alt="Logo de TailwindCSS" height="40" width="40"></a>
-                        <a href="https://www.javascript.com/"class="logosTecno"><img src="/imatges/javascript.png" alt="Logo de Javascript" height="40" width="40"></a>
+                        <a href="https://www.javascript.com/" class="logosTecno"><img src="/imatges/javascript.png" alt="Logo de Javascript" height="40" width="40"></a>
                     </div>
                 </div>
 
