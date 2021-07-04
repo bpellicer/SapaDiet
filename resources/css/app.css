@@ -157,9 +157,29 @@ a{
 
 
 /***************    CONTENT 1    ***************/
+.contenidor{
+    @apply container px-4 mx-auto mb-10;
+}
 
+.contenidorCartes{
+    @apply flex flex-wrap md:mx-2 lg:mx-4;
+}
 
+.contenidorCarta{
+    @apply my-1 px-1 w-full md:w-1/2 lg:mt-4 lg:px-4;
+}
 
+.cartaInfo{
+    @apply overflow-hidden rounded-lg shadow-lg bg-green1 border-2 border-black mb-5;
+}
+
+.titolCarta{
+    @apply text-2xl font-bold text-center;
+}
+
+.textCarta{
+    @apply ml-2 text-sm px-5 lg:px-10 text-justify md:text-base;
+}
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
