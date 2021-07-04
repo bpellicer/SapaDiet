@@ -17,6 +17,25 @@
         <h1>Coneix l'aplicació!</h1>
     </div>
     <div class="contenidorCartes">
-        @yield("cartes")
+        <x-carta-home>
+            <x-slot name="titol">Analitza la teva dieta</x-slot>
+            <x-slot name="text">SapaDiet et mostra el teu progrés a través de gràfiques. Podràs dur a terme un control sobre la teva dieta i veure els resultats.</x-slot>
+            <x-slot name="imatge">/imatges/buscador.png</x-slot>
+        </x-carta-home>
+        <x-carta-home>
+            <x-slot name="titol">Escull el que vulguis</x-slot>
+            <x-slot name="text">Podràs escollir els teus aliments preferits per a construir la teva dieta. Estan separats per categoría i amb informació nutricional!</x-slot>
+            <x-slot name="imatge">/imatges/pensa.png</x-slot>
+        </x-carta-home>
+        <x-carta-home>
+            <x-slot name="titol">Mira el calendari</x-slot>
+            <x-slot name="text">Escull qualsevol dia del calendari i omple els àpats amb els aliments de la teva elecció. Pots preparar la dieta de dies posteriors i tot.</x-slot>
+            <x-slot name="imatge">/imatges/calendari.png</x-slot>
+        </x-carta-home>
+        <x-carta-home>
+            <x-slot name="titol">Llistes de la compra</x-slot>
+            <x-slot name="text">Crea llistes de la compra per quan vagis a comprar. Les podràs consultar quan vagis a comprar i et recordaran quins aliments agafar.</x-slot>
+            <x-slot name="imatge">/imatges/llistacompra.png</x-slot>
+        </x-carta-home>
     </div>
 </div>
