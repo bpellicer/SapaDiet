@@ -29,6 +29,7 @@ module.exports = {
       green2: '#85DCA5',
       green3: '#5DCA53',
       green4: '#81DAA2',
+      green5: '#91DC5A',
       blue: colors.blue,
       indigo: colors.indigo,
       purple: colors.violet,

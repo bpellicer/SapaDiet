@@ -29,7 +29,7 @@
         </x-carta-home>
         <x-carta-home>
             <x-slot name="titol">Mira el calendari</x-slot>
-            <x-slot name="text">Escull qualsevol dia del calendari i omple els àpats amb els aliments de la teva elecció. Pots preparar la dieta de dies posteriors i tot.</x-slot>
+            <x-slot name="text">Escull qualsevol dia del calendari i omple els àpats amb els aliments de la teva elecció. Pots planificar-te la dieta de la setmana o del mes!</x-slot>
             <x-slot name="imatge">/imatges/calendari.png</x-slot>
         </x-carta-home>
         <x-carta-home>

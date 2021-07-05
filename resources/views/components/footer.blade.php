@@ -11,7 +11,7 @@
 
         <div class=" w-full overflow-hidden sm:w-1/3 order-1 sm:order-2">
             <div class="mt-5">
-                <a class="text-black font-bold logo text-2xl">SAPA<span class="text-green3 text-2xl">DIET</span><img class="inline-block ml-2 logoKiwi" src="/imatges/logo.svg" alt="logo kiwi" width="50" height="50"></a>
+                <a class="text-black font-bold logo text-2xl" href="/">SAPA<span class="text-green3 text-2xl">DIET</span><img class="inline-block ml-2 logoKiwi" src="/imatges/logo.svg" alt="logo kiwi" width="50" height="50"></a>
             </div>
             <div class="mt-2">
                 <p>La web per a gestionar la teva dieta.</p>

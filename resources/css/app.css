@@ -11,10 +11,17 @@
 body{
     background:url("/imatges/homePageBack.png");
     font-family:Poppins !important;
-    min-height:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 a{
     cursor: pointer;
+}
+
+/***************    NORMES GENERALS ***************/
+*{
+@apply focus:outline-none focus:ring focus:border-blue-300;
 }
 
 /***************    SCROLLBAR   ***************/
@@ -23,19 +30,15 @@ a{
   width:10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #aaa;
   border-radius: 10px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
@@ -46,11 +49,17 @@ a{
 
 /*************************  CLASSES     *************************/
 
+.contenidor{
+    @apply container mx-auto my-auto;
+}
+.subcontenidor{
+    @apply flex justify-center px-10 my-12;
+}
 
 /***************     Links de les pàgines    ***************/
 
 .linksHome, .linksApp{
-    @apply block text-black hover:text-green3;
+    @apply block text-black hover:text-green3 ;
 }
 .linksHome{
     @apply sm:mr-4 sm:mt-0 sm:inline-block;
@@ -67,6 +76,7 @@ a{
 /***************    NavBar  ***************/
 
 .navApp,.navHome{
+    min-height:50px;
     @apply items-center text-center w-full mt-5;
 }
 
@@ -83,13 +93,17 @@ a{
 
 /***************    Botons      ***************/
 
-.botoNavApp, .botoNavHome{
+.botoNavApp, .botoNavHome, .botoForm{
     @apply px-5 py-2 inline-block bg-green1 rounded-full border-black border-2;
     @apply transition duration-200 ease-in-out hover:bg-green2;
     @apply transform hover:scale-110 transition ease-in-out;
 }
 
-.botoNavHome{
+.botoForm{
+    @apply hover:bg-green5;
+}
+
+.botoNavHome,.botoForm{
     @apply md:block sm:mt-0 sm:mr-10;
 }
 
@@ -98,7 +112,7 @@ a{
 }
 
 .botoEstandar{
-    @apply bg-green1 rounded-full border-black border-2;
+    @apply bg-green1 rounded-full border-black border-2 focus:outline-none;
     @apply transition duration-200 ease-in-out hover:bg-green2;
     @apply transform hover:scale-110 transition ease-in-out;
 }
@@ -115,6 +129,8 @@ a{
 
 .footer{
     background:url("/imatges/pentagon.png") repeat;
+    min-height:50px;
+    margin-top:auto;
     @apply  pb-5 text-center;
 }
 .copyright{
@@ -123,7 +139,7 @@ a{
 
 /**     Logos Footer Tecnologies     **/
 .logosTecno{
-    @apply inline-block text-black hover:underline mt-2 p-2;
+    @apply inline-block text-black hover:underline mt-2 p-2 focus:outline-none;
     @apply transform hover:scale-125 transition ease-in-out;
 
 }
@@ -157,10 +173,6 @@ a{
 
 
 /***************    CONTENT 1    ***************/
-.contenidor{
-    @apply container px-4 mx-auto mb-10;
-}
-
 .contenidorCartes{
     @apply flex flex-wrap md:mx-2 lg:mx-4;
 }
@@ -184,8 +196,28 @@ a{
 
 /***************    FORMULARI CLÀSSIC   ***************/
 .inputClassic{
-    @apply w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow;
+    @apply w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow ;
 }
+
+.contenidor-login{
+    @apply w-full xl:w-3/4 lg:w-10/12 flex bg-green4 rounded-3xl border-2 border-black;
+}
+.imatge-login{
+    @apply w-full h-auto hidden lg:block lg:w-5/12 bg-contain bg-center bg-no-repeat rounded-l-3xl;
+}
+.subcontenidor-login{
+    @apply w-full bg-green4 lg:w-7/12 p-5 rounded-3xl;
+}
+.contenidor-registre{
+    @apply w-full flex sm:justify-center;
+}
+.subcontenidor-registre{
+    @apply w-full bg-green4 lg:w-2/3 p-5 rounded-3xl border-2 border-black;
+}
+
+
+
+
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
