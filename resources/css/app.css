@@ -180,6 +180,12 @@ a{
 .textCarta{
     @apply ml-2 text-sm px-5 lg:px-10 text-justify md:text-base;
 }
+
+
+/***************    FORMULARI CLÀSSIC   ***************/
+.inputClassic{
+    @apply w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow;
+}
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

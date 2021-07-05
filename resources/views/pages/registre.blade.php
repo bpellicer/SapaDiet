@@ -8,11 +8,25 @@
         </x-linksnav>
     </x-slot>
 </x-nav>
-<x-formulari>
-    <x-slot>
-
-    </x-slot>
-</x-formulari>
+<div class="container mx-auto ">
+    <div class="flex justify-center px-10 my-12">
+        <div class="w-full flex sm:justify-center">
+            <div class="w-full bg-green4 lg:w-2/3 p-5 rounded-3xl border-2 border-black">
+                <h3 class="pt-4 text-2xl text-center font-bold">Crea un compte!</h3>
+                <x-form method="post" class="px-8 pt-6 pb-8">
+                    <x-input tipus="text" nom="nom" placeholder="Nom"/>
+                    <x-input tipus="text" nom="cognoms" placeholder="Cognoms"/>
+                    <x-input tipus="email" nom="email" placeholder="Email"/>
+                    <x-input tipus="password" nom="contrasenya" placeholder="Contrasenya"/>
+                    <x-input tipus="password" nom="contrasenya2" placeholder="Repeteix Contrasenya"/>
+                    <div class="text-center">
+                        <x-boto tipus="submit" classe="botoNavHome w-full" text="Registra't"/>
+                    </div>
+                </x-form>
+            </div>
+        </div>
+    </div>
+</div>
 <x-footer>
     <x-slot name="mapaweb">
         <x-mapaweb>
