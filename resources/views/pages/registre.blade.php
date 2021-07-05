@@ -8,7 +8,11 @@
         </x-linksnav>
     </x-slot>
 </x-nav>
-@include("components.homePage")
+<x-formulari>
+    <x-slot>
+
+    </x-slot>
+</x-formulari>
 <x-footer>
     <x-slot name="mapaweb">
         <x-mapaweb>
