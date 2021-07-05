@@ -32752,7 +32752,7 @@ a{
 
 /***************    NORMES GENERALS ***************/
 
-*:focus {
+input:focus {
   --tw-border-opacity: 1;
   border-color: rgba(147, 197, 253, var(--tw-border-opacity));
   outline: 2px solid transparent;

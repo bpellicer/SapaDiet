@@ -20,7 +20,7 @@ a{
 }
 
 /***************    NORMES GENERALS ***************/
-*{
+input{
 @apply focus:outline-none focus:ring focus:border-blue-300;
 }
 
