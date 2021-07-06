@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControladorRegistre;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::get('login', function () {
 Route::get('registre', function () {
     return view('pages.registre');
 });
+
+Route::post('registre', [ControladorRegistre::class, 'store']);
 
 Route::get('Gestió Dieta', function () {
     return view('pages.gestioDieta');

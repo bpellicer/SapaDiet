@@ -13,7 +13,7 @@
         <div class="contenidor-registre">
             <div class="subcontenidor-registre">
                 <h3 class="pt-4 text-2xl text-center font-bold">Crea un compte!</h3>
-                <x-form method="post" class="px-8 pt-6 pb-8 form">
+                <x-form method="post" class="px-8 pt-6 pb-8 form" action="/registre">
                     <x-input tipus="text" classe="inputClassic" nom="nom" placeholder="Nom"/>
                     <x-input tipus="text" classe="inputClassic" nom="cognoms" placeholder="Cognoms" />
                     <x-input tipus="email" classe="inputClassic" nom="email" placeholder="Email" />
