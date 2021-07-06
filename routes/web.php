@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +19,13 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('login', function () {
-    return view('pages.login');
-});
+Route::get('registre', [ControladorRegistre::class, 'create'])->middleware('guest');
 
-Route::get('registre', [ControladorRegistre::class, 'create']);
+Route::post('registre', [ControladorRegistre::class, 'store'])->middleware('guest');
 
-Route::post('registre', [ControladorRegistre::class, 'store']);
+Route::get('login', [ControladorLogin::class, 'create'])->middleware('guest');
+
+Route::post('login', [ControladorLogin::class, 'store'])->middleware('guest');
 
 Route::get('Gestió Dieta', function () {
     return view('pages.gestioDieta');

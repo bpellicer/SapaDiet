@@ -14,7 +14,7 @@
             <div class="imatge-login" style="background-image: url(/imatges/login.jpg)"></div>
             <div class="subcontenidor-login">
                 <h3 class="pt-4 text-2xl text-center font-bold">Inicia la sessió</h3>
-                <x-form action="/login" method="post" class="px-8 pt-6 pb-8">
+                <x-form method="post" action="/login" class="px-8 pt-6 pb-8">
                     <x-input tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email"/>
 
                     @error('email')
@@ -31,13 +31,13 @@
                     <div class="text-center">
                         <x-boto tipus="submit" classe="botoForm w-full" text="Entra"/>
                     </div>
-                    <div class=" mt-4">
-                        <a href="recuperacio" class="text-sm hover:text-green1">Has oblidat la contrasenya?</a>
-                    </div>
-                    <div class=" mt-4">
-                        <a href="registre" class="text-sm hover:text-green1">No tens cap compte? Registra't</a>
-                    </div>
                 </x-form>
+                <div class=" mt-4">
+                    <a href="recuperacio" class="text-sm hover:text-green1">Has oblidat la contrasenya?</a>
+                </div>
+                <div class=" mt-4">
+                    <a href="registre" class="text-sm hover:text-green1">No tens cap compte? Registra't</a>
+                </div>
             </div>
         </div>
     </div>
