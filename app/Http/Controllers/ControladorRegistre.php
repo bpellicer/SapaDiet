@@ -14,13 +14,14 @@ class ControladorRegistre extends Controller
     }
 
     public function store(Request $request){
-
         $atributs = $request->validate([
             'nom'=>['required','max:30'],
             'cognoms' =>['required','max:255'],
             'email'=>['required','max:255','email',Rule::unique('users','email')],
-            'contrasenya'=>['required','min:8'],
+            'contrasenya'=>['required','min:8','max:255','same:password_confirmation'],
+            'password_confirmation'=>['required','min:8','max:255']
         ]);
+
         User::create($atributs);
         return redirect('/login');
     }

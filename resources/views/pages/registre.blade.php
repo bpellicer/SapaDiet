@@ -17,7 +17,7 @@
 
                     <x-input tipus="text" classe="inputClassic" id="nom" nom="nom" placeholder="Nom"/>
 
-                     @error('nom')
+                    @error('nom')
                         <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                     @enderror
 
@@ -39,9 +39,9 @@
                         <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                     @enderror
 
-                    <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" id="contra2" placeholder="Repeteix Contrasenya" />
+                    <x-input tipus="password" classe="inputClassic contrasenya" nom="password_confirmation" id="contra2" placeholder="Repeteix Contrasenya" />
 
-                    @error('contrasenya')
+                    @error('password_confirmation')
                         <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                     @enderror
 
