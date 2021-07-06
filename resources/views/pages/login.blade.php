@@ -14,7 +14,7 @@
             <div class="imatge-login" style="background-image: url(/imatges/login.jpg)"></div>
             <div class="subcontenidor-login">
                 <h3 class="pt-4 text-2xl text-center font-bold">Inicia la sessió</h3>
-                <x-form method="post" class="px-8 pt-6 pb-8">
+                <x-form action="/login" method="post" class="px-8 pt-6 pb-8">
                     <x-input tipus="email" classe="inputClassic" nom="email" placeholder="Email"/>
                     <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" placeholder="Contrasenya"/>
                     <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass">Mostra contrasenya</label>

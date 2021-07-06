@@ -17,9 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'cognoms',
         'email',
-        'password',
+        'contrasenya',
     ];
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'contrasenya',
         'remember_token',
     ];
 
@@ -40,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function setContrasenyaAttribute($contrasenya){
+        $this->attributes['contrasenya'] = bcrypt($contrasenya);
+    }
 }

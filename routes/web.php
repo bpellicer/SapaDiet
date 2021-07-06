@@ -22,9 +22,7 @@ Route::get('login', function () {
     return view('pages.login');
 });
 
-Route::get('registre', function () {
-    return view('pages.registre');
-});
+Route::get('registre', [ControladorRegistre::class, 'create']);
 
 Route::post('registre', [ControladorRegistre::class, 'store']);
 
