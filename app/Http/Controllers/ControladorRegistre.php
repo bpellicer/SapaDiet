@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ControladorRegistre extends Controller
 {
@@ -17,9 +18,8 @@ class ControladorRegistre extends Controller
         $atributs = $request->validate([
             'nom'=>['required','max:30'],
             'cognoms' =>['required','max:255'],
-            'email'=>['required','max:255','email'],
+            'email'=>['required','max:255','email',Rule::unique('users','email')],
             'contrasenya'=>['required','min:8'],
-
         ]);
         User::create($atributs);
         return redirect('/login');
