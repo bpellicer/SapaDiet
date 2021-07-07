@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class ControladorLogin extends Controller
 {
@@ -13,22 +14,24 @@ class ControladorLogin extends Controller
     }
 
     public function store(Request $request){
-        ddd($request);
-        $atributs = $request->validate([
+
+        $request->validate([
             'email'=>['required','max:255','email',Rule::exists('users','email')],
             'contrasenya'=>['required','min:8','max:255']
         ]);
 
-        if(Auth::attempt($atributs)){
-            $request->session()->regenerate();
-            return redirect("/login");
+        if(!Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('contrasenya')])){
+           throw ValidationException::withMessages([
+                'email' => 'No hem trobat a cap usuari amb aquest email'
+            ]);
         }
-        return back()->withErrors([
-            'email'=>'No existeix un usuari amb aquestes credencials',
-        ]);
+
+        session()->regenerate();
+        return redirect("/perfil");
     }
 
     public function destroy(){
-
+        Auth::logout();
+        return redirect('/')->with('success','Adeu!');
     }
 }

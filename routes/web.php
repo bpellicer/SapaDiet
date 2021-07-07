@@ -27,6 +27,7 @@ Route::get('login', [ControladorLogin::class, 'create'])->middleware('guest');
 
 Route::post('login', [ControladorLogin::class, 'store'])->middleware('guest');
 
-Route::get('Gestió Dieta', function () {
-    return view('pages.gestioDieta');
-});
+Route::post('logout',[ControladorLogin::class, 'destroy'])->middleware('auth');
+
+Route::get('perfil', [ControladorPerfil::class, 'create'])->middleware('auth');
+

@@ -21,7 +21,7 @@
                         <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                      @enderror
 
-                    <x-input tipus="password" classe="inputClassic contrasenya" id="contra1" nom="contrasenya" placeholder="Contrasenya"/>
+                    <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" id="contra1" placeholder="Contrasenya"/>
 
                     @error('contrasenya')
                         <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>

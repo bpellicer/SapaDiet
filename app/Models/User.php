@@ -43,6 +43,11 @@ class User extends Authenticatable
     ];
 
 
+    public function getAuthPassword()
+    {
+        return $this->contrasenya;
+    }
+
     public function setContrasenyaAttribute($contrasenya){
         $this->attributes['contrasenya'] = bcrypt($contrasenya);
     }

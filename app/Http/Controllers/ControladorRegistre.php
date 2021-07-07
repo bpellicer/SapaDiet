@@ -23,6 +23,7 @@ class ControladorRegistre extends Controller
         ]);
 
         User::create($atributs);
+
         return redirect('/login');
     }
 }
