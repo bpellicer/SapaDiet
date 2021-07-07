@@ -8,7 +8,7 @@
                 <a href="#" class="linksApp mt-3">Planificació</a>
                 <a href="#" class="linksApp mt-3">Progrés</a>
                 <a href="#" class="linksApp mt-3">Perfil</a>
-                <a href="#" class="botoNavApp mt-3">Tanca Sessió</a>
+                <form action="logout" method="post">@csrf<input type="submit" href="logout" class="botoNavApp mt-3" value="Tanca Sessió"></form>
             </x-linksnav>
         </x-slot>
     </x-nav>

@@ -32911,6 +32911,7 @@ input:focus {
 
 .botoNavApp, .botoNavHome, .botoForm{
   display: inline-block;
+  cursor: pointer;
   border-radius: 9999px;
   border-width: 2px;
   --tw-border-opacity: 1;

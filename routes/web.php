@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
+use App\Http\Controllers\ControladorPerfil;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,5 @@ Route::post('login', [ControladorLogin::class, 'store'])->middleware('guest');
 
 Route::post('logout',[ControladorLogin::class, 'destroy'])->middleware('auth');
 
-Route::get('perfil', [ControladorPerfil::class, 'create'])->middleware('auth');
+Route::get('perfil',[ControladorPerfil::class, 'create'])->middleware('auth');
 
