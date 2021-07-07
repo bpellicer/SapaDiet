@@ -13,7 +13,15 @@
         </x-slot>
     </x-nav>
     @auth
-        <p>Benvingut</p>
+        <p>BENVINGUT/DA AL TEU PERFIL, {{auth()->user()->nom}}</p>
+        <div class="container bg-green2">
+            <form>
+                <x-inputPerfil tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email"/>
+                <x-inputPerfil tipus="text" classe="inputClassic" id="nom" nom="nom" placeholder="Nom"/>
+                <x-inputPerfil tipus="text" classe="inputClassic" id="cognoms" nom="cognoms" placeholder="Cognoms"/>
+                <input type="submit" value="Actualitzar Dades">
+            </form>
+        </div>
     @endauth
 <x-footer>
     <x-slot name="mapaweb">

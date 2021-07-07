@@ -51,4 +51,20 @@ class User extends Authenticatable
     public function setContrasenyaAttribute($contrasenya){
         $this->attributes['contrasenya'] = bcrypt($contrasenya);
     }
+
+    public function setNomAttribute($nom){
+        $this->attributes['nom'] = ucfirst($nom);
+    }
+
+    public function getNomAttribute($nom){
+        return $nom;
+    }
+
+    public function setCognomsAttribute($cognoms){
+        $this->attributes['cognoms'] = ucwords($cognoms);
+    }
+
+    public function getCognomsAttribute($cognoms){
+        return $cognoms;
+    }
 }
