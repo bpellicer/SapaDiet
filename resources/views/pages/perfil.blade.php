@@ -12,12 +12,13 @@
             </x-linksnav>
         </x-slot>
     </x-nav>
+
     @if (session()->has('perfilActualitzat'))
-        <div class="fixed">
-            <p>{{ session('perfilActualitzat') }}</p>
-        </div>
+        <x-alerta nom="success" missatge="{{ session('perfilActualitzat') }}"/>
     @endif
+
     <x-contentPerfil/>
+
     <x-footer>
         <x-slot name="mapaweb">
             <x-mapaweb>

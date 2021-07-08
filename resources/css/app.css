@@ -236,6 +236,13 @@ input{
     @apply mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-full;
 }
 
+
+/***************    ALERTAS   ***************/
+.success{
+    @apply bg-green1 p-4 rounded-3xl border-2 border-black flex justify-center mx-auto mt-4;
+}
+
+
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

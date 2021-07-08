@@ -1873,6 +1873,11 @@ $("#btnPass").on("click", function (e) {
     $("#labelPass").text("Mostra contrasenya");
   }
 });
+/** Amaga el missatge de success després de 3 segons **/
+
+window.setTimeout(function () {
+  $("#success").stop().fadeOut('slow');
+}, 3000);
 
 /***/ }),
 
