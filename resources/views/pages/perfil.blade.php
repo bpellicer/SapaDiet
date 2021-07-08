@@ -16,8 +16,8 @@
         <div class="flex justify-center px-10 my-12">
             <div class="w-full lg:w-9/12 xl:w-7/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
                 <h2 class="text-center text-2xl">BENVINGUT/DA AL TEU PERFIL, {{auth()->user()->nom}}</h2>
-                    <div class="md:inline-block w-full text-center mt-2">
-                        <img src="/imatges/defaultImage.png" alt="" width="300px" class=" border-4 border-black mx-auto rounded-full bg-white cursor-pointer" onclick="alert('hola')">
+                    <div class="md:inline-block w-full text-center mt-4">
+                        <img src="/imatges/defaultImage.png" alt="" width="300px" class=" border-4 border-black mx-auto rounded-full bg-white cursor-pointer imatgePerfil" onclick="alert('hola')">
                     </div>
                     <div class="w-2/3 inline-block mt-3">
                         <x-form method="post" action="/updatePerfil" class="form">
