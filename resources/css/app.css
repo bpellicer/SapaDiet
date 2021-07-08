@@ -232,6 +232,10 @@ input{
     @apply transition duration-200 hover:opacity-50;
 }
 
+.inputPerfil{
+    @apply mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-full;
+}
+
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

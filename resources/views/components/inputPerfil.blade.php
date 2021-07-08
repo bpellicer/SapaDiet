@@ -6,4 +6,8 @@
         name="{{$nom}}"
         type="{{$tipus}}"
         placeholder="{{$placeholder}}"
-        value="{{auth()->user()->$nom}}" />
+        value="{{auth()->user()->$nom}}"
+        @if ($nom =='email')
+        disabled
+        @endif
+        />

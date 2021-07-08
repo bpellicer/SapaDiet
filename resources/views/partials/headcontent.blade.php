@@ -14,6 +14,5 @@
         <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
         <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script defer src="{{ asset('js/app.js')}}"></script>
-
     </head>
     <body>
