@@ -12,10 +12,30 @@
                         <x-inputPerfil tipus="email" classe="inputPerfil" id="email" nom="email" placeholder="Email"/>
                         <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
                     </x-form>
-                    <x-form method="post" action="/esborraUsuari" class="mt-2">
-                        <div class="flex justify-center"><x-boto tipus="submit" classe="botoDelete w-full md:w-1/2" text="Esborrar el compte"></x-boto></div>
-                    </x-form>
+                    <form method="post" action="/esborraUsuari" class="mt-2" id="elimina">
+                        <div class="flex justify-center">
+                            <button type="submit" class="botoDelete w-full md:w-1/2" onclick="a(event)">Esborrar el compte</button>
+                        </div>
+                    </form>
                 </div>
+                <script>
+                   function a(event){
+                        event.preventDefault();
+                        swal({
+                            title: "Estas segur que vols esborrar el teu compte?",
+                            text: "No seràs capaç de recuperar el teu usuari!",
+                            icon:'warning',
+                            buttons:['Cancel·la','Si, esborra el meu compte'],
+                            closeOnClickOutside: false,
+                            dangerMode:true
+                        }).then((esborra) => {
+                            if(esborra){
+                                return true;
+                            }
+                        });
+                   }
+                </script>
+
         </div>
     </div>
 </div>
