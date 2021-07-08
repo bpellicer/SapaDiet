@@ -1,5 +1,5 @@
 
-    <label class="block mb-2 text-sm font-bold text-gray-700 text-left" for="{{$nom}}">{{$placeholder}}</label>
+    <label class="block text-sm font-bold text-gray-700 text-left" for="{{$nom}}">{{$placeholder}}</label>
     <input
         class="{{$classe}}"
         id="{{$id}}"

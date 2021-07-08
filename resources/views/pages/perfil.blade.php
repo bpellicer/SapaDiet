@@ -12,28 +12,24 @@
             </x-linksnav>
         </x-slot>
     </x-nav>
-    <div class="contenidor">
-        <div class="subcontenidor">
-            <div class="contenidor-login">
-                <div class="w-full bg-green4 p-5 rounded-3xl text-center">
-                    <h2 class="text-center text-2xl">BENVINGUT/DA AL TEU PERFIL, {{auth()->user()->nom}}</h2>
-                    <div class="mt-10">
-                        <div class="md:w-1/4 h-auto md:inline-block w-full rounded-full">
-                            <div class="text-center">
-                                <img src="/imatges/cuate.png" alt="" width="200px" class=" border-4 border-black mx-auto rounded-full bg-white">
-                                <div class="mt-2"><x-boto tipus="button" classe="botoForm w-full" text="Canvia imatge de perfil"></x-boto></div>
-                            </div>
-                        </div>
-                        <div class="lg:w-2/3 bg-blue-400 md:inline-block w-full">
-                            <x-form method="post" action="/updatePerfil" class="border-2 border-black">
-                                <div class="my-5 mx-2 inline-block"><x-inputPerfil tipus="text" classe="mr-10 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-full" id="nom" nom="nom" placeholder="Nom"/></div>
-                                <div class="my-5 mx-2 inline-block"><x-inputPerfil tipus="text" classe="mr-10 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow  w-full" id="cognoms" nom="cognoms" placeholder="Cognoms"/></div>
-                                <div class="my-5 mx-2 inline-block"><x-inputPerfil tipus="email" classe="block mr-10 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow  w-full" id="email" nom="email" placeholder="Email"/></div>
-                                <x-boto tipus="submit" classe="botoForm w-full" text="Actualitzar Dades"></x-boto>
-                            </x-form>
-                        </div>
+    <div class="container mx-auto my-auto">
+        <div class="flex justify-center px-10 my-12">
+            <div class="w-full lg:w-9/12 xl:w-7/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
+                <h2 class="text-center text-2xl">BENVINGUT/DA AL TEU PERFIL, {{auth()->user()->nom}}</h2>
+                    <div class="md:inline-block w-full text-center mt-2">
+                        <img src="/imatges/defaultImage.png" alt="" width="300px" class=" border-4 border-black mx-auto rounded-full bg-white cursor-pointer" onclick="alert('hola')">
                     </div>
-                </div>
+                    <div class="w-2/3 inline-block mt-3">
+                        <x-form method="post" action="/updatePerfil" class="form">
+                            <x-inputPerfil tipus="text" classe=" mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-full" id="nom" nom="nom" placeholder="Nom"/>
+                            <x-inputPerfil tipus="text" classe=" mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow  w-full" id="cognoms" nom="cognoms" placeholder="Cognoms"/>
+                            <x-inputPerfil tipus="email" classe=" mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow  w-full" id="email" nom="email" placeholder="Email"/>
+                            <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
+                        </x-form>
+                        <x-form method="post" action="/esborraUsuari" class="mt-2">
+                            <div class="flex justify-center"><x-boto tipus="submit" classe="botoDelete w-full md:w-1/2" text="Esborrar el compte"></x-boto></div>
+                        </x-form>
+                    </div>
             </div>
         </div>
     </div>
