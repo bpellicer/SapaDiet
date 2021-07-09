@@ -1,4 +1,5 @@
 @include('partials.headcontent')
+    <input type="button" onclick="confirmar()" value="clica">
     <x-nav>
         <x-slot name="linksnav">
             <x-linksnav navclass="navApp" btnclass="lg:hidden sm:mr-10">

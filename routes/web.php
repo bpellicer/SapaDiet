@@ -33,3 +33,5 @@ Route::post('logout',[ControladorLogin::class, 'destroy'])->middleware('auth');
 Route::get('perfil',[ControladorPerfil::class, 'create'])->middleware('auth');
 
 Route::post('updatePerfil',[ControladorPerfil::class,'update'])->middleware('auth');
+
+Route::post('esborraUsuari', [ControladorPerfil::class, 'delete'])->middleware('auth');

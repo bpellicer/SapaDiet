@@ -1,3 +1,7 @@
+@if (session()->has('perfilEsborrat'))
+    <x-alerta nom="success" missatge="{{ session('perfilEsborrat') }}"/>
+@endif
+
 <div class="flex flex-wrap mainPage">
     <div class="w-full flex">
         <div class="mx-auto">

@@ -1,6 +1,6 @@
 @props(['method'])
 
-<form method="{{ $method =='get' ? 'get' : 'post'}}" {{$attributes->merge(['class'=> ''])}}>
+<form method="{{ $method =='get' ? 'get' : 'post'}}" {{$attributes->merge(['class'=> ''])->merge(['id'=>'id'])}}>
     @if ($method != 'get')
         @csrf
     @endif

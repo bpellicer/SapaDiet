@@ -42,4 +42,14 @@ class ControladorPerfil extends Controller
         return redirect("/perfil");
 
     }
+
+    public function delete(Request $request){
+        $usuariId = Auth::id();
+        $usuari = User::findOrFail($usuariId);
+        $usuari->delete();
+
+        session()->flash('perfilEsborrat','Dades esborrades correctament');
+
+        return redirect("/");
+    }
 }

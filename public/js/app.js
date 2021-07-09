@@ -1873,6 +1873,26 @@ $("#btnPass").on("click", function (e) {
     $("#labelPass").text("Mostra contrasenya");
   }
 });
+/**
+ * Event Onclick que s'activa al premer el botó d'eliminar el compte. L'event submit del form s'atura i es demana una confirmació
+ * en base a una JS promise. Si es compleix, es fa submit al form, altrament retorna fals (Llibreria Sweet Alert per les alertes estilitzades)
+ */
+
+$("#eliminaPerfil").on("click", function (event) {
+  event.preventDefault();
+  swal({
+    title: "Estas segur que vols esborrar el teu compte?",
+    text: "No seràs capaç de recuperar el teu usuari!",
+    icon: 'warning',
+    buttons: ['Cancel·la', 'Si, esborra el meu compte'],
+    closeOnClickOutside: false,
+    dangerMode: true
+  }).then(function (esborra) {
+    if (esborra) {
+      $("#eliminaForm").submit();
+    } else return false;
+  });
+});
 /** Amaga el missatge de success després de 3 segons **/
 
 window.setTimeout(function () {
