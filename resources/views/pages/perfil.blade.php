@@ -5,6 +5,7 @@
     <x-alerta nom="success" missatge="{{ session('perfilActualitzat') }}"/>
 @endif
 
-<x-contentPerfil/>
+
+@include('components.contentPerfil')
 
 <x-layout.footerAuth/>

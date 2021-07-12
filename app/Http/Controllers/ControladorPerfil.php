@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Imatge;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class ControladorPerfil extends Controller
 {
     public function create(){
-        return view('pages.perfil');
+        return view('pages.perfil',[
+            'imatges' => Imatge::all(),
+        ]);
     }
 
 
@@ -51,5 +55,9 @@ class ControladorPerfil extends Controller
         session()->flash('perfilEsborrat','Dades esborrades correctament');
 
         return redirect("/");
+    }
+
+    public function updateImatgePerfil(Request $request){
+
     }
 }

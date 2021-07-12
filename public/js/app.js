@@ -1898,6 +1898,12 @@ $("#eliminaPerfil").on("click", function (event) {
 window.setTimeout(function () {
   $("#success").stop().fadeOut('slow');
 }, 3000);
+$("#imatgePerfil").on("click", function () {
+  $("#divExtern").show();
+});
+$("#creu").on("click", function () {
+  $("#divExtern").hide();
+});
 
 /***/ }),
 

@@ -236,6 +236,24 @@ input{
     @apply mb-3 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-full;
 }
 
+.divExtern{
+    @apply absolute left-0 top-0 w-full h-full z-10;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(1px);
+}
+
+.divIntern{
+    @apply absolute mx-auto my-20 p-8 left-0 top-0 right-0 bottom-0 bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
+    box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
+}
+
+.creu{
+    @apply absolute top-3 right-3 w-6 cursor-pointer;
+}
+
+.gridImatges{
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 place-items-center;
+}
 
 /***************    ALERTAS   ***************/
 .success{

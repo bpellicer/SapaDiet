@@ -19,6 +19,8 @@
                     </div>
                 </x-form>
             </div>
+
+            @include("components.imatges")
         </div>
     </div>
 </div>
