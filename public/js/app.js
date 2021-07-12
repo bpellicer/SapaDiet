@@ -1899,10 +1899,10 @@ window.setTimeout(function () {
   $("#success").stop().fadeOut('slow');
 }, 3000);
 $("#imatgePerfil").on("click", function () {
-  $("#divExtern").show();
+  $("#divIntern").show();
 });
 $("#creu").on("click", function () {
-  $("#divExtern").hide();
+  $("#divIntern").hide();
 });
 
 /***/ }),

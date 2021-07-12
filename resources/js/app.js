@@ -61,10 +61,10 @@ window.setTimeout(function(){
 
 
 $("#imatgePerfil").on("click", function(){
-    $("#divExtern").show();
+    $("#divIntern").show();
 });
 
 
 $("#creu").on("click",function(){
-    $("#divExtern").hide();
+    $("#divIntern").hide();
 });

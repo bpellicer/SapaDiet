@@ -1,5 +1,5 @@
-<div id="divExtern" class="divExtern" hidden>
-    <div class="divIntern">
+
+    <div class="divIntern" id="divIntern" hidden>
         <img src="/imatges/creu.png" class="creu" id="creu">
         <h1 class=" text-2xl">IMATGE DE PERFIL</h1>
         <x-form method="post" action="updateImatgePerfil" id="formImatgePerfil" class="form">
@@ -10,4 +10,4 @@
             </div>
         </x-form>
     </div>
-</div>
+

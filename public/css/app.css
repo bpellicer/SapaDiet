@@ -33480,18 +33480,6 @@ input:focus {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.divExtern{
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 10;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,0.1);
-  -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
-}
-
 .divIntern{
   position: absolute;
   top: 0px;
