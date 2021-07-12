@@ -59,3 +59,8 @@ window.setTimeout(function(){
     $("#success").stop().fadeOut('slow');
 },3000);
 
+
+$("#imatgePerfil").on("click", function(){
+
+
+});
