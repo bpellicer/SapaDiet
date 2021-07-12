@@ -20,7 +20,7 @@ class User extends Authenticatable
         'nom',
         'cognoms',
         'email',
-        'contrasenya',
+        'contrasenya'
     ];
 
     /**
@@ -41,7 +41,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 
     public function getAuthPassword()
     {
@@ -66,5 +65,9 @@ class User extends Authenticatable
 
     public function getCognomsAttribute($cognoms){
         return $cognoms;
+    }
+
+    public function imatge(){
+        return $this->belongsTo(Imatge::class);
     }
 }
