@@ -122,8 +122,8 @@ input{
 }
 
 .botoEstandar{
-    @apply bg-green1 rounded-full border-black border-2 focus:outline-none;
-    @apply transition duration-200 ease-in-out hover:bg-green2;
+    @apply bg-green1 rounded-full border-black border-2 focus:outline-none py-2 px-10;
+    @apply transition duration-200 ease-in-out hover:bg-green5;
     @apply transform hover:scale-110 transition ease-in-out;
 }
 
@@ -237,7 +237,7 @@ input{
 }
 
 .divIntern{
-    @apply absolute mx-auto my-20 p-8 left-0 top-0 right-0 bottom-0 bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
+    @apply absolute mx-auto my-20 p-8 left-0 top-0 right-0 h-auto bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 
@@ -246,7 +246,7 @@ input{
 }
 
 .gridImatges{
-    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 place-items-center;
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center;
 }
 
 /***************    ALERTAS   ***************/
@@ -254,6 +254,22 @@ input{
     @apply bg-green1 p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
 }
 
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* IMAGE STYLES */
+  [type=radio] + img {
+    cursor: pointer;
+  }
+
+  /* CHECKED STYLES */
+  [type=radio]:checked + img {
+    border: 3px solid #000;
+  }
 
 /************************* NORMALIZE     *************************/
 

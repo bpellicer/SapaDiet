@@ -33058,6 +33058,10 @@ input:focus {
   border-color: rgba(0, 0, 0, var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .botoEstandar:focus {
@@ -33067,7 +33071,7 @@ input:focus {
 
 .botoEstandar:hover {
   --tw-bg-opacity: 1;
-  background-color: rgba(133, 220, 165, var(--tw-bg-opacity));
+  background-color: rgba(145, 220, 90, var(--tw-bg-opacity));
 }
 
 .botoEstandar {
@@ -33484,12 +33488,12 @@ input:focus {
   position: absolute;
   top: 0px;
   right: 0px;
-  bottom: 0px;
   left: 0px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5rem;
   margin-bottom: 5rem;
+  height: auto;
   width: 83.333333%;
   border-radius: 1.5rem;
   --tw-bg-opacity: 1;
@@ -33536,7 +33540,7 @@ input:focus {
 
 @media (min-width: 768px) {
   .gridImatges {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -33562,6 +33566,25 @@ input:focus {
   --tw-bg-opacity: 1;
   background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
   padding: 1rem;
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+
+[type=radio]:checked + img {
+  border: 3px solid #000;
 }
 
 /************************* NORMALIZE     *************************/
