@@ -1,5 +1,11 @@
 @include('partials.headcontent')
 <x-layout.navGuest/>
+
+@if (session()->has('usuariCreat'))
+    <x-alerta nom="success" missatge="{{ session('usuariCreat') }}"/>
+@endif
+
+
 <div class="contenidor">
     <div class="subcontenidor">
         <div class="contenidor-login">

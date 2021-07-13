@@ -7,8 +7,17 @@
             </div>
             <div class="w-2/3 inline-block mt-3">
                 <x-form method="post" action="/updatePerfil" class="form" id="updateForm">
+
                     <x-inputPerfil tipus="text" classe="inputPerfil" id="nom" nom="nom" placeholder="Nom"/>
+                    @error('nom')
+                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                     @enderror
+
                     <x-inputPerfil tipus="text" classe="inputPerfil" id="cognoms" nom="cognoms" placeholder="Cognoms"/>
+                    @error('cognoms')
+                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                     @enderror
+
                     <x-inputPerfil tipus="email" classe="inputPerfil" id="email" nom="email" placeholder="Email"/>
                     <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
                 </x-form>

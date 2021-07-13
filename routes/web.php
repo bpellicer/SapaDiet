@@ -3,6 +3,7 @@
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
+use App\Http\Controllers\ControladorPlanificacio;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,5 @@ Route::post('updatePerfil',[ControladorPerfil::class,'update'])->middleware('aut
 Route::post('esborraUsuari', [ControladorPerfil::class, 'delete'])->middleware('auth');
 
 Route::post('updateImatgePerfil',[ControladorPerfil::class, 'updateImatgePerfil'])->middleware('auth');
+
+Route::get('planificacio', [ControladorPlanificacio::class, 'create'])->middleware('auth');

@@ -9,5 +9,5 @@
         @if ($tipus!='password')
         value='{{old("$nom")}}'
         @endif
-        />
+        autofocus/>
 </div>
