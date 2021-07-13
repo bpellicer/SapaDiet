@@ -33489,6 +33489,7 @@ input:focus {
   top: 0px;
   right: 0px;
   left: 0px;
+  z-index: 10;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5rem;
@@ -33550,23 +33551,7 @@ input:focus {
   }
 }
 
-/***************    ALERTAS   ***************/
-
-.success{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  border-radius: 1.5rem;
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
-  padding: 1rem;
-}
+/*********** Seleccionar imatge de perfil fent servir la imatge com a input radio ******************/
 
 [type=radio] {
   position: absolute;
@@ -33585,6 +33570,24 @@ input:focus {
 
 [type=radio]:checked + img {
   border: 3px solid #000;
+}
+
+/***************    ALERTAS   ***************/
+
+.success{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 1.5rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
+  padding: 1rem;
 }
 
 /************************* NORMALIZE     *************************/

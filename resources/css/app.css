@@ -237,7 +237,7 @@ input{
 }
 
 .divIntern{
-    @apply absolute mx-auto my-20 p-8 left-0 top-0 right-0 h-auto bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
+    @apply z-10 absolute mx-auto my-20 p-8 left-0 top-0 right-0 h-auto bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 
@@ -249,10 +249,8 @@ input{
     @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center;
 }
 
-/***************    ALERTAS   ***************/
-.success{
-    @apply bg-green1 p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
-}
+
+/*********** Seleccionar imatge de perfil fent servir la imatge com a input radio ******************/
 
 [type=radio] {
     position: absolute;
@@ -270,6 +268,13 @@ input{
   [type=radio]:checked + img {
     border: 3px solid #000;
   }
+
+/***************    ALERTAS   ***************/
+.success{
+    @apply bg-green1 p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
+}
+
+
 
 /************************* NORMALIZE     *************************/
 

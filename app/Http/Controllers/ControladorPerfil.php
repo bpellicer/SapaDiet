@@ -58,6 +58,9 @@ class ControladorPerfil extends Controller
     }
 
     public function updateImatgePerfil(Request $request){
-
+        $usuari = User::findOrFail(Auth::id());
+        $usuari->imatge_id = $request->get("imatge");
+        $usuari->save();
+        return redirect("/perfil");
     }
 }
