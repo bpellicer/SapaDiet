@@ -11,6 +11,10 @@ class ControladorPlanificacio extends Controller
     }
 
     public function storePlanificacio(Request $request){
-        ddd($request);
+        if ($request->get("proteina") == null || $request->get("hidrats") == null ||
+            $request->get("grasses") == null  || $request->get("lactics") == null ||
+            $request->get("fruites") == null){
+                return view("pages.planificacio");
+        }
     }
 }

@@ -40,7 +40,7 @@
                             <x-labelCheckbox for="hidrats8" src="/imatges/aliments/pasta.png" value="Pasta" tipus="checkbox" nom="hidrats[]" span="Pasta"/>
                         </div>
                     </div>
-                    <div class="py-3">
+                   {{--  <div class="py-3">
                         <h1 class=" text-2xl">Grasses preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox for="grasses1" src="/imatges/aliments/alaPollo.png" value="Pollastre" tipus="checkbox" nom="proteina[]" span="Pollastre"/>
@@ -78,7 +78,7 @@
                             <x-labelCheckbox for="fruita7" src="/imatges/aliments/tempeh.png" value="Tempeh" tipus="checkbox" nom="proteina[]" span="Tempeh"/>
                             <x-labelCheckbox for="fruita8" src="/imatges/aliments/carnsoja.png" value="Soja" tipus="checkbox" nom="proteina[]" span="Soja"/>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="py-3">
                         <h1 class=" text-2xl">Objectius</h1>
                         <select name="" id="">
