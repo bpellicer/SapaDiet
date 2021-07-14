@@ -8,23 +8,59 @@
                 <div class="py-3">
                     <h1 class=" text-2xl">Nombre d'apats</h1>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
+                        <label for="apat2" class="rounded-full bg-white">
+                            <input class="radio" id="apat2" type="radio" name="imatge" value="">
+                            <img src ="/imatges/2.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat2">
+                        </label>
+                        <label for="apat3" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat3" name="imatge" value="">
+                            <img src ="/imatges/3.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat3">
+                        </label>
+                        <label for="apat4" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat4" name="imatge" value="">
+                            <img src ="/imatges/4.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat4">
+                        </label>
+                        <label for="apat5" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat5" name="imatge" value="">
+                            <img src ="/imatges/5.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat5">
+                        </label>
                     </div>
                 </div>
                 <div class="py-3">
                     <h1 class=" text-2xl">Proteïnes preferides</h1>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
-                        <div>4</div>
+                        <label for="proteina1" class="rounded-full bg-white">
+                            <input class="radio" id="proteina1" type="radio" name="imatge" value="">
+                            <img src ="/imatges/aliments/alaPollo.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="proteina1">
+                        </label>
+                        <label for="proteina2" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="proteina2" name="imatge" value="">
+                            <img src ="/imatges/aliments/ou.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="proteina2">
+                        </label>
+                        <label for="apat4" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat4" name="imatge" value="">
+                            <img src ="/imatges/4.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat4">
+                        </label>
+                        <label for="apat5" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat5" name="imatge" value="">
+                            <img src ="/imatges/5.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat5">
+                        </label>
+                        <label for="apat2" class="rounded-full bg-white">
+                            <input class="radio" id="apat2" type="radio" name="imatge" value="">
+                            <img src ="/imatges/2.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat2">
+                        </label>
+                        <label for="apat3" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat3" name="imatge" value="">
+                            <img src ="/imatges/3.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat3">
+                        </label>
+                        <label for="apat4" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat4" name="imatge" value="">
+                            <img src ="/imatges/4.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat4">
+                        </label>
+                        <label for="apat5" class="rounded-full bg-white">
+                            <input class="radio"  type="radio" id="apat5" name="imatge" value="">
+                            <img src ="/imatges/5.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat5">
+                        </label>
                     </div>
                 </div>
                 <div class="py-3">

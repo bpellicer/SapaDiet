@@ -259,15 +259,19 @@ input{
     height: 0;
   }
 
-  /* IMAGE STYLES */
-  [type=radio] + img {
+[type=radio] + img {
     cursor: pointer;
-  }
+}
 
-  /* CHECKED STYLES */
-  [type=radio]:checked + img {
+
+.radio:checked + img {
     border: 3px solid #000;
-  }
+}
+
+.imatgePlanificacio{
+    @apply shadow-lg;
+    @apply transition duration-200 hover:opacity-70;
+}
 
 /***************    ALERTAS   ***************/
 .success{

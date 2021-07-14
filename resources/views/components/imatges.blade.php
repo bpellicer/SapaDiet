@@ -5,7 +5,7 @@
         <div class="gridImatges">
                 @foreach ($imatges as $imatge)
                     <label for="{{$imatge->id}}" class="rounded-full">
-                        <input id="{{$imatge->id}}" type="radio" name="imatge" value="{{$imatge->id}}"
+                        <input id="{{$imatge->id}}" type="radio" name="imatge" value="{{$imatge->id}}" class="radio"
                             @if ($imatge->id === auth()->user()->imatge->id)
                                 checked
                             @endif

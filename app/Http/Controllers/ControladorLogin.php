@@ -30,7 +30,7 @@ class ControladorLogin extends Controller
         session()->regenerate();
         $usuari = User::findOrFail(Auth::id());
 
-        if($usuari->primera_vegada) return redirect("/");
+        if($usuari->primera_vegada) return redirect("/planificacio");
 
         return redirect("/perfil");
     }
