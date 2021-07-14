@@ -40,3 +40,5 @@ Route::post('esborraUsuari', [ControladorPerfil::class, 'delete'])->middleware('
 Route::post('updateImatgePerfil',[ControladorPerfil::class, 'updateImatgePerfil'])->middleware('auth');
 
 Route::get('planificacio', [ControladorPlanificacio::class, 'create'])->middleware('auth');
+
+Route::post('planificacioUsuari',[ControladorPlanificacio::class, 'storePlanificacio'])->middleware('auth');
