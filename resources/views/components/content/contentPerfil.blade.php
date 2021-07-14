@@ -29,7 +29,7 @@
                 </x-form>
             </div>
 
-            @include("components.imatges")
+            @include("components.content.imatges")
         </div>
     </div>
 </div>

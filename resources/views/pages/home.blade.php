@@ -1,4 +1,4 @@
 @include('partials.headcontent')
 <x-layout.navGuest/>
-<x-homePage/>
+<x-content.homePage/>
 <x-layout.footerGuest/>

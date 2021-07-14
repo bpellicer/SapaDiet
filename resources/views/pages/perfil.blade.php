@@ -6,6 +6,6 @@
 @endif
 
 
-@include('components.contentPerfil')
+@include('components.content.contentPerfil')
 
 <x-layout.footerAuth/>
