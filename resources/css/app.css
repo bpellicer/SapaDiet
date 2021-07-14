@@ -252,58 +252,29 @@ input{
 
 /*********** Seleccionar imatge de perfil fent servir la imatge com a input radio ******************/
 
-[type=radio] {
+[type=radio], .checkProva{
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-[type=radio] + img {
+[type=radio] + img , .checkProva + img{
     cursor: pointer;
 }
 
 
-.radio:checked + img {
+.radio:checked + img, .checkProva:checked + img{
     border: 3px solid #000;
 }
 
+
 .imatgePlanificacio{
-    @apply shadow-lg;
+    @apply shadow-lg rounded-full bg-white cursor-pointer;
     @apply transition duration-200 hover:opacity-70;
 }
 
-input[type="checkbox"][id^="cb"] {
-    display: none;
-  }
 
-  [type=checkbox]:checked + img{
-    border: 2px solid black;
-  }
-  label {
-    display: block;
-    position: relative;
-    margin: 10px;
-    cursor: pointer;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  label::before {
-    display: block;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    line-height: 28px;
-  }
 
 /***************    ALERTAS   ***************/
 .success{

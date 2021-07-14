@@ -33553,22 +33553,26 @@ input:focus {
 
 /*********** Seleccionar imatge de perfil fent servir la imatge com a input radio ******************/
 
-[type=radio] {
+[type=radio], .checkProva{
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-[type=radio] + img {
+[type=radio] + img , .checkProva + img{
   cursor: pointer;
 }
 
-.radio:checked + img {
+.radio:checked + img, .checkProva:checked + img{
   border: 3px solid #000;
 }
 
 .imatgePlanificacio{
+  cursor: pointer;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
@@ -33584,38 +33588,6 @@ input:focus {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   transition-duration: 200ms;
-}
-
-input[type="checkbox"][id^="cb"] {
-  display: none;
-}
-
-[type=checkbox]:checked + img{
-  border: 2px solid black;
-}
-
-label {
-  display: block;
-  position: relative;
-  margin: 10px;
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-label::before {
-  display: block;
-  border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  line-height: 28px;
 }
 
 /***************    ALERTAS   ***************/

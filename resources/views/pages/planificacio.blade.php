@@ -9,10 +9,10 @@
                     @csrf
                     <div class="py-3">
 
-                        <h1 class=" text-2xl">Nombre d'apats</h1>
+                        <h1 class=" text-2xl">Nombre d'àpats</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <label for="apat2" class="rounded-full bg-white">
-                                <input class="radio" id="apat2" type="radio" name="apat" value="2">
+                                <input class="radio" id="apat2" type="radio" name="apat" value="2" checked>
                                 <img src ="/imatges/2.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat2">
                             </label>
                             <label for="apat3" class="rounded-full bg-white">
@@ -25,7 +25,7 @@
                             </label>
                             <label for="apat5" class="rounded-full bg-white">
                                 <input class="radio"  type="radio" id="apat5" name="apat" value="5">
-                                <img src ="/imatges/5.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="apat5">
+                                <img src ="/imatges/5.png" width="70px" class="imatgePlanificacio" name="apat5">
                             </label>
                         </div>
                     </div>
@@ -33,20 +33,16 @@
                         <h1 class=" text-2xl">Proteïnes preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
 
-                            <input type="checkbox" id="cb1" name="proteina[]" value="pollastre"/>
-                            <label for="cb1"><img src="/imatges/aliments/alaPollo.png" /></label>
-
-                            <input type="checkbox" id="cb2" name="proteina[]" value="ou"/>
-                            <label for="cb2"><img src="/imatges/aliments/ou.png"/></label>
-
-                            {{-- <label for="proteina1" class="rounded-full bg-white">
-                                <input class="radio" id="proteina1" type="radio" name="imatge" value="">
-                                <img src ="" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="proteina1">
+                            <label for="proteina1" class="rounded-full bg-white">
+                                <input type="checkbox" id="proteina1" name="proteina[]" value="alaPollo" class="checkProva">
+                                <img src="/imatges/aliments/alaPollo.png" width="70px" name="proteina1" class="rounded-full bg-white">
                             </label>
+
                             <label for="proteina2" class="rounded-full bg-white">
-                                <input class="radio"  type="radio" id="proteina2" name="imatge" value="">
-                                <img src ="/imatges/aliments/ou.png" width="70px" class="rounded-full bg-white cursor-pointer imatgePlanificacio" name="proteina2">
-                            </label> --}}
+                                <input type="checkbox" id="proteina2" name="proteina[]" value="ou" class="checkProva">
+                                <img src="/imatges/aliments/ou.png" width="70px" name="proteina2" class="rounded-full bg-white">
+                            </label>
+
 
                         </div>
                     </div>
