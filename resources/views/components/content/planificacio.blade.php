@@ -40,20 +40,20 @@
                             <x-labelCheckbox for="hidrats8" src="/imatges/aliments/pasta.png" value="Pasta" tipus="checkbox" nom="hidrats[]" span="Pasta"/>
                         </div>
                     </div>
-                   {{--  <div class="py-3">
+                   <div class="py-3">
                         <h1 class=" text-2xl">Grasses preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
-                            <x-labelCheckbox for="grasses1" src="/imatges/aliments/alaPollo.png" value="Pollastre" tipus="checkbox" nom="proteina[]" span="Pollastre"/>
-                            <x-labelCheckbox for="grasses2" src="/imatges/aliments/ou.png" value="Ou" tipus="checkbox" nom="proteina[]" span="Ou"/>
-                            <x-labelCheckbox for="grasses3" src="/imatges/aliments/carn.png" value="Carn" tipus="checkbox" nom="proteina[]" span="Carn"/>
-                            <x-labelCheckbox for="grasses4" src="/imatges/aliments/tofu.png" value="Tofu" tipus="checkbox" nom="proteina[]" span="Tofu"/>
-                            <x-labelCheckbox for="grasses5" src="/imatges/aliments/tonyina.png" value="Tonyina" tipus="checkbox" nom="proteina[]" span="Tonyina"/>
-                            <x-labelCheckbox for="grasses6" src="/imatges/aliments/peix.png" value="Peix" tipus="checkbox" nom="proteina[]" span="Peix"/>
-                            <x-labelCheckbox for="grasses7" src="/imatges/aliments/tempeh.png" value="Tempeh" tipus="checkbox" nom="proteina[]" span="Tempeh"/>
-                            <x-labelCheckbox for="grasses8" src="/imatges/aliments/carnsoja.png" value="Soja" tipus="checkbox" nom="proteina[]" span="Soja"/>
+                            <x-labelCheckbox for="grasses1" src="/imatges/aliments/alvocat.png" value="Alvocat" tipus="checkbox" nom="grasses[]" span="Alvocat"/>
+                            <x-labelCheckbox for="grasses2" src="/imatges/aliments/anacard.png" value="Anacard" tipus="checkbox" nom="grasses[]" span="Anacard"/>
+                            <x-labelCheckbox for="grasses3" src="/imatges/aliments/atmetlla.png" value="Atmetlla" tipus="checkbox" nom="grasses[]" span="Atmetlla"/>
+                            <x-labelCheckbox for="grasses4" src="/imatges/aliments/cacahuet.png" value="Cacahuet" tipus="checkbox" nom="grasses[]" span="Cacahuet"/>
+                            <x-labelCheckbox for="grasses5" src="/imatges/aliments/chia.png" value="Chia" tipus="checkbox" nom="grasses[]" span="Chia"/>
+                            <x-labelCheckbox for="grasses6" src="/imatges/aliments/chocolata.png" value="Chocolata" tipus="checkbox" nom="grasses[]" span="Chocolata"/>
+                            <x-labelCheckbox for="grasses7" src="/imatges/aliments/nous.png" value="Nous" tipus="checkbox" nom="grasses[]" span="Nous"/>
+                            <x-labelCheckbox for="grasses8" src="/imatges/aliments/olives.png" value="Olives" tipus="checkbox" nom="grasses[]" span="Olives"/>
                         </div>
                     </div>
-                    <div class="py-3">
+                    {{-- <div class="py-3">
                         <h1 class=" text-2xl">Làctics i begudes preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox for="lactics1" src="/imatges/aliments/alaPollo.png" value="Pollastre" tipus="checkbox" nom="proteina[]" span="Pollastre"/>
