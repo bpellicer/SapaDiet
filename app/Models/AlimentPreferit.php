@@ -9,6 +9,8 @@ class AlimentPreferit extends Model
 {
     use HasFactory;
 
+    protected $table = 'aliments_preferits';
+
     public function planificacio(){
         return $this->belongsToMany(Planificacio::class);
     }

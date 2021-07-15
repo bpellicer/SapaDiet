@@ -9,6 +9,8 @@ class Imatge extends Model
 {
     use HasFactory;
 
+    protected $table = 'imatges';
+
     public function user(){
         return $this->hasMany(User::class);
     }

@@ -1,4 +1,4 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
-<x-content.planificacio/>
+@include('components.content.planificacio')
 <x-layout.footerAuth/>

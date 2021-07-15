@@ -68,3 +68,6 @@ $("#imatgePerfil").on("click", function(){
 $("#creu").on("click",function(){
     $("#divIntern").hide();
 });
+
+
+$("#Ou").attr('checked');
