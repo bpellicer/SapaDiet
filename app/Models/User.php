@@ -70,4 +70,9 @@ class User extends Authenticatable
     public function imatge(){
         return $this->belongsTo(Imatge::class);
     }
+
+    public function planifiacio(){
+        return $this->belongsTo(Planificacio::class);
+    }
+
 }

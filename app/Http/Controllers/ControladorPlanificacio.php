@@ -16,5 +16,6 @@ class ControladorPlanificacio extends Controller
             $request->get("fruites") == null){
                 return view("pages.planificacio");
         }
+        ddd($request);
     }
 }

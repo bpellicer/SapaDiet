@@ -79,13 +79,13 @@
                     </div>
                     <div class="py-3">
                         <h1 class=" text-2xl">Objectius</h1>
-                        <select name="" id="">
+                        <select name="objectiu" id="objectiu" class="ml-12">
                             <option value="perdrePes">Perdre pes</option>
-                            <option value="perdrePes">Guanyar pes</option>
-                            <option value="perdrePes">Mantenir pes</option>
+                            <option value="guanyarPes">Guanyar pes</option>
+                            <option value="mantenirPes">Mantenir pes</option>
                         </select>
                     </div>
-                    <input type="submit">
+                    <x-boto tipus="submit" classe="botoPerfil float-right mb-4" text="Guarda"/>
                 </form>
             </div>
         </div>
