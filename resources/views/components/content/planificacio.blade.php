@@ -5,8 +5,6 @@
             <div class="px-10 pt-2 pb-11">
                 <form action="planificacioUsuari" method="post">
                     @csrf
-
-
                    <div class="py-3">
                         <h1 class=" text-2xl">Nombre d'àpats</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
@@ -81,21 +79,31 @@
                     </div>
                     <div class="py-3">
                         <h1 class=" text-2xl">Objectius</h1>
-                        <select name="objectiu" id="objectiu" class="ml-12">
-                            <option value="perdrePes">Perdre pes</option>
-                            <option value="guanyarPes">Guanyar pes</option>
-                            <option value="mantenirPes">Mantenir pes</option>
+                        <select name="objectius" id="objectiu" class="sm:ml-12">
+                            <option value="perdre pes">Perdre pes</option>
+                            <option value="guanyar pes">Guanyar pes</option>
+                            <option value="mantenir pes">Mantenir pes</option>
                         </select>
                     </div>
-                    <x-boto tipus="submit" classe="botoPerfil float-right mb-4" text="Guarda"/>
+                    <div class="flex justify-center mt-3">
+                        <x-boto tipus="submit" classe="botoPerfil w-8/12 " text="Guarda"/>
+                    </div>
+
                 </form>
 
-
                 <script>
-                    let a = {!! json_encode($aliments) !!};
-                    for(let i=0; i<a.length; i++){
-                        console.log("#"+a[i]);
-                        $("#"+a[i]).attr("checked","checked");
+                    /** Conversió de dades PHP a dades JSON **/
+                    let planificacio = {!! json_encode($planificacio) !!};
+                    let aliments = {!! json_encode($aliments) !!};
+
+                    /** El select amb id objectiu selecciona l'opció que l´usuari té guardada a la BDD **/
+                    $("#objectiu").val(planificacio.objectius);
+                    /** El nombre d'àpats de la planificació escull el radio button corresponent **/
+                    $("#apat"+planificacio.nombre_apats).prop("checked",true);
+
+                    /** For que recorre l'array dels aliments seleccionats i amb l'ajuda de jQuery checheja aquells que l'Usuari té a la BDD **/
+                    for(let i=0; i<aliments.length; i++){
+                        $("#"+aliments[i]).attr("checked","checked");
                     }
                 </script>
             </div>

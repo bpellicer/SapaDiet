@@ -277,10 +277,17 @@ input{
 
 
 /***************    ALERTAS   ***************/
-.success{
-    @apply bg-green1 p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
+.success, .error{
+    @apply p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
 }
 
+.success{
+    @apply bg-green1;
+}
+
+.error{
+    @apply bg-red-500 text-center sm:text-left;
+}
 
 /************************* NORMALIZE     *************************/
 

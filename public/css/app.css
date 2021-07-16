@@ -33592,7 +33592,7 @@ input:focus {
 
 /***************    ALERTAS   ***************/
 
-.success{
+.success, .error{
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
@@ -33603,9 +33603,24 @@ input:focus {
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+  padding: 1rem;
+}
+
+.success{
   --tw-bg-opacity: 1;
   background-color: rgba(215, 241, 183, var(--tw-bg-opacity));
-  padding: 1rem;
+}
+
+.error{
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .error {
+    text-align: left;
+  }
 }
 
 /************************* NORMALIZE     *************************/

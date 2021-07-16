@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ControladorPlanificacio extends Controller
 {
@@ -30,8 +31,23 @@ class ControladorPlanificacio extends Controller
         if ($request->get("proteina") == null || $request->get("hidrats") == null ||
             $request->get("grasses") == null  || $request->get("lactics") == null ||
             $request->get("fruites") == null){
-                return view("pages.planificacio");
+                session()->flash('formulariInvalid','Mínim 1 aliment per categoria');
+                return redirect()->back();
         }
-        ddd($request);
+        /* ddd($request); */
+        $usuariId = Auth::id();
+        $usuari = User::findOrFail($usuariId);
+        if($usuari->planificacio->id == 1){
+           /*  DB::insert('insert into planificacions (nombre_apats,objectius) values (?, ?)', [4, 'guanyar pes']); */
+            $planificacio = new Planificacio;
+            $planificacio->nombre_apats = $request->get("apat");
+            $planificacio->objectius = $request->get("objectius");
+            $planificacio->save();
+            $usuari->planificacio_id = $planificacio->id;
+            $usuari->save();
+
+        }
+        return red
+
     }
 }
