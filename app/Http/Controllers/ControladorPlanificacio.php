@@ -47,7 +47,5 @@ class ControladorPlanificacio extends Controller
             $usuari->save();
 
         }
-        return red
-
     }
 }
