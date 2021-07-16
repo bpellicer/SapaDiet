@@ -2,18 +2,18 @@
     <x-slot name="mapaweb">
         <x-mapaweb>
             <div class="flex flex-wrap">
-                <x-columnaMapaWeb>
-                    <x-slot name="titol1">Gestionar Dieta</x-slot>
-                    <x-slot name="titol2">Cerca</x-slot>
-                </x-columnaMapaWeb>
-                <x-columnaMapaWeb>
-                    <x-slot name="titol1">Llistes Compra</x-slot>
-                    <x-slot name="titol2">Planificació</x-slot>
-                </x-columnaMapaWeb>
-                <x-columnaMapaWeb>
-                    <x-slot name="titol1">Progrés</x-slot>
-                    <x-slot name="titol2">Perfil</x-slot>
-                </x-columnaMapaWeb>
+                <div class="w-full sm:w-1/3">
+                    <x-columnaMapaWeb name="Gestionar Dieta" href=""/>
+                    <x-columnaMapaWeb name="Cerca" href="cerca"/>
+                </div>
+                <div class="w-full sm:w-1/3">
+                    <x-columnaMapaWeb name="Llistes Compra" href=""/>
+                    <x-columnaMapaWeb name="Planificació" href="planificacio"/>
+                </div>
+                <div class="w-full sm:w-1/3">
+                    <x-columnaMapaWeb name="Progrés" href=""/>
+                    <x-columnaMapaWeb name="Perfil" href="perfil"/>
+                </div>
             </div>
         </x-mapaweb>
     </x-slot>

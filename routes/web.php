@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControladorBuscador;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
@@ -35,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('planificacio', [ControladorPlanificacio::class, 'create']);
 
     Route::post('planificacioUsuari',[ControladorPlanificacio::class, 'storePlanificacio']);
+
+    Route::get('cerca', [ControladorBuscador::class, 'create']);
+
 });
 
 Route::middleware(['guest'])->group(function () {
