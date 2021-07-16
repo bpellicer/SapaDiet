@@ -21,24 +21,31 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('registre', [ControladorRegistre::class, 'create'])->middleware('guest');
+Route::middleware(['auth'])->group(function () {
+    Route::post('logout',[ControladorLogin::class, 'destroy']);
 
-Route::post('registre', [ControladorRegistre::class, 'store'])->middleware('guest');
+    Route::get('perfil',[ControladorPerfil::class, 'create']);
 
-Route::get('login', [ControladorLogin::class, 'create'])->middleware('guest');
+    Route::post('updatePerfil',[ControladorPerfil::class,'update']);
 
-Route::post('login', [ControladorLogin::class, 'store'])->middleware('guest');
+    Route::post('esborraUsuari', [ControladorPerfil::class, 'delete']);
 
-Route::post('logout',[ControladorLogin::class, 'destroy'])->middleware('auth');
+    Route::post('updateImatgePerfil',[ControladorPerfil::class, 'updateImatgePerfil']);
 
-Route::get('perfil',[ControladorPerfil::class, 'create'])->middleware('auth');
+    Route::get('planificacio', [ControladorPlanificacio::class, 'create']);
 
-Route::post('updatePerfil',[ControladorPerfil::class,'update'])->middleware('auth');
+    Route::post('planificacioUsuari',[ControladorPlanificacio::class, 'storePlanificacio']);
+});
 
-Route::post('esborraUsuari', [ControladorPerfil::class, 'delete'])->middleware('auth');
+Route::middleware(['guest'])->group(function () {
+    Route::get('registre', [ControladorRegistre::class, 'create']);
 
-Route::post('updateImatgePerfil',[ControladorPerfil::class, 'updateImatgePerfil'])->middleware('auth');
+    Route::post('registre', [ControladorRegistre::class, 'store']);
 
-Route::get('planificacio', [ControladorPlanificacio::class, 'create'])->middleware('auth');
+    Route::get('login', [ControladorLogin::class, 'create'])->name('login');
 
-Route::post('planificacioUsuari',[ControladorPlanificacio::class, 'storePlanificacio'])->middleware('auth');
+    Route::post('login', [ControladorLogin::class, 'store']);
+});
+
+
+
