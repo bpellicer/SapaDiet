@@ -1,4 +1,4 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
-<x-content.opcionsCerca/>
+<x-content.afegeixAliment/>
 <x-layout.footerAuth/>

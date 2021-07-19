@@ -37,7 +37,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('planificacioUsuari',[ControladorPlanificacio::class, 'storePlanificacio']);
 
-    Route::get('cerca', [ControladorBuscador::class, 'create']);
+    Route::get('cercador', [ControladorBuscador::class, 'create']);
+
+    Route::get('cercador/cerca_aliments',[ControladorBuscador::class, 'createCercador']);
+
+    Route::get('cercador/afegeix_aliment',[ControladorBuscador::class, 'createAfegir']);
+
+    Route::get('cercador/aliments_propis',[ControladorBuscador::class, 'createPropis']);
 
 });
 
