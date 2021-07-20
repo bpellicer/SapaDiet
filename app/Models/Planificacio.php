@@ -16,6 +16,6 @@ class Planificacio extends Model
     }
 
     public function alimentpreferit(){
-        return $this->belongsToMany(AlimentPreferit::class);
+        return $this->belongsToMany(AlimentPreferit::class,'aliment_preferit_planificacio')->withTimestamps();
     }
 }

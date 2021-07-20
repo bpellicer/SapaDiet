@@ -12,6 +12,6 @@ class AlimentPreferit extends Model
     protected $table = 'aliments_preferits';
 
     public function planificacio(){
-        return $this->belongsToMany(Planificacio::class);
+        return $this->belongsToMany(Planificacio::class,'aliment_preferit_planificacio')->withTimestamps();
     }
 }

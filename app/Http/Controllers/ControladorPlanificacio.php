@@ -6,8 +6,6 @@ use App\Models\Planificacio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class ControladorPlanificacio extends Controller
 {
@@ -15,37 +13,52 @@ class ControladorPlanificacio extends Controller
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
         $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
-        $aliments = DB::table('planificacions')
-                    ->select('aliments_preferits.nom')
-                    ->join('aliment_preferit_planificacio','planificacions.id','=','aliment_preferit_planificacio.planificacio_id')
-                    ->join('aliments_preferits', 'aliments_preferits.id','=','aliment_preferit_planificacio.aliment_preferit_id')
-                    ->get();
-
+        $aliments = $planificacio->alimentpreferit;
         return view("pages.planificacio",[
             'planificacio'=> $planificacio,
-            'aliments' => $aliments->pluck('nom')->toArray()
+            'aliments' => $aliments->pluck('id')->toArray()
         ]);
     }
 
     public function storePlanificacio(Request $request){
-        if ($request->get("proteina") == null || $request->get("hidrats") == null ||
+        /* Comprova que cap array estigui buida */
+        if ($request->get("proteines") == null || $request->get("hidrats") == null ||
             $request->get("grasses") == null  || $request->get("lactics") == null ||
             $request->get("fruites") == null){
                 session()->flash('formulariInvalid','Mínim 1 aliment per categoria');
                 return redirect()->back();
         }
-        /* ddd($request); */
-        $usuariId = Auth::id();
-        $usuari = User::findOrFail($usuariId);
+
+        /* Busca l'usuari */
+        $usuari = User::findOrFail(Auth::id());
+
+        /* Guarda els aliments del request en una array */
+        $aliments = $this->getAliments($request);
+        ddd($aliments);
+
+        /* Si la planificació de l'Usuari és la estàndar, crea una nova planificació */
         if($usuari->planificacio->id == 1){
-           /*  DB::insert('insert into planificacions (nombre_apats,objectius) values (?, ?)', [4, 'guanyar pes']); */
             $planificacio = new Planificacio;
             $planificacio->nombre_apats = $request->get("apat");
             $planificacio->objectius = $request->get("objectius");
             $planificacio->save();
-            $usuari->planificacio_id = $planificacio->id;
+            $planificacio->alimentpreferit()->attach($aliments);    //Afegeix tots els aliments triats del formulari a la taula pivot N:M aliment_preferit_planificacio
+            $usuari->planificacio_id = $planificacio->id;           //Actualitza el camp Id de la planificació de l'Usuari
             $usuari->save();
+        }
+        /* Modifica la planificació de l'Usuari i els seus aliments */
+        else{
 
         }
+
+        return redirect("/planificacio");
+    }
+
+    public function getAliments(Request $request){
+        $aliments = array_merge($request->get("proteines"), $request->get("hidrats"));
+        $aliments = array_merge($aliments,$request->get("grasses"));
+        $aliments = array_merge($aliments,$request->get("lactics"));
+        $aliments = array_merge($aliments,$request->get("fruites"));
+        return $aliments;
     }
 }
