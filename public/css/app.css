@@ -32752,7 +32752,7 @@ a{
 
 /***************    NORMES GENERALS ***************/
 
-input:focus {
+input:focus, select:focus {
   --tw-border-opacity: 1;
   border-color: rgba(147, 197, 253, var(--tw-border-opacity));
   outline: 2px solid transparent;
@@ -33621,6 +33621,27 @@ input:focus {
   .error {
     text-align: left;
   }
+}
+
+/***************    ELEMENTS ESPECÍFICS   ***************/
+
+.inputNutricional{
+  margin-top: 0.5rem;
+  width: 66.666667%;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .inputNutricional {
+    width: 83.333333%;
+  }
+}
+
+.labelNutricional{
+  margin-right: 0.5rem;
+  display: block;
+  font-weight: 600;
 }
 
 /************************* NORMALIZE     *************************/

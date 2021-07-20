@@ -79,7 +79,7 @@
                     </div>
                     <div class="py-3">
                         <h1 class=" text-2xl">Objectius</h1>
-                        <select name="objectius" id="objectiu" class="sm:ml-12">
+                        <select name="objectius" id="objectiu" class="rounded-2xl w-6/12 md:w-3/12 mt-2 sm:ml-12">
                             <option value="perdre pes">Perdre pes</option>
                             <option value="guanyar pes">Guanyar pes</option>
                             <option value="mantenir pes">Mantenir pes</option>

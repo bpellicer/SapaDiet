@@ -3,14 +3,14 @@
         <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
             <h1 class="font-semibold">Afegeix un aliment</h1>
             <x-form method="POST" action="/addAliment" class="form">
-                <div class="border-2 border-black flex justify-evenly">
-                    <div class="py-3">
-                        <label for="nomAliment" class="font-semibold">Nom Aliment</label>
-                        <input type="text" class="rounded-2xl p-2" id="nomAliment" name="nomAliment" placeholder="Nom Aliment"/>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="nom" class="font-semibold mr-2 block">Nom</label>
+                        <input type="text" class="inputNutricional" id="nom" name="nom" placeholder="Nom"/>
                     </div>
-                    <div class="py-3">
-                        <label for="categoria" class="font-semibold">Categoria</label>
-                        <select name="categoria" id="" class="rounded-2xl" style="padding: 5.2px">
+                    <div>
+                        <label for="categoria" class="font-semibold block">Categoria</label>
+                        <select name="categoria" id="" class="rounded-2xl w-8/12 sm:w-10/12 mt-2" style="padding: 5.2px">
                             <option name="peix">Peixos</option>
                             <option name="carn">Carns</option>
                             <option name="ou">Ous</option>
@@ -24,32 +24,28 @@
                         </select>
                     </div>
                 </div>
-                <h1>Valors energètics 100 grams</h1>
-               <div class="border-2 border-black">
-                   <div class="flex justify-evenly">
-                       <div class="py-3">
-                           <label for="prote" class="font-semibold">Proteïnes</label>
-                           <input type="number" class="rounded-2xl p-2" id="prote" name="prote" placeholder="Proteïnes"/>
-                       </div>
-                       <div class="py-3">
-                            <label for="hidrats" class="font-semibold">Carbohidrats</label>
-                            <input type="number" class="rounded-2xl p-2" id="hidrats" name="hidrats" placeholder="Carbohidrats"/>
-                       </div>
+                <h2 class="text-xl md:text-2xl mt-10 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
+                <div class="grid gap-4 sm:grid-cols-2 mt-4">
+                    <div>
+                        <label for="prote" class="labelNutricional">Proteïnes</label>
+                        <input type="number" class="inputNutricional" id="prote" name="prote" placeholder="Proteïnes"/>
                     </div>
-                   <div class="flex justify-evenly">
-                       <div class="py-3">
-                           <label for="grasses" class="font-semibold">Grasses</label>
-                           <input type="number" class="rounded-2xl p-2" id="grasses" name="grasses" placeholder="Grasses"/>
-                       </div>
-                       <div class="py-3">
-                           <label for="kcal" class="font-semibold">Kilocalories</label>
-                           <input type="number" class="rounded-2xl p-2" id="kcal" name="kcal" placeholder="Kilocalories"/>
-                       </div>
+                    <div>
+                        <label for="hidrats" class="labelNutricional">Carbohidrats</label>
+                        <input type="number" class="inputNutricional" id="hidrats" name="hidrats" placeholder="Carbohidrats"/>
                     </div>
-               </div>
-               <div>
-                   <button type="submit" class="" id="" name="">Afegeix aliment</button>
-               </div>
+                    <div>
+                        <label for="grasses" class="labelNutricional">Grasses</label>
+                        <input type="number" class="inputNutricional" id="grasses" name="grasses" placeholder="Grasses"/>
+                        </div>
+                    <div>
+                        <label for="kcal" class="labelNutricional">Kilocalories</label>
+                        <input type="number" class="inputNutricional" id="kcal" name="kcal" placeholder="Kilocalories"/>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-3">
+                   <button type="submit" class="botoPerfil" id="" name="">Afegeix aliment</button>
+                </div>
             </x-form>
         </div>
     </div>

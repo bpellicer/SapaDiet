@@ -20,7 +20,7 @@ a{
 }
 
 /***************    NORMES GENERALS ***************/
-input{
+input,select{
 @apply focus:outline-none focus:ring focus:border-blue-300;
 }
 
@@ -287,6 +287,14 @@ input{
 
 .error{
     @apply bg-red-500 text-center sm:text-left;
+}
+
+/***************    ELEMENTS ESPECÍFICS   ***************/
+.inputNutricional{
+    @apply rounded-2xl p-2 w-8/12 sm:w-10/12 mt-2;
+}
+.labelNutricional{
+    @apply font-semibold mr-2 block;
 }
 
 /************************* NORMALIZE     *************************/

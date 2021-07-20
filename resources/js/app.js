@@ -57,6 +57,7 @@ $("#eliminaPerfil").on("click", function(event){
 /** Amaga el missatge de success després de 3 segons **/
 window.setTimeout(function(){
     $("#success").stop().fadeOut('slow');
+    $('#error').stop().fadeOut('slow');
 },3000);
 
 
