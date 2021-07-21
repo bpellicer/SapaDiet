@@ -11,16 +11,9 @@
                     <div>
                         <label for="categoria" class="font-semibold block">Categoria</label>
                         <select name="categoria" id="" class="rounded-2xl w-8/12 sm:w-10/12 mt-2" style="padding: 5.2px">
-                            <option name="peix">Peixos</option>
-                            <option name="carn">Carns</option>
-                            <option name="ou">Ous</option>
-                            <option name="verdura">Verdures</option>
-                            <option name="llegum">Llegums i Fruits Secs</option>
-                            <option name="lactic">Làctics</option>
-                            <option name="fruita">Fruites</option>
-                            <option name="oli">Mantequilles i Olis</option>
-                            <option name="processat">Processats</option>
-                            <option name="beguda">Begudes</option>
+                            @foreach ($categories as $categoria)
+                                <option name="{{$categoria->value}}">{{$categoria->nom}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

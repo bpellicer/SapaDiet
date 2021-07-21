@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class ControladorBuscador extends Controller
@@ -15,7 +16,9 @@ class ControladorBuscador extends Controller
     }
 
     public function createAfegir(){
-        return view("pages.afegeixAliment");
+        return view("pages.afegeixAliment",[
+            'categories' => Categoria::all()
+        ]);
     }
 
     public function createPropis(){

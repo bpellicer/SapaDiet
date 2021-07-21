@@ -1,4 +1,4 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
-<x-content.afegeixAliment/>
+@include("components.content.afegeixAliment")
 <x-layout.footerAuth/>
