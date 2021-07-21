@@ -51,8 +51,8 @@ class ControladorPlanificacio extends Controller
             $planificacio->nombre_apats = $request->get("apat");
             $planificacio->objectius = $request->get("objectius");
             $planificacio->save();
-            $planificacio->alimentpreferit()->detach();
-            $planificacio->alimentpreferit()->attach($aliments);
+            $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
+            $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
         }
 
         return redirect("/planificacio");

@@ -49,6 +49,7 @@ class ControladorPerfil extends Controller
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
         $usuari->delete();
+        $usuari->deletePlanificacio();
 
         session()->flash('perfilEsborrat','Dades esborrades correctament');
 

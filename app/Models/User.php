@@ -77,4 +77,9 @@ class User extends Authenticatable
         return $this->belongsTo(Planificacio::class);
     }
 
+    public function deletePlanificacio(){
+        if($this->planificacio_id != 1){
+            $this->planificacio()->delete();
+        }
+    }
 }
