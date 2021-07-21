@@ -34,7 +34,6 @@ class ControladorPlanificacio extends Controller
 
         /* Guarda els aliments del request en una array */
         $aliments = $this->getAliments($request);
-        ddd($aliments);
 
         /* Si la planificació de l'Usuari és la estàndar, crea una nova planificació */
         if($usuari->planificacio->id == 1){
@@ -48,7 +47,12 @@ class ControladorPlanificacio extends Controller
         }
         /* Modifica la planificació de l'Usuari i els seus aliments */
         else{
-
+            $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
+            $planificacio->nombre_apats = $request->get("apat");
+            $planificacio->objectius = $request->get("objectius");
+            $planificacio->save();
+            $planificacio->alimentpreferit()->detach();
+            $planificacio->alimentpreferit()->attach($aliments);
         }
 
         return redirect("/planificacio");
