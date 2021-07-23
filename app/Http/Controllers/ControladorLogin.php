@@ -11,7 +11,8 @@ use Illuminate\Validation\ValidationException;
 class ControladorLogin extends Controller
 {
     public function create(){
-        return view("pages.login");
+        $title = "Sapa Diet | Login";
+        return view("pages.login",compact("title"));
     }
 
     public function store(Request $request){

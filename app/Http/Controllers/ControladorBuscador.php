@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class ControladorBuscador extends Controller
 {
     public function create(){
-        return view("pages.cerca");
+        $title = "Sapa Diet | Cerca";
+        return view("pages.cerca", compact("title"));
     }
 
     public function createCercador(){
@@ -16,12 +17,13 @@ class ControladorBuscador extends Controller
     }
 
     public function createAfegir(){
+        $title = "Sapa Diet | Crea Aliment";
         return view("pages.afegeixAliment",[
             'categories' => Categoria::all()
-        ]);
+        ],compact("title"));
     }
 
     public function createPropis(){
-
+        $title = "Sapa Diet | Els Teus Aliments";
     }
 }

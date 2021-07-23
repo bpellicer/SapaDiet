@@ -11,7 +11,8 @@ class ControladorRegistre extends Controller
 {
 
     public function create(){
-        return view('pages.registre');
+        $title = "Sapa Diet | Registre";
+        return view('pages.registre',compact("title"));
     }
 
     public function store(Request $request){

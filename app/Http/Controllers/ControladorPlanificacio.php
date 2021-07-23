@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ControladorPlanificacio extends Controller
 {
     public function create(){
+        $title = "Sapa Diet | Planificació";
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
         $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
@@ -17,7 +18,7 @@ class ControladorPlanificacio extends Controller
         return view("pages.planificacio",[
             'planificacio'=> $planificacio,
             'aliments' => $aliments->pluck('id')->toArray()
-        ]);
+        ],compact("title"));
     }
 
     public function storePlanificacio(Request $request){

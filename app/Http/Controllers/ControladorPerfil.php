@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ControladorPerfil extends Controller
 {
     public function create(){
+        $title = "Sapa Diet | Perfil";
         return view('pages.perfil',[
             'imatges' => Imatge::all(),
-        ]);
+        ],compact("title"));
     }
 
 
