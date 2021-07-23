@@ -11,6 +11,15 @@ class AlimentPropi extends Model
 
     protected $table="aliment_propis";
 
+    protected $fillable = [
+        'nom',
+        'categoria',
+        'proteines',
+        'grasses',
+        'hidrats',
+        'kilocalories'
+    ];
+
     public function categoria(){
         return $this->hasOne(Categoria::class);
     }

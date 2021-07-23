@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlimentPropi;
 use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ControladorBuscador extends Controller
 {
@@ -33,7 +36,21 @@ class ControladorBuscador extends Controller
             'categoria' => ['required']
         ]);
 
-        ddd($request);
+        $alimentPropi = new AlimentPropi();
+        $alimentPropi->nom = $atributs['nom'];
+        $alimentPropi->proteines = $atributs['proteines'];
+        $alimentPropi->hidrats =  $atributs['hidrats'];
+        $alimentPropi->grasses =  $atributs['grasses'];
+        $alimentPropi->kilocalories = $atributs['kcal'];
+        $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
+        $alimentPropi->imatge_id =  1;
+        $alimentPropi->usuari_id = User::findOrFail(Auth::id())->id;
+
+        $alimentPropi->save();
+
+        session()->flash('alimentCreat','Aliment creat correctament');
+
+        return redirect("/cercador");
     }
 
     public function createPropis(){

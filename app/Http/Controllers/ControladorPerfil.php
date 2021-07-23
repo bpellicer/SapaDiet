@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlimentPropi;
 use App\Models\Imatge;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,6 +50,10 @@ class ControladorPerfil extends Controller
     public function delete(Request $request){
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
+        $alimentsPropis = AlimentPropi::all()->where("usuari_id","=",$usuari->id);
+        foreach($alimentsPropis as $aliment){
+            $aliment->delete();
+        }
         $usuari->delete();
         $usuari->deletePlanificacio();
 
