@@ -50,7 +50,7 @@ class ControladorPerfil extends Controller
     public function delete(Request $request){
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
-        $alimentsPropis = AlimentPropi::all()->where("usuari_id","=",$usuari->id);
+        $alimentsPropis = AlimentPropi::all()->where("user_id","=",$usuari->id);
         foreach($alimentsPropis as $aliment){
             $aliment->delete();
         }

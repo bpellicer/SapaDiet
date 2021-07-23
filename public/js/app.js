@@ -1905,6 +1905,7 @@ $("#imatgePerfil").on("click", function () {
 $("#creu").on("click", function () {
   $("#divIntern").hide();
 });
+$('#divIntern2').fadeIn('slow');
 $("#creu2").on("click", function () {
   $("#divIntern2").hide();
   $("#divExtern2").hide();

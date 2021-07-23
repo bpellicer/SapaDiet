@@ -21,14 +21,14 @@ class AlimentPropi extends Model
     ];
 
     public function categoria(){
-        return $this->hasOne(Categoria::class);
+        return $this->belongsTo(Categoria::class);
     }
 
     public function imatge(){
-        return $this->hasOne(Imatge::class);
+        return $this->belongsTo(Imatge::class);
     }
 
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

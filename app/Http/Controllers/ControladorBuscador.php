@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\AlimentPropi;
 use App\Models\Categoria;
+use App\Models\Planificacio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ControladorBuscador extends Controller
 {
+    /**
+     * Funció que retorna la vista de "Cerca"
+     */
     public function create(){
         $title = "Sapa Diet | Cerca";
         return view("pages.cerca", compact("title"));
@@ -19,6 +23,9 @@ class ControladorBuscador extends Controller
 
     }
 
+    /**
+     * Funció que retorna la vista de "Crea Aliment" amb una array de totes les Categories
+     */
     public function createAfegir(){
         $title = "Sapa Diet | Crea Aliment";
         return view("pages.afegeixAliment",[
@@ -26,9 +33,13 @@ class ControladorBuscador extends Controller
         ],compact("title"));
     }
 
+    /**
+     * Funció que guarda un nou AlimentPropi amb les dades validades del $request. Després redirigeix a /cercador.
+     * @param Request $request Conté les dades del formulari de creació d'aliments.
+     */
     public function storeAfegir(Request $request){
         $atributs = $request->validate([
-            'nom' => ['required','string','alpha','max:100'],
+            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:100'],
             'kcal' => ['required','numeric','min:0'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
@@ -36,15 +47,7 @@ class ControladorBuscador extends Controller
             'categoria' => ['required']
         ]);
 
-        $alimentPropi = new AlimentPropi();
-        $alimentPropi->nom = $atributs['nom'];
-        $alimentPropi->proteines = $atributs['proteines'];
-        $alimentPropi->hidrats =  $atributs['hidrats'];
-        $alimentPropi->grasses =  $atributs['grasses'];
-        $alimentPropi->kilocalories = $atributs['kcal'];
-        $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
-        $alimentPropi->imatge_id =  1;
-        $alimentPropi->usuari_id = User::findOrFail(Auth::id())->id;
+        $alimentPropi = $this->insertDadesAliment($atributs);
 
         $alimentPropi->save();
 
@@ -53,7 +56,32 @@ class ControladorBuscador extends Controller
         return redirect("/cercador");
     }
 
+    /**
+     * Funció que retorna la vista de "Els Teus Aliments" que conté una array d'aliments propis de l'User
+     */
     public function createPropis(){
+        $usuari = User::findOrFail(Auth::id());
         $title = "Sapa Diet | Els Teus Aliments";
+        return view("pages.alimentsPropis",[
+            'aliments' => $usuari->alimentpropi
+        ],compact("title"));
+    }
+
+    /**
+     * Funció que retorna un nou Aliment Propi el qual pertany a un únic User i a una única Categoria
+     * @param array $atributs Array que conté els atributs request validats del formulari
+     */
+    public function insertDadesAliment($atributs){
+        $alimentPropi =  new AlimentPropi();
+        $alimentPropi->nom = $atributs['nom'];
+        $alimentPropi->proteines = $atributs['proteines'];
+        $alimentPropi->hidrats =  $atributs['hidrats'];
+        $alimentPropi->grasses =  $atributs['grasses'];
+        $alimentPropi->kilocalories = $atributs['kcal'];
+        $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
+        $alimentPropi->imatge_id =  1;
+        $alimentPropi->user_id = User::findOrFail(Auth::id())->id;
+
+        return $alimentPropi;
     }
 }

@@ -9,7 +9,7 @@
                 <form action="planificacioUsuari" method="post">
                     @csrf
                    <div class="py-3">
-                        <h1 class=" text-2xl">Nombre d'àpats</h1>
+                        <h1 class=" text-base font-bold sm:text-2xl">Nombre d'àpats</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelRadio for="apat2" src="/imatges/2.png" value="2"/>
                             <x-labelRadio for="apat3" src="/imatges/3.png" value="3"/>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="py-3">
-                        <h1 class=" text-2xl">Proteïnes preferides</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Proteïnes preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/alaPollo.png" value="1" tipus="checkbox" nom="proteines[]" span="Pollastre"/>
                             <x-labelCheckbox src="/imatges/aliments/ou.png" value="2" tipus="checkbox" nom="proteines[]" span="Ou"/>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="py-3">
-                        <h1 class=" text-2xl">Carbohidrats preferits</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Carbohidrats preferits</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/arros.png" value="9" tipus="checkbox" nom="hidrats[]" span="Arròs"/>
                             <x-labelCheckbox src="/imatges/aliments/pa.png" value="10" tipus="checkbox" nom="hidrats[]" span="Pa"/>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                    <div class="py-3">
-                        <h1 class=" text-2xl">Grasses preferides</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Grasses preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/alvocat.png" value="17" tipus="checkbox" nom="grasses[]" span="Alvocat"/>
                             <x-labelCheckbox src="/imatges/aliments/anacard.png" value="18" tipus="checkbox" nom="grasses[]" span="Anacard"/>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="py-3">
-                        <h1 class=" text-2xl">Làctics i begudes preferides</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Làctics i begudes preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/formatge.png" value="25" tipus="checkbox" nom="lactics[]" span="Formatge"/>
                             <x-labelCheckbox src="/imatges/aliments/iogur.png" value="26" tipus="checkbox" nom="lactics[]" span="Iogur"/>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="py-3">
-                        <h1 class=" text-2xl">Fruites preferides</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Fruites preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/platan.png" value="31" tipus="checkbox" nom="fruites[]" span="Platan"/>
                             <x-labelCheckbox src="/imatges/aliments/maduixa.png" value="32" tipus="checkbox" nom="fruites[]" span="Maduixa"/>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="py-3">
-                        <h1 class=" text-2xl">Objectius</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Objectius</h1>
                         <select name="objectius" id="objectiu" class="rounded-2xl w-full sm:w-6/12 md:w-3/12 mt-2 sm:ml-12">
                             <option value="perdre pes">Perdre pes</option>
                             <option value="guanyar pes">Guanyar pes</option>

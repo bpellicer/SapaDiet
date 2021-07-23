@@ -57,6 +57,8 @@ class ControladorPlanificacio extends Controller
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
         }
 
+        session()->flash('novaPlanificacio','Planificació guardada correctament');
+
         return redirect("/planificacio");
     }
 
