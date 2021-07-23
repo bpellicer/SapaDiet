@@ -82,4 +82,8 @@ class User extends Authenticatable
             $this->planificacio()->delete();
         }
     }
+
+    public function alimentpropi(){
+        return $this->hasMany(AlimentPropi::class);
+    }
 }

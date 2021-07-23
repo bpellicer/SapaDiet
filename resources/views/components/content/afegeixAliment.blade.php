@@ -7,6 +7,9 @@
                     <div>
                         <label for="nom" class="font-semibold mr-2 block">Nom</label>
                         <input type="text" class="inputNutricional" id="nom" name="nom" placeholder="Nom"/>
+                        @error('nom')
+                            <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="categoria" class="font-semibold block">Categoria</label>
@@ -20,20 +23,32 @@
                 <h2 class="text-xl md:text-2xl mt-10 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
                 <div class="grid gap-4 sm:grid-cols-2 mt-4">
                     <div>
-                        <label for="prote" class="labelNutricional">Proteïnes</label>
-                        <input type="number" class="inputNutricional" id="prote" name="prote" placeholder="Proteïnes"/>
+                        <label for="proteines" class="labelNutricional">Proteïnes</label>
+                        <input type="number" class="inputNutricional" id="proteines" name="proteines" placeholder="Proteïnes" step="any"/>
+                        @error('proteines')
+                            <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="hidrats" class="labelNutricional">Carbohidrats</label>
-                        <input type="number" class="inputNutricional" id="hidrats" name="hidrats" placeholder="Carbohidrats"/>
+                        <input type="number" class="inputNutricional" id="hidrats" name="hidrats" placeholder="Carbohidrats" step="any"/>
+                        @error('hidrats')
+                            <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="grasses" class="labelNutricional">Grasses</label>
-                        <input type="number" class="inputNutricional" id="grasses" name="grasses" placeholder="Grasses"/>
+                        <input type="number" class="inputNutricional" id="grasses" name="grasses" placeholder="Grasses" step="any"/>
+                        @error('grasses')
+                            <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        @enderror
                         </div>
                     <div>
                         <label for="kcal" class="labelNutricional">Kilocalories</label>
-                        <input type="number" class="inputNutricional" id="kcal" name="kcal" placeholder="Kilocalories"/>
+                        <input type="number" class="inputNutricional" id="kcal" name="kcal" placeholder="Kilocalories" step="any"/>
+                        @error('kcal')
+                            <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex justify-center mt-3">

@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('cercador/afegeix_aliment',[ControladorBuscador::class, 'createAfegir']);
 
+    Route::post('addAliment',[ControladorBuscador::class, 'storeAfegir']);
+
     Route::get('cercador/aliments_propis',[ControladorBuscador::class, 'createPropis']);
 
 });

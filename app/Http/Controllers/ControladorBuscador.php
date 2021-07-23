@@ -23,6 +23,19 @@ class ControladorBuscador extends Controller
         ],compact("title"));
     }
 
+    public function storeAfegir(Request $request){
+        $atributs = $request->validate([
+            'nom' => ['required','string','alpha','max:100'],
+            'kcal' => ['required','numeric','min:0'],
+            'proteines' => ['required','numeric', 'max:1000', 'min:0'],
+            'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
+            'grasses' => ['required','numeric', 'max:1000', 'min:0'],
+            'categoria' => ['required']
+        ]);
+
+        ddd($request);
+    }
+
     public function createPropis(){
         $title = "Sapa Diet | Els Teus Aliments";
     }
