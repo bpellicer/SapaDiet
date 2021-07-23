@@ -242,8 +242,8 @@ input,select{
 }
 
 .divIntern2{
-    @apply absolute m-auto p-8 left-0 top-0 right-0 bottom-0 w-10/12 md:w-8/12 lg:w-6/12 bg-green2 rounded-3xl;
-    height:30rem;
+    @apply absolute m-auto p-8 left-0 top-0 right-0 bottom-0 bg-green2 rounded-3xl;
+/*     height:30rem; */
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 

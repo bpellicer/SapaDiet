@@ -1905,6 +1905,10 @@ $("#imatgePerfil").on("click", function () {
 $("#creu").on("click", function () {
   $("#divIntern").hide();
 });
+$("#creu2").on("click", function () {
+  $("#divIntern2").hide();
+  $("#divExtern2").hide();
+});
 
 /***/ }),
 

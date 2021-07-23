@@ -1,20 +1,5 @@
 @if (auth()->user()->primera_vegada)
-<div class="divExtern">
-    <div class="divIntern2">
-        <h1 class="text-center font-bold"> Benvingut/da a SAPA DIET! </h1>
-        <h2 class="font-semibold">Abans de començar: </h2>
-        <p class="text-justify mt-4 text-xs md:text-base">És la primera vegada que entres a l'aplicació, veritat? Com que ets un/a usuari/a nou/va se t'ha assignat una planificació de la dieta
-            per defecte, la qual consisteix en 3 àpats per dia i 1 aliment preferit de cada categoria, els quals es faràn servir per a generar
-            àpats diaris si així ho desitges. Si vols canviar aquesta planificació només has de clicar a les imatges que vulguis i escollir un nombre
-            d'àpats que s'ajusti al teu dia a dia. Una vegada has llegit això, ja pots tancar aquesta pestanya i escollir la teva planificació!.
-        </p>
-
-        <p class="text-justify text-xs text-gray-500 mt-4"><span class="text-red-500">*</span> Aquest missatge se't seguirà mostrant fins que canviis la planificació, ja que potser l'has tancat rapidament i no has pogut llegir la informació
-            correctament. Encara que vulguis mantenir la planificació per defecte és important que premis el botó de GUARDAR i així aquest missatge no et tornarà
-            a apareixer!
-        </p>
-    </div>
-</div>
+    <x-popUp/>
 @endif
 <div class="mx-auto my-auto container">
     <div class="flex justify-center px-10 my-12">
@@ -97,7 +82,7 @@
                     </div>
                     <div class="py-3">
                         <h1 class=" text-2xl">Objectius</h1>
-                        <select name="objectius" id="objectiu" class="rounded-2xl w-6/12 md:w-3/12 mt-2 sm:ml-12">
+                        <select name="objectius" id="objectiu" class="rounded-2xl w-full sm:w-6/12 md:w-3/12 mt-2 sm:ml-12">
                             <option value="perdre pes">Perdre pes</option>
                             <option value="guanyar pes">Guanyar pes</option>
                             <option value="mantenir pes">Mantenir pes</option>

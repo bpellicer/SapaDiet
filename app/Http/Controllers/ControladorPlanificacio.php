@@ -31,6 +31,7 @@ class ControladorPlanificacio extends Controller
 
         /* Busca l'usuari */
         $usuari = User::findOrFail(Auth::id());
+        $usuari->primera_vegada = false;
 
         /* Guarda els aliments del request en una array */
         $aliments = $this->getAliments($request);
