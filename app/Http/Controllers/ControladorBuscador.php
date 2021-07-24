@@ -29,7 +29,7 @@ class ControladorBuscador extends Controller
     public function createAfegir(){
         $title = "Sapa Diet | Crea Aliment";
         return view("pages.afegeixAliment",[
-            'categories' => Categoria::all()
+            'categories' => Categoria::orderBy('nom')->get()
         ],compact("title"));
     }
 
@@ -61,7 +61,7 @@ class ControladorBuscador extends Controller
      */
     public function createPropis(){
         $usuari = User::findOrFail(Auth::id());
-        $title = "Sapa Diet | Els Teus Aliments";
+        $title = "Sapa Diet | Els Meus Aliments";
         return view("pages.alimentsPropis",[
             'aliments' => $usuari->alimentpropi
         ],compact("title"));
