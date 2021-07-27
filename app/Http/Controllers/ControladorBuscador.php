@@ -51,7 +51,7 @@ class ControladorBuscador extends Controller
 
         $alimentPropi->save();
 
-        session()->flash('alimentCreat','Aliment creat correctament');
+        session()->flash('alimentCreat','Aliment Creat!');
 
         return redirect("/cercador");
     }

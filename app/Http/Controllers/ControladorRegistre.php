@@ -24,7 +24,7 @@ class ControladorRegistre extends Controller
             'password_confirmation'=>['required','min:8','max:255']
         ]);
 
-        session()->flash('usuariCreat','Compte creat correctament!');
+        session()->flash('usuariCreat','Compte creat!');
 
         User::create($atributs);
 

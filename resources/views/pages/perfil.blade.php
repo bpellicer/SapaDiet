@@ -2,7 +2,7 @@
 <x-layout.navAuth/>
 
 @if (session()->has('perfilActualitzat'))
-    <x-alerta nom="success" missatge="{{ session('perfilActualitzat') }}"/>
+    <x-alerta nom="success2" missatge="{{ session('perfilActualitzat') }}"/>
 @endif
 
 

@@ -41,7 +41,7 @@ class ControladorPerfil extends Controller
 
         $usuari->save();
 
-        session()->flash('perfilActualitzat','Dades actualitzades correctament');
+        session()->flash('perfilActualitzat','Dades actualitzades!');
 
         return redirect("/perfil");
 
@@ -57,7 +57,7 @@ class ControladorPerfil extends Controller
         $usuari->delete();
         $usuari->deletePlanificacio();
 
-        session()->flash('perfilEsborrat','Dades esborrades correctament');
+        session()->flash('perfilEsborrat','Dades esborrades!');
 
         return redirect("/");
     }

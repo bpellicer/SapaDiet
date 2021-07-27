@@ -293,6 +293,12 @@ input,select{
     @apply p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
 }
 
+.success2{
+    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-72 bg-green1 font-bold;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .success{
     @apply bg-green1;
 }

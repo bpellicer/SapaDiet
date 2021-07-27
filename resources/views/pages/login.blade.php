@@ -2,7 +2,7 @@
 <x-layout.navGuest/>
 
 @if (session()->has('usuariCreat'))
-    <x-alerta nom="success" missatge="{{ session('usuariCreat') }}"/>
+    <x-alerta nom="success2" missatge="{{ session('usuariCreat') }}"/>
 @endif
 
 

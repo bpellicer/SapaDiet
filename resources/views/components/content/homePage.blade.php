@@ -1,5 +1,5 @@
 @if (session()->has('perfilEsborrat'))
-    <x-alerta nom="success" missatge="{{ session('perfilEsborrat') }}"/>
+    <x-alerta nom="success2" missatge="{{ session('perfilEsborrat') }}"/>
 @endif
 
 <div class="flex flex-wrap mainPage">
