@@ -16,7 +16,6 @@ class CreateAlimentPropisTable extends Migration
         Schema::create('aliment_propis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoria_id')->constrained('categories');
-            $table->foreignId('imatge_id')->constrained('imatges');
             $table->foreignId('user_id')->constrained('users');
             $table->string('nom',255);
             $table->double('kilocalories');

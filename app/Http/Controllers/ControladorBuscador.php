@@ -39,7 +39,7 @@ class ControladorBuscador extends Controller
      */
     public function storeAfegir(Request $request){
         $atributs = $request->validate([
-            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:100'],
+            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:20'],
             'kcal' => ['required','numeric','min:0'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
@@ -79,9 +79,7 @@ class ControladorBuscador extends Controller
         $alimentPropi->grasses =  $atributs['grasses'];
         $alimentPropi->kilocalories = $atributs['kcal'];
         $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
-        $alimentPropi->imatge_id =  1;
         $alimentPropi->user_id = User::findOrFail(Auth::id())->id;
-
         return $alimentPropi;
     }
 }
