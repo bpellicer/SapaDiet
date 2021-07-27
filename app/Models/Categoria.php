@@ -14,4 +14,8 @@ class Categoria extends Model
     public function aliment(){
         return $this->hasMany(Aliment::class);
     }
+
+    public function imatge(){
+        return $this->belongsTo(Imatge::class);
+    }
 }

@@ -13,7 +13,7 @@ class ControladorPerfil extends Controller
     public function create(){
         $title = "Sapa Diet | Perfil";
         return view('pages.perfil',[
-            'imatges' => Imatge::all(),
+            'imatges' => Imatge::where('tipus','=','perfil')->get(),
         ],compact("title"));
     }
 

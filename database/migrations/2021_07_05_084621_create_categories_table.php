@@ -15,6 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("imatge_id")->constrained('imatges');
             $table->string("nom");
             $table->string("value");
             $table->timestamps();

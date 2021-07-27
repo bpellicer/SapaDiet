@@ -16,6 +16,7 @@ class CreateImatgesTable extends Migration
         Schema::create('imatges', function (Blueprint $table) {
             $table->id();
             $table->string("url");
+            $table->string("tipus");
             $table->timestamps();
         });
     }

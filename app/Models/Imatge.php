@@ -14,4 +14,8 @@ class Imatge extends Model
     public function user(){
         return $this->hasMany(User::class);
     }
+
+    public function categoria(){
+        return $this->hasOne(Categoria::class);
+    }
 }
