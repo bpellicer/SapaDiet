@@ -1,7 +1,7 @@
 <div class="container mx-auto my-auto">
-    <div class="flex justify-center px-10 my-12">
+    <div class="flex justify-center px-2 sm:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
-            <h1 class="font-semibold">Afegeix un aliment</h1>
+            <h1 class="text-2xl sm:text-3xl font-semibold">Afegeix un aliment</h1>
             <x-form method="POST" action="/addAliment" class="form">
                 <div class="grid sm:grid-cols-2 gap-4">
                     <div>

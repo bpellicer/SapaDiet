@@ -27,7 +27,7 @@ class ControladorPerfil extends Controller
         /** Validem les dades del request **/
         $request->validate([
             'nom'=>['required','max:30','string','alpha'],
-            'cognoms'=>['required','max:255','string','alpha']
+            'cognoms' =>['required','max:255','string','regex:/[A-zÀ-ú ]*$/']
         ]);
 
         /** Si les dades no han canviat, redirect al perfil**/
