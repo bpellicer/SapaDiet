@@ -315,6 +315,12 @@ input,select{
     @apply font-semibold mr-2 block;
 }
 
+/***************    CARTA ALIMENTS  **********************/
+
+.cartaAliment{
+    @apply bg-green1 rounded-3xl sm:w-full md:w-32 lg:w-40 border-2 border-black hover:bg-green5 text-center cursor-pointer p-2;
+    @apply transform hover:scale-110 duration-75;
+}
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

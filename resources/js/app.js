@@ -54,6 +54,23 @@ $("#eliminaPerfil").on("click", function(event){
 });
 
 
+$("#eliminaAliment").on("click", function(event){
+    event.preventDefault();
+    swal({
+        title: "Estas segur que vols esborrar aquest aliment?",
+        text: "No seràs capaç de tornar enrere!",
+        icon:'warning',
+        buttons:["Cancel·la","Si, esborra l'aliment"],
+        closeOnClickOutside: false,
+        dangerMode:true
+    }).then((esborra) => {
+        if(esborra){
+            $("#eliminaForm").submit();
+        }
+        else return false;
+    });
+});
+
 /** Amaga el missatge de success després de 3 segons **/
 window.setTimeout(function(){
     $("#success").stop().fadeOut('slow');

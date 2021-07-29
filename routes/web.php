@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControladorAliment;
 use App\Http\Controllers\ControladorBuscador;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
@@ -46,6 +47,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('addAliment',[ControladorBuscador::class, 'storeAfegir']);
 
     Route::get('cercador/aliments_propis',[ControladorBuscador::class, 'createPropis']);
+
+    Route::get('cercador/aliments_propis/{nom}',[ControladorAliment::class, 'create']);
+
+    Route::post('esborraAliment',[ControladorAliment::class,'delete']);
 
 });
 

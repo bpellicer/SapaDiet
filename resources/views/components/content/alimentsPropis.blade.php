@@ -6,25 +6,18 @@
                 <div class="flex justify-center"><img src="/imatges/empty.png"></div>
                 <div class="flex justify-center"><a class="botoPerfil w-full sm:w-96 text-xs sm:text-base" href="/cercador/afegeix_aliment">Comença a crear-ne!</a></div>
             @else
-                <h1>Els meus Aliments!</h1>
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold">Els meus Aliments</h1>
                 <div class="grid justify-items-center sm:w-full grid-cols-2 sm:grid-cols-<?php if(count($aliments)<4) echo count($aliments); else echo "4"; ?> gap-4">
                     @foreach ($aliments as $aliment)
-                        <div class=" bg-green1 rounded-3xl sm:w-full md:w-10/12 border-2 border-black hover:bg-green5 p-5 text-center cursor-pointer">
-                            <img src="{{$aliment->categoria->imatge->url}}" alt="" width="70px">
-                            <p>{{$aliment->nom}}</p>
-                        </div>
-
-
+                        <a href="/cercador/aliments_propis/{{$aliment->nom}}" name="idAliment">
+                            <div class="cartaAliment">
+                                <img src="{{$aliment->categoria->imatge->url}}" alt="" width="70px" class="inline-block">
+                                <p>{{$aliment->nom}}</p>
+                            </div>
+                        </a>
                     @endforeach
                 </div>
             @endif
         </div>
     </div>
 </div>
-
-
-{{-- {{$aliment->kilocalories}} Kcal.
-{{$aliment->proteines}} g.
-{{$aliment->grasses}} g.
-{{$aliment->hidrats}} g.
-{{$aliment->categoria->nom}} --}}
