@@ -10,11 +10,19 @@ use Illuminate\Validation\ValidationException;
 
 class ControladorLogin extends Controller
 {
+    /**
+     * Funció que retorna la vista de la pàgina de Login
+     */
     public function create(){
         $title = "Sapa Diet | Login";
         return view("pages.login",compact("title"));
     }
 
+    /**
+     * Funció que valida si l'email existeix i si la contrasenya del formulari coincideix amb la seva. Si és la primera
+     * vegada que l'usuari entra a la web, el redirecciona a la planificació, altrament el redirecciona al perfil.
+     * @param Request $request  Conté les dades de l'Usuari per iniciar sessió.
+     */
     public function store(Request $request){
 
         $request->validate([
@@ -28,7 +36,7 @@ class ControladorLogin extends Controller
             ]);
         }
 
-        session()->regenerate();
+        session()->regenerate(); //Regenera la sessió per assignar un nou Id a l'Usuari i evitar possibles falles de seguretat
         $usuari = User::findOrFail(Auth::id());
 
         if($usuari->primera_vegada) return redirect("/planificacio");
@@ -36,8 +44,11 @@ class ControladorLogin extends Controller
         return redirect("/perfil");
     }
 
+    /**
+     * Funció que destrueix la sessió de l'Usuari i el redirecciona a la pàgina principal
+     */
     public function destroy(){
         Auth::logout();
-        return redirect('/')->with('success','Adeu!');
+        return redirect('/');
     }
 }

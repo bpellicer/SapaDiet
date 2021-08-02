@@ -10,6 +10,10 @@ use Illuminate\Validation\Rule;
 
 class ControladorAliment extends Controller
 {
+    /**
+     * Funció que retorna la informació d'un AlimentPropi de l'Usuari de la Sessió
+     * @param String $nom   Conté el nom de la pàgina
+     */
     public function create($nom){
         $title = 'Sapa Diet | Informació '.$nom;
         $alimentPropi = AlimentPropi::where("nom","=",$nom)->where('user_id','=',Auth::id())->get();
@@ -21,6 +25,10 @@ class ControladorAliment extends Controller
         ], compact('title'));
     }
 
+    /**
+     * Funció que esborra un Aliment Propi de la llista d'aliments de l'Usuari
+     * @param Request $request  Conté el Id de l'Aliment a esborrar
+     */
     public function delete(Request $request){
         $aliment = AlimentPropi::findOrFail($request->get("alimentId"));
         $aliment->delete();
@@ -28,6 +36,10 @@ class ControladorAliment extends Controller
         return redirect("/cercador/aliments_propis");
     }
 
+    /**
+     * Funció que valida les dades del $request per després actualitzar les dades d'un Aliment Propi i redirigir a la plana d'aliments propis de l'Usuari
+     * @param Request $request  Conté les dades del formulari
+     */
     public function update(Request $request){
         $atributs = $request->validate([
             'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:20',Rule::unique('aliment_propis','nom')->where(

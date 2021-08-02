@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ControladorPlanificacio extends Controller
 {
+    /**
+     * Funció que retorna la vista de la planificació de l'Usuari, una array d'aliments (Id's) de la planificació i la Planificació en si.
+     */
     public function create(){
         $title = "Sapa Diet | Planificació";
         $usuariId = Auth::id();
@@ -21,6 +24,10 @@ class ControladorPlanificacio extends Controller
         ],compact("title"));
     }
 
+    /**
+     * Funció que guarda la planificació de l'Usuari
+     * @param Request $request  Conté totes les dades per a la Planificació de l'Usuari
+     */
     public function storePlanificacio(Request $request){
         /* Comprova que cap array estigui buida */
         if ($request->get("proteines") == null || $request->get("hidrats") == null ||
@@ -62,6 +69,10 @@ class ControladorPlanificacio extends Controller
         return redirect("/planificacio");
     }
 
+    /**
+     * Funció que retorna una array d'aliments
+     * @param Request $request  Conté els aliments que l'Usuari ha triat al formulari
+     */
     public function getAliments(Request $request){
         $aliments = array_merge($request->get("proteines"), $request->get("hidrats"));
         $aliments = array_merge($aliments,$request->get("grasses"));

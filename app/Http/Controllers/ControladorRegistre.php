@@ -9,12 +9,18 @@ use Illuminate\Validation\Rules\Password;
 
 class ControladorRegistre extends Controller
 {
-
+    /**
+     * Funció que retorna la vista de la pàgina de registre
+     */
     public function create(){
         $title = "Sapa Diet | Registre";
         return view('pages.registre',compact("title"));
     }
 
+    /**
+     * Funció que crea un Usuari amb els valors validats del $request
+     * @param Request $request  Conté els valors per a la creació d'un nou Usuari
+     */
     public function store(Request $request){
         $atributs = $request->validate([
             'nom'=>['required','max:30','alpha'],
