@@ -1,31 +1,61 @@
 <div class="container mx-auto my-auto">
     <div class="flex justify-center px-2 sm:px-10 my-12">
-        <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black p-5">
+        <div class="w-full lg:w-8/12 xl:w-7/12 bg-green4 rounded-3xl border-2 border-black p-5">
+            <div class="w-full rounded-full">
+                <img src="{{$aliment[0]->categoria->imatge->url}}" alt="" class="mx-auto w-20">
+            </div>
+            <div class="text-center">
+                <x-form method="post" action="/updateAliment" class="mt-2 inline-block sm:w-96">
+                    <input type="hidden" name="id" value="{{$aliment[0]->id}}">
 
-                <div class="w-full rounded-full">
-                    <img src="{{$aliment[0]->categoria->imatge->url}}" alt="" class="mx-auto w-20">
-                </div>
-                <x-form method="post" action="/updateAliment" class="mt-2">
-                    <label for="nom">Nom</label>
-                    <input type="text" name="nom" value="{{$aliment[0]->nom}}" class="block p-2 rounded-lg w-full sm:w-1/2 mb-4">
-                    <label for="kilocalories">Kcal</label>
-                    <input type="number" name="kilocalories" value="{{$aliment[0]->kilocalories}}" class="block p-2 rounded-lg w-full sm:w-1/2 mb-4">
-                    <label for="proteines">Proteines</label>
-                    <input type="number" name="proteines" value="{{$aliment[0]->proteines}}" class="block p-2 rounded-lg w-full sm:w-1/2 mb-4">
-                    <label for="hidrats">Hidrats</label>
-                    <input type="number" name="hidrats" value="{{$aliment[0]->hidrats}}" class="block p-2 rounded-lg w-full sm:w-1/2 mb-4">
-                    <label for="grasses">Grasses</label>
-                    <input type="number" name="grasses" value="{{$aliment[0]->grasses}}" class="block p-2 rounded-lg w-full sm:w-1/2 mb-4">
-                    <button type="submit" class="botoPerfil w-full md:w-1/2">Actualitza les dades</button>
-                </x-form>
-                <x-form method="post" action="/esborraAliment" class="mt-2" id="eliminaForm">
-                    @csrf
-                    <input type="hidden" name="alimentId" value="{{$aliment[0]->id}}">
-                    <div class="flex justify-center">
-                        <button type="button" class="botoDelete w-full md:w-1/2" id="eliminaAliment">Esborra l'aliment</button>
+                    <label for="nom" class="labelGeneral">Nom</label>
+                    <input type="text" name="nom" value="{{$aliment[0]->nom}}" class="inputPerfil">
+                    @error('nom')
+                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                    @enderror
+
+                    <h2 class="text-xl md:text-2xl mt-2 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
+                    <label for="kilocalories" class="labelGeneral ">Kcal</label>
+                    <div class="kcal">
+                        <input type="number" name="kilocalories" value="{{$aliment[0]->kilocalories}}" class="inputPerfil">
                     </div>
-                </x-form>
+                    @error('kilocalories')
+                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                    @enderror
 
+                    <label for="proteines" class="labelGeneral">Proteines</label>
+                    <div class="gr">
+                        <input type="number" name="proteines" value="{{$aliment[0]->proteines}}" class="inputPerfil">
+                    </div>
+                    @error('proteines')
+                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                    @enderror
+
+                    <label for="hidrats" class="labelGeneral">Hidrats</label>
+                    <div class="gr">
+                        <input type="number" name="hidrats" value="{{$aliment[0]->hidrats}}" class="inputPerfil">
+                    </div>
+                    @error('hidrats')
+                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                    @enderror
+
+                    <label for="grasses" class="labelGeneral">Grasses</label>
+                    <div class="gr">
+                        <input type="number" name="grasses" value="{{$aliment[0]->grasses}}" class="inputPerfil">
+                    </div>
+                    @error('grasses')
+                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                    @enderror
+
+                    <button type="submit" class="botoPerfil w-full">Actualitza les dades</button>
+                </x-form>
+            </div>
+            <x-form method="post" action="/esborraAliment" class="mt-2" id="eliminaForm">
+                <input type="hidden" name="alimentId" value="{{$aliment[0]->id}}">
+                <div class="flex justify-center">
+                    <button type="button" class="botoDelete w-96" id="eliminaAliment">Esborra l'aliment</button>
+                </div>
+            </x-form>
         </div>
     </div>
 </div>

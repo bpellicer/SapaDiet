@@ -315,11 +315,29 @@ input,select{
     @apply font-semibold mr-2 block;
 }
 
+.labelGeneral{
+    @apply block text-sm font-bold text-gray-700 text-left;
+}
+
 /***************    CARTA ALIMENTS  **********************/
 
 .cartaAliment{
     @apply bg-green1 rounded-3xl sm:w-full md:w-32 lg:w-40 border-2 border-black hover:bg-green5 text-center cursor-pointer p-2;
     @apply transform hover:scale-110 duration-75;
+}
+
+.kcal, .gr{
+    @apply relative;
+}
+
+.kcal:after{
+    @apply absolute right-10 top-2 text-sm;
+    content: 'kcal';
+}
+
+.gr:after{
+    @apply absolute right-10 top-2 text-sm;
+    content: 'gr';
 }
 /************************* NORMALIZE     *************************/
 

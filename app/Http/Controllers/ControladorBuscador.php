@@ -40,8 +40,12 @@ class ControladorBuscador extends Controller
      */
     public function storeAfegir(Request $request){
         $atributs = $request->validate([
-            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:20',Rule::unique('aliment_propis','nom')],
-            'kcal' => ['required','numeric','min:0'],
+            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:20',Rule::unique('aliment_propis','nom')->where(
+                function($query){
+                    return $query->where('user_id',Auth::id());
+                })
+            ],
+            'kcal' => ['required','numeric','min:0','max:1000'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
             'grasses' => ['required','numeric', 'max:1000', 'min:0'],

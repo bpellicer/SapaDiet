@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('esborraAliment',[ControladorAliment::class,'delete']);
 
+    Route::post('updateAliment',[ControladorAliment::class, 'update']);
+
 });
 
 Route::middleware(['guest'])->group(function () {
