@@ -4,8 +4,8 @@
             <div class="w-full rounded-full">
                 <img src="{{$aliment[0]->categoria->imatge->url}}" alt="" class="mx-auto w-20">
             </div>
-            <div class="text-center">
-                <x-form method="post" action="/updateAliment" class="mt-2 inline-block sm:w-96">
+            <div class="flex justify-center text-center">
+                <x-form method="post" action="/updateAliment" class="mt-2 inline-block w-96">
                     <input type="hidden" name="id" value="{{$aliment[0]->id}}">
 
                     <label for="nom" class="labelGeneral">Nom</label>
