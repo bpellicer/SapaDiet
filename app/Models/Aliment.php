@@ -10,10 +10,6 @@ class Aliment extends Model
     use HasFactory;
 
     public function categoria(){
-        return $this->hasOne(Categoria::class);
-    }
-
-    public function imatge(){
-        return $this->hasOne(Imatge::class);
+        return $this->belongsTo(Categoria::class);
     }
 }

@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +6,12 @@
 
 
 /*************************  ELEMENTS DEL DOM    *************************/
+
+table,th,td,tr{
+    border:2px solid black;
+    border-collapse: collapse;
+    padding:2px;
+}
 
 body{
     background:url("/imatges/homePageBack.png");

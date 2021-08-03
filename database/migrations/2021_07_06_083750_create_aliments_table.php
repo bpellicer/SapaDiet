@@ -16,7 +16,6 @@ class CreateAlimentsTable extends Migration
         Schema::create('aliments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoria_id')->constrained('categories');
-            $table->foreignId('imatge_id')->constrained('imatges');
             $table->string('nom');
             $table->double('kilocalories');
             $table->double('hidrats');

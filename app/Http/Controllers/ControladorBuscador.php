@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aliment;
 use App\Models\AlimentPropi;
 use App\Models\Categoria;
 use App\Models\Planificacio;
@@ -86,5 +87,12 @@ class ControladorBuscador extends Controller
         $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
         $alimentPropi->user_id = User::findOrFail(Auth::id())->id;
         return $alimentPropi;
+    }
+
+    public function createBuscador(){
+        $title = `Sapa Diet | Buscador d'aliments`;
+        return view("pages.buscador",[
+            'aliments' => Aliment::orderBy('id')->get()
+        ],compact('title'));
     }
 }
