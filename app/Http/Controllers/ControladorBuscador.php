@@ -99,8 +99,15 @@ class ControladorBuscador extends Controller
     public function getAliments(Request $request){
         if($request->ajax()){
             $nom = $request->get("name");
-            $aliments = Aliment::where("nom","=",$nom)->get();
-            echo $aliments;
+            $categoria = $request->get("cat");
+            if($nom == "" && $categoria=="-- Cap --"){
+                $aliments = Aliment::orderBy("nom")->get();
+                echo $aliments;
+            }
+            else{
+               $aliments = Aliment::where("nom","like",$nom)->orderBy("nom")->get();
+               echo $aliments;
+            }
         }
 
     }

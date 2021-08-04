@@ -95,3 +95,33 @@ $("#creu2").on("click",function(){
     $("#divIntern2").hide();
     $("#divExtern2").hide();
 });
+
+
+$("#cercaAliment").on("click",function(){
+    $("#content").html("");
+    let nom = $("#buscadorNom").val();
+    let categoria = $("#categoria").val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url:"/cercaAliment",
+        data:{
+            name:nom,
+            cat:categoria
+        },
+        type:"post",
+        dataType:"json",
+        success:function(dades){
+            console.log(dades);
+            $(dades).each(function(index){
+                $("#content").append("<p>"+dades[index].nom+"</p>");
+            });
+        },
+        error:function(){
+            alert("error!");
+        }
+    });
+})
