@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Aliment;
 use App\Models\AlimentPropi;
 use App\Models\Categoria;
-use App\Models\Planificacio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -90,9 +89,19 @@ class ControladorBuscador extends Controller
     }
 
     public function createBuscador(){
-        $title = `Sapa Diet | Buscador d'aliments`;
+        $title = "Sapa Diet | Buscador d'aliments";
         return view("pages.buscador",[
-            'aliments' => Aliment::orderBy('id')->get()
-        ],compact('title'));
+            'aliments' => Aliment::orderBy('id')->get(),
+            'categories' => Categoria::orderBy('nom')->get()
+        ],compact("title"));
+    }
+
+    public function getAliments(Request $request){
+        if($request->ajax()){
+            $nom = $request->get("name");
+            $aliments = Aliment::where("nom","=",$nom)->get();
+            echo $aliments;
+        }
+
     }
 }

@@ -56,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('cercador/cerca_aliments',[ControladorBuscador::class, 'createBuscador']);
 
+    Route::post('cercaAliment',[ControladorBuscador::class, 'getAliments']);
+
 });
 
 Route::middleware(['guest'])->group(function () {
