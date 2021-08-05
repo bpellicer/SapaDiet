@@ -25,7 +25,7 @@ a{
 }
 
 /***************    NORMES GENERALS ***************/
-input,select{
+input,select,button{
 @apply focus:outline-none focus:ring focus:border-blue-300;
 }
 
@@ -248,7 +248,6 @@ input,select{
 
 .divIntern2{
     @apply absolute m-auto p-8 left-0 top-0 right-0 bottom-0 bg-green2 rounded-3xl;
-/*     height:30rem; */
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 
@@ -325,6 +324,9 @@ input,select{
 }
 
 /***************    CARTA ALIMENTS  **********************/
+.cartaAliment2{
+    @apply bg-green1 border-2 border-black mt-4 rounded-3xl w-80 sm:w-64 xl:w-96 sm:inline-block mx-2 p-4 cursor-pointer hover:bg-green5;
+}
 
 .cartaAliment{
     @apply bg-green1 rounded-3xl sm:w-full md:w-32 lg:w-40 border-2 border-black hover:bg-green5 text-center cursor-pointer p-2;

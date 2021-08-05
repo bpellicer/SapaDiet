@@ -96,18 +96,28 @@ class ControladorBuscador extends Controller
         ],compact("title"));
     }
 
+    /**
+     * Funció que retorna els aliments corresponents a la petició AJAX del buscador d'Aliments
+     * @param Request $request Conté el nom i la categoria de l'Aliment o Aliments a buscar.
+     */
     public function getAliments(Request $request){
         if($request->ajax()){
             $nom = $request->get("name");
             $categoria = $request->get("cat");
-            if($nom == "" && $categoria=="-- Cap --"){
-                $aliments = Aliment::orderBy("nom")->get();
-                echo $aliments;
+            $aliments = "";
+
+            if($nom == "" && $categoria != "-- Cap --"){
+                $categoria = Categoria::where("nom","=",$categoria)->get();
+                $aliments = Aliment::where("categoria_id","=",$categoria[0]->id)->orderBy("nom")->get();
+            }
+            else if($nom!="" && $categoria == "-- Cap --"){
+                $aliments = Aliment::where("nom","like",$nom.'%')->orderBy("nom")->get();
             }
             else{
-               $aliments = Aliment::where("nom","like",$nom)->orderBy("nom")->get();
-               echo $aliments;
+                $categoria = Categoria::where("nom","=",$categoria)->get();
+                $aliments = Aliment::where("nom","like",$nom.'%')->where("categoria_id","=",$categoria[0]->id)->orderBy("nom")->get();
             }
+            echo $aliments;
         }
 
     }

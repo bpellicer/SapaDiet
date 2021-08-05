@@ -1926,33 +1926,163 @@ $("#creu2").on("click", function () {
   $("#divIntern2").hide();
   $("#divExtern2").hide();
 });
-$("#cercaAliment").on("click", function () {
+$("#cercaDiv").on("submit", function (e) {
+  e.preventDefault();
   $("#content").html("");
+  var form = $(this);
   var nom = $("#buscadorNom").val();
   var categoria = $("#categoria").val();
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  var url = form.attr('action');
+  var comptador = 1;
+
+  if (nom == "" && categoria == "-- Cap --") {
+    setTimeout(function () {
+      $("#content").append("<p class=\"text-red-600 font-bold mt-4 text-xs sm:text-base\">*Entra un nom o escull una categoria!</p>");
+    }, 100);
+  } else {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: url,
+      data: {
+        name: nom,
+        cat: categoria
+      },
+      type: "post",
+      dataType: "json",
+      success: function success(dades) {
+        console.log(dades);
+
+        if (dades.length == 0) {
+          setTimeout(function () {
+            $("#content").append("<p class=\"text-red-600 font-bold mt-4 text-xs sm:text-base\">*No s'ha trobat cap resultat!</p>");
+          }, 100);
+        } else {
+          $(dades).each(function (index) {
+            var categoria = ["categoriaNom", "urlImatge"];
+            categoria[0] = getCategoria(dades[index].categoria_id);
+            categoria[1] = getImatge(categoria[0]);
+            $("#content").append("<div class=\"flex justify-center sm:inline-block\"><div class=\"cartaAliment2\" id=\"aliment" + comptador + "\">\n                                                <img src=\"" + categoria[1] + "\" alt=\"\" class=\"inline-block\">\n                                                <p class=\"font-bold mt-2\">" + dades[index].nom + "</p>\n                                                <p class=\"mt-2\">Categoria: " + categoria[0] + "</p>\n                                            </div></div>");
+            $("#aliment" + comptador).on("click", function (e) {
+              $(document.body).append("<div class=\"divExtern\" id=\"divExtern2\">\n                                    <div class=\"divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110\" id=\"divIntern2\">\n                                        <img src=\"/imatges/creu.png\" class=\"creu\" id=\"creu2\">\n                                        <h1 class=\"text-center font-bold md:text-3xl text-xl\">" + dades[index].nom + " </h1>\n                                        <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 place-items-center\">\n                                            <div class=\"bg-white rounded-3xl border-2 border-black w-20 h-20 sm:w-28 sm:h-28 hidden sm:inline\">\n                                                <img src=\"" + categoria[1] + "\" alt=\"\" class=\"w-40\">\n                                            </div>\n                                            <div class=\"col-span-2\">\n                                                <h2 class=\"font-semibold text-xs sm:text-sm mb-2\">Informaci\xF3 nutricional 100 grams: </h2>\n                                                <p class=\"mb-2 text-sm\">Kilocalories: " + dades[index].kilocalories + " kcal.</p>\n                                                <p class=\"mb-2 text-sm\">Prote\xEFnes: " + dades[index].proteines + " g.</p>\n                                                <p class=\"mb-2 text-sm\">Hidrats: " + dades[index].hidrats + " g.</p>\n                                                <p class=\"mb-2 text-sm\">Grasses: " + dades[index].grasses + " g.</p>\n                                            </div>\n                                        </div>\n                                        <div>\n                                            <form action=\"/\" method=\"post\" class=\"\">\n                                                <input type=\"hidden\" name=\"_token\" value=\"" + $('meta[name="csrf-token"]').attr("content") + "\">\n                                                <label for=\"data\">Data</label>\n                                                <input type=\"date\" name=\"data\" class=\"inputPerfil\">\n                                                <label for=\"grams\" class=\"font-bold text-sm\">Grams</label>\n                                                <input type=\"text\" name=\"grams\" placeholder=\"Grams\" class=\"inputPerfil\">\n                                                <label for=\"apat\"> A on vols afegir l'aliment ? </label>\n                                                <select name=\"apat\" class=\"rounded-2xl w-8/12 sm:w-10/12 mt-2\" style=\"padding:5.2px\">\n                                                    <option>Esmorzar</option>\n                                                    <option>Mig Mat\xED</option>\n                                                    <option>Dinar</option>\n                                                    <option>Berenar</option>\n                                                    <option>Sopar</option>\n                                                </select>\n                                            </form>\n                                        </div>\n                                    </div>\n                                </div>");
+              $(dades[index].nom);
+            });
+            ++comptador;
+          });
+        }
+      },
+      error: function error() {
+        alert("error!");
+      }
+    });
+  }
+
+  function getCategoria(id) {
+    var categoriaNom = "";
+
+    switch (id) {
+      case 1:
+        categoriaNom = "Peixos";
+        break;
+
+      case 2:
+        categoriaNom = "Carns";
+        break;
+
+      case 3:
+        categoriaNom = "Ous";
+        break;
+
+      case 4:
+        categoriaNom = "Verdures";
+        break;
+
+      case 5:
+        categoriaNom = "Llegums i Fruits Secs";
+        break;
+
+      case 6:
+        categoriaNom = "Làctics";
+        break;
+
+      case 7:
+        categoriaNom = "Fruites";
+        break;
+
+      case 8:
+        categoriaNom = "Mantequilles i olis";
+        break;
+
+      case 9:
+        categoriaNom = "Processats";
+        break;
+
+      case 10:
+        categoriaNom = "Begudes";
+        break;
+
+      case 11:
+        categoriaNom = "Cereals";
+        break;
     }
-  });
-  $.ajax({
-    url: "/cercaAliment",
-    data: {
-      name: nom,
-      cat: categoria
-    },
-    type: "post",
-    dataType: "json",
-    success: function success(dades) {
-      console.log(dades);
-      $(dades).each(function (index) {
-        $("#content").append("<p>" + dades[index].nom + "</p>");
-      });
-    },
-    error: function error() {
-      alert("error!");
+
+    return categoriaNom;
+  }
+
+  function getImatge(categoria) {
+    var src = "";
+
+    switch (categoria) {
+      case "Peixos":
+        src = "/imatges/aliments/peix.png";
+        break;
+
+      case "Carns":
+        src = "/imatges/aliments/carn.png";
+        break;
+
+      case "Ous":
+        src = "/imatges/aliments/ou.png";
+        break;
+
+      case "Verdures":
+        src = "/imatges/aliments/verdura.png";
+        break;
+
+      case "Llegums i Fruits Secs":
+        src = "/imatges/aliments/cacahuet.png";
+        break;
+
+      case "Làctics":
+        src = "/imatges/aliments/formatge.png";
+        break;
+
+      case "Fruites":
+        src = "/imatges/aliments/poma.png";
+        break;
+
+      case "Mantequilles i olis":
+        src = "/imatges/aliments/olis.png";
+        break;
+
+      case "Processats":
+        src = "/imatges/aliments/processats.png";
+        break;
+
+      case "Begudes":
+        src = "/imatges/aliments/begudes.png";
+        break;
+
+      case "Cereals":
+        src = "/imatges/aliments/cereal.png";
+        break;
     }
-  });
+
+    return src;
+  }
 });
 
 /***/ }),
