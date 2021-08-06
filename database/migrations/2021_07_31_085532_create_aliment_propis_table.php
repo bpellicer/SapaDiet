@@ -21,7 +21,7 @@ class CreateAlimentPropisTable extends Migration
             $table->double('kilocalories');
             $table->double('hidrats');
             $table->double('proteines');
-            $table->double('grasses');
+            $table->double('greixos');
             $table->timestamps();
         });
     }

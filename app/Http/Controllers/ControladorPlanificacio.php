@@ -31,7 +31,7 @@ class ControladorPlanificacio extends Controller
     public function storePlanificacio(Request $request){
         /* Comprova que cap array estigui buida */
         if ($request->get("proteines") == null || $request->get("hidrats") == null ||
-            $request->get("grasses") == null  || $request->get("lactics") == null ||
+            $request->get("greixos") == null  || $request->get("lactics") == null ||
             $request->get("fruites") == null){
                 session()->flash('formulariInvalid','Mínim 1 aliment per categoria');
                 return redirect()->back();
@@ -75,7 +75,7 @@ class ControladorPlanificacio extends Controller
      */
     public function getAliments(Request $request){
         $aliments = array_merge($request->get("proteines"), $request->get("hidrats"));
-        $aliments = array_merge($aliments,$request->get("grasses"));
+        $aliments = array_merge($aliments,$request->get("greixos"));
         $aliments = array_merge($aliments,$request->get("lactics"));
         $aliments = array_merge($aliments,$request->get("fruites"));
         return $aliments;

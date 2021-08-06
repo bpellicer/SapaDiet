@@ -15,7 +15,7 @@ class AlimentPropi extends Model
         'nom',
         'categoria',
         'proteines',
-        'grasses',
+        'greixos',
         'hidrats',
         'kilocalories'
     ];

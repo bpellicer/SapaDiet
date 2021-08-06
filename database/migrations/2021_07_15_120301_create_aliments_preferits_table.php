@@ -16,7 +16,7 @@ class CreateAlimentsPreferitsTable extends Migration
         Schema::create('aliments_preferits', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->enum('tipus',['proteines','hidrats','grasses','lactics','fruites']);
+            $table->enum('tipus',['proteines','hidrats','greixos','lactics','fruites']);
             $table->timestamps();
         });
     }

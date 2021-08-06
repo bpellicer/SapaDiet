@@ -153,31 +153,55 @@ $("#cercaDiv").on("submit",function(e){
                                             </div>
                                             <div class="col-span-2">
                                                 <h2 class="font-semibold text-xs sm:text-sm mb-2">Informació nutricional 100 grams: </h2>
-                                                <p class="mb-2 text-sm">Kilocalories: `+dades[index].kilocalories+` kcal.</p>
-                                                <p class="mb-2 text-sm">Proteïnes: `+dades[index].proteines+` g.</p>
-                                                <p class="mb-2 text-sm">Hidrats: `+dades[index].hidrats+` g.</p>
-                                                <p class="mb-2 text-sm">Grasses: `+dades[index].grasses+` g.</p>
+                                                <div class="grid grid-cols-2 gap-1">
+                                                    <div>
+                                                        <p class="mb-2 text-sm">Kilocalories:</p>
+                                                        <p class="mb-2 text-sm">Proteïnes:</p>
+                                                        <p class="mb-2 text-sm">Hidrats:</p>
+                                                        <p class="mb-2 text-sm">Greixos:</p>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <p class="mb-2 text-sm">`+dades[index].kilocalories+` kcal.</p>
+                                                        <p class="mb-2 text-sm">`+dades[index].proteines+` g.</p>
+                                                        <p class="mb-2 text-sm">`+dades[index].hidrats+` g.</p>
+                                                        <p class="mb-2 text-sm">`+dades[index].greixos+` g.</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <form action="/" method="post" class="">
+                                        <div class="xs:px-2 py-1">
+                                        <h2 class="font-bold text-xs sm:text-sm mb-2">Afegeix l'aliment a un àpat diari</h2>
+                                            <form action="/afegeixAliment" method="post" class="">
                                                 <input type="hidden" name="_token" value="`+$('meta[name="csrf-token"]').attr("content")+`">
-                                                <label for="data">Data</label>
-                                                <input type="date" name="data" class="inputPerfil">
-                                                <label for="grams" class="font-bold text-sm">Grams</label>
-                                                <input type="text" name="grams" placeholder="Grams" class="inputPerfil">
-                                                <label for="apat"> A on vols afegir l'aliment ? </label>
-                                                <select name="apat" class="rounded-2xl w-8/12 sm:w-10/12 mt-2" style="padding:5.2px">
+                                                <label for="data" class="text-xs mb-2">Data</label>
+                                                <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">
+                                                <label for="apat" class="text-xs mb-2">Àpat</label>
+                                                <select name="apat" class="text-sm rounded-md w-full mb-2" style="padding:5.2px">
                                                     <option>Esmorzar</option>
                                                     <option>Mig Matí</option>
                                                     <option>Dinar</option>
                                                     <option>Berenar</option>
                                                     <option>Sopar</option>
                                                 </select>
+                                                <label for="grams" class="font-bold text-xs">Grams</label>
+                                                <input type="text" name="grams" placeholder="Grams" class="inputPerfil">
+                                                <div class="flex justify-center">
+                                                    <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
-                                </div>`
+                                </div>
+                                <script>
+                                    $("#divIntern2").ready(function(){
+                                        let ara = new Date();
+                                        let dia = ("0" + ara.getDate()).slice(-2);
+                                        let mes = ("0" + (ara.getMonth() + 1)).slice(-2);
+
+                                        let avui = ara.getFullYear()+"-"+(mes)+"-"+(dia) ;
+                                        $("#dataInput").val(avui);
+                                    });
+                                </script>`
                             );
                         });
                         ++comptador;

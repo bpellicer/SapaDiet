@@ -44,16 +44,16 @@
                         </div>
                     </div>
                    <div class="py-3">
-                        <h1 class="text-base font-bold sm:text-2xl">Grasses preferides</h1>
+                        <h1 class="text-base font-bold sm:text-2xl">Greixos preferits</h1>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
-                            <x-labelCheckbox src="/imatges/aliments/alvocat.png" value="17" tipus="checkbox" nom="grasses[]" span="Alvocat"/>
-                            <x-labelCheckbox src="/imatges/aliments/anacard.png" value="18" tipus="checkbox" nom="grasses[]" span="Anacard"/>
-                            <x-labelCheckbox src="/imatges/aliments/atmetlla.png" value="19" tipus="checkbox" nom="grasses[]" span="Atmetlla"/>
-                            <x-labelCheckbox src="/imatges/aliments/cacahuet.png" value="20" tipus="checkbox" nom="grasses[]" span="Cacahuet"/>
-                            <x-labelCheckbox src="/imatges/aliments/chia.png" value="21" tipus="checkbox" nom="grasses[]" span="Chia"/>
-                            <x-labelCheckbox src="/imatges/aliments/chocolata.png" value="22" tipus="checkbox" nom="grasses[]" span="Chocolata"/>
-                            <x-labelCheckbox src="/imatges/aliments/nous.png" value="23" tipus="checkbox" nom="grasses[]" span="Nous"/>
-                            <x-labelCheckbox src="/imatges/aliments/olives.png" value="24" tipus="checkbox" nom="grasses[]" span="Olives"/>
+                            <x-labelCheckbox src="/imatges/aliments/alvocat.png" value="17" tipus="checkbox" nom="greixos[]" span="Alvocat"/>
+                            <x-labelCheckbox src="/imatges/aliments/anacard.png" value="18" tipus="checkbox" nom="greixos[]" span="Anacard"/>
+                            <x-labelCheckbox src="/imatges/aliments/atmetlla.png" value="19" tipus="checkbox" nom="greixos[]" span="Atmetlla"/>
+                            <x-labelCheckbox src="/imatges/aliments/cacahuet.png" value="20" tipus="checkbox" nom="greixos[]" span="Cacahuet"/>
+                            <x-labelCheckbox src="/imatges/aliments/chia.png" value="21" tipus="checkbox" nom="greixos[]" span="Chia"/>
+                            <x-labelCheckbox src="/imatges/aliments/chocolata.png" value="22" tipus="checkbox" nom="greixos[]" span="Chocolata"/>
+                            <x-labelCheckbox src="/imatges/aliments/nous.png" value="23" tipus="checkbox" nom="greixos[]" span="Nous"/>
+                            <x-labelCheckbox src="/imatges/aliments/olives.png" value="24" tipus="checkbox" nom="greixos[]" span="Olives"/>
                         </div>
                     </div>
                     <div class="py-3">

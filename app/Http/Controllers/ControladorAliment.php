@@ -50,7 +50,7 @@ class ControladorAliment extends Controller
             'kilocalories' => ['required','numeric','min:0','max:1000'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
-            'grasses' => ['required','numeric', 'max:1000', 'min:0']
+            'greixos' => ['required','numeric', 'max:1000', 'min:0']
         ]);
         $alimentPropi = AlimentPropi::find($request->get("id"));
         $this->updateDadesAliment($atributs,$alimentPropi);
@@ -69,7 +69,7 @@ class ControladorAliment extends Controller
         $alimentPropi->nom = $atributs["nom"];
         $alimentPropi->proteines = $atributs["proteines"];
         $alimentPropi->hidrats = $atributs["hidrats"];
-        $alimentPropi->grasses = $atributs["grasses"];
+        $alimentPropi->greixos = $atributs["greixos"];
         $alimentPropi->kilocalories = $atributs["kilocalories"];
 
         $alimentPropi->save();

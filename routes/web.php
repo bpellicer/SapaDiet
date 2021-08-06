@@ -58,6 +58,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('cercaAliment',[ControladorBuscador::class, 'getAliments']);
 
+    Route::get('calendari',[ControladorCalendari::class,'create']);
+
+    Route::get('calendari/',[ControladorDieta::class,'create']);
+
+    Route::post('afegeixAlimentDieta',[ControladorDieta::class,'afegeixAlimentDieta']);
+
 });
 
 Route::middleware(['guest'])->group(function () {

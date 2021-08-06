@@ -48,7 +48,7 @@ class ControladorBuscador extends Controller
             'kcal' => ['required','numeric','min:0','max:1000'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
-            'grasses' => ['required','numeric', 'max:1000', 'min:0'],
+            'greixos' => ['required','numeric', 'max:1000', 'min:0'],
             'categoria' => ['required']
         ]);
 
@@ -81,7 +81,7 @@ class ControladorBuscador extends Controller
         $alimentPropi->nom = $atributs['nom'];
         $alimentPropi->proteines = $atributs['proteines'];
         $alimentPropi->hidrats =  $atributs['hidrats'];
-        $alimentPropi->grasses =  $atributs['grasses'];
+        $alimentPropi->greixos =  $atributs['greixos'];
         $alimentPropi->kilocalories = $atributs['kcal'];
         $alimentPropi->categoria_id =  Categoria::where('nom','=',$atributs['categoria'])->firstOrFail()->id;
         $alimentPropi->user_id = User::findOrFail(Auth::id())->id;

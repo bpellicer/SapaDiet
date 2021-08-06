@@ -39,11 +39,11 @@
                         <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                     @enderror
 
-                    <label for="grasses" class="labelGeneral">Grasses</label>
+                    <label for="greixos" class="labelGeneral">Greixos</label>
                     <div class="gr">
-                        <input type="number" name="grasses" value="{{$aliment[0]->grasses}}" class="inputPerfil">
+                        <input type="number" name="greixos" value="{{$aliment[0]->greixos}}" class="inputPerfil">
                     </div>
-                    @error('grasses')
+                    @error('greixos')
                         <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                     @enderror
 

@@ -37,9 +37,9 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="grasses" class="labelNutricional">Grasses</label>
-                        <x-inputNumber tipus="number" classe="inputNutricional" id="grasses" placeholder="Grasses" step="any"/>
-                        @error('grasses')
+                        <label for="greixos" class="labelNutricional">Greixos</label>
+                        <x-inputNumber tipus="number" classe="inputNutricional" id="greixos" placeholder="Greixos" step="any"/>
+                        @error('greixos')
                             <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                         @enderror
                         </div>
