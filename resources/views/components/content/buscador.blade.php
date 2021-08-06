@@ -25,3 +25,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function amaga(){
+        $("#divIntern2").remove();
+        $("#divExtern2").remove();
+    }
+</script>

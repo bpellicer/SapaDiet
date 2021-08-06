@@ -132,7 +132,6 @@ $("#cercaDiv").on("submit",function(e){
                     },100)
                 }
                 else{
-
                     $(dades).each(function(index){
                         let categoria = ["categoriaNom","urlImatge"];
                         categoria[0] = getCategoria(dades[index].categoria_id);
@@ -146,7 +145,7 @@ $("#cercaDiv").on("submit",function(e){
                             $(document.body).append(
                                 `<div class="divExtern" id="divExtern2">
                                     <div class="divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110" id="divIntern2">
-                                        <img src="/imatges/creu.png" class="creu" id="creu2">
+                                        <img src="/imatges/creu.png" class="creu" id="creu2" onclick="amaga()">
                                         <h1 class="text-center font-bold md:text-3xl text-xl">`+dades[index].nom+` </h1>
                                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 place-items-center">
                                             <div class="bg-white rounded-3xl border-2 border-black w-20 h-20 sm:w-28 sm:h-28 hidden sm:inline">
@@ -180,14 +179,11 @@ $("#cercaDiv").on("submit",function(e){
                                     </div>
                                 </div>`
                             );
-
-                            $(dades[index].nom);
                         });
-
                         ++comptador;
                     });
-                }
-            },
+            }
+        },
             error:function(){
                 alert("error!");
             }
@@ -271,4 +267,4 @@ $("#cercaDiv").on("submit",function(e){
         }
         return src;
     }
-})
+});
