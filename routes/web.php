@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ControladorAliment;
 use App\Http\Controllers\ControladorBuscador;
+use App\Http\Controllers\ControladorCalendari;
+use App\Http\Controllers\ControladorDieta;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
@@ -60,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('calendari',[ControladorCalendari::class,'create']);
 
-    Route::get('calendari/',[ControladorDieta::class,'create']);
+/*     Route::get('',[ControladorDieta::class,'create']); */
 
     Route::post('afegeixAlimentDieta',[ControladorDieta::class,'afegeixAlimentDieta']);
 

@@ -3,7 +3,7 @@
         <x-mapaweb>
             <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/3">
-                    <x-columnaMapaWeb name="Gestionar Dieta" href="/"/>
+                    <x-columnaMapaWeb name="Gestionar Dieta" href="/calendari"/>
                     <x-columnaMapaWeb name="Cerca" href="/cercador"/>
                 </div>
                 <div class="w-full sm:w-1/3">
