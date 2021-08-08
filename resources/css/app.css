@@ -7,12 +7,6 @@
 
 /*************************  ELEMENTS DEL DOM    *************************/
 
-table,th,td,tr{
-    border:2px solid black;
-    border-collapse: collapse;
-    padding:2px;
-}
-
 body{
     background:url("/imatges/homePageBack.png");
     font-family:Poppins !important;
@@ -345,6 +339,24 @@ input,select,button{
 .gr:after{
     @apply absolute right-10 top-2 text-sm;
     content: 'gr';
+}
+
+/*************** BARRA DE PROGRÉS ***************/
+
+#cercleOffset, #cercleBar {
+  stroke-dashoffset: 0;
+  stroke: #fff;
+  stroke-width: 1em;
+}
+
+#svg #cercleBar {
+  stroke: #91DC5A;
+}
+
+.cercle{
+    stroke-dashoffset: 0;
+    stroke: #000;
+    stroke-width: 3;
 }
 /************************* NORMALIZE     *************************/
 

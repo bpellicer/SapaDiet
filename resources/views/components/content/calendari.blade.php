@@ -5,7 +5,7 @@
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 text-center">
                 @for ($i = 1; $i<= $dies; $i++)
                     <a href="/calendari/{{$i}}-{{$mes}}-{{$any}}">
-                        <div class="@if ($dia == $i) bg-green1 @else bg-white @endif w-full border-2 border-black hover:bg-green5 cursor-pointer">
+                        <div class="@if ($dia == $i) bg-green1 @elseif($i < $dia) bg-gray-400 @else bg-white @endif w-full border-2 border-black hover:bg-green5 cursor-pointer">
                             <h1 class="">{{$i}}</h1>
                         </div>
                     </a>

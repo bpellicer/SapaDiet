@@ -15,7 +15,7 @@
                     @enderror
 
                     <h2 class="text-xl md:text-2xl mt-2 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
-                    <label for="kilocalories" class="labelGeneral ">Kcal</label>
+                    <label for="kilocalories" class="labelGeneral ">Kilocalories</label>
                     <div class="kcal">
                         <input type="number" name="kilocalories" value="{{$aliment[0]->kilocalories}}" class="inputPerfil">
                     </div>
@@ -23,7 +23,7 @@
                         <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                     @enderror
 
-                    <label for="proteines" class="labelGeneral">Proteines</label>
+                    <label for="proteines" class="labelGeneral">Proteïnes</label>
                     <div class="gr">
                         <input type="number" name="proteines" value="{{$aliment[0]->proteines}}" class="inputPerfil">
                     </div>
@@ -31,7 +31,7 @@
                         <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                     @enderror
 
-                    <label for="hidrats" class="labelGeneral">Hidrats</label>
+                    <label for="hidrats" class="labelGeneral">Carbohidrats</label>
                     <div class="gr">
                         <input type="number" name="hidrats" value="{{$aliment[0]->hidrats}}" class="inputPerfil">
                     </div>
