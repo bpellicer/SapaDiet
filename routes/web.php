@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('calendari',[ControladorCalendari::class,'create']);
 
-/*     Route::get('',[ControladorDieta::class,'create']); */
+    Route::get('calendari/{data}',[ControladorDieta::class,'create']);
 
     Route::post('afegeixAlimentDieta',[ControladorDieta::class,'afegeixAlimentDieta']);
 
