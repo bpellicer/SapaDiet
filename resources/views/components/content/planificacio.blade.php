@@ -39,7 +39,7 @@
                             <x-labelCheckbox src="/imatges/aliments/llenties.png" value="12" tipus="checkbox" nom="hidrats[]" span="Llenties"/>
                             <x-labelCheckbox src="/imatges/aliments/patata.png" value="13" tipus="checkbox" nom="hidrats[]" span="Patates"/>
                             <x-labelCheckbox src="/imatges/aliments/quinoa.png" value="14" tipus="checkbox" nom="hidrats[]" span="Quinoa"/>
-                            <x-labelCheckbox src="/imatges/aliments/avena.png" value="15" tipus="checkbox" nom="hidrats[]" span="Avena"/>
+                            <x-labelCheckbox src="/imatges/aliments/avena.png" value="15" tipus="checkbox" nom="hidrats[]" span="Civada"/>
                             <x-labelCheckbox src="/imatges/aliments/pasta.png" value="16" tipus="checkbox" nom="hidrats[]" span="Pasta"/>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <h1 class="text-base font-bold sm:text-2xl">Làctics i begudes preferides</h1>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/formatge.png" value="25" tipus="checkbox" nom="lactics[]" span="Formatge"/>
-                            <x-labelCheckbox src="/imatges/aliments/iogur.png" value="26" tipus="checkbox" nom="lactics[]" span="Iogur"/>
+                            <x-labelCheckbox src="/imatges/aliments/iogur.png" value="26" tipus="checkbox" nom="lactics[]" span="Iogurt"/>
                             <x-labelCheckbox src="/imatges/aliments/llet.png" value="27" tipus="checkbox" nom="lactics[]" span="Llet"/>
                             <x-labelCheckbox src="/imatges/aliments/begudaAtmetlla.png" value="28" tipus="checkbox" nom="lactics[]" span="B.Atmetlla"/>
                             <x-labelCheckbox src="/imatges/aliments/begudaSoja.png" value="29" tipus="checkbox" nom="lactics[]" span="B.Soja"/>
