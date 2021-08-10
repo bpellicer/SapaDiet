@@ -2,7 +2,7 @@
     <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
             <div>
-                <h1 class="mb-0">2 de Juny</h1>
+                <h1 class="mb-0">Gestió Dieta: {{$data}}</h1>
                 <div class="grid grid-cols-2 place-content-end gap-3">
                     <div class="">
                         <div class="grid grid-cols-2 h-full place-content-center">
@@ -32,51 +32,17 @@
             </div>
             <div>
                 <div class="grid grid-rows-4 gap-4 px-16">
-                    <div class="bg-white h-20 border-2 border-black">
-                        <div class="grid grid-cols-2">
-                            <div class="text-left"><p>Esmorzar</p></div>
-                            <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
+                    @for ($i = 0; $i < $nombreApats; $i++)
+                        <div class="bg-white h-20 border-2 border-black rounded-3xl p-3">
+                            <div class="grid grid-cols-2">
+                                <div class="text-left"><p>{{$nomsApats[$i]}}</p></div>
+                                <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
+                            </div>
+                            <div></div>
                         </div>
-                        <div>LLISTA ALIMENTS</div>
-                    </div>
-                    <div class="bg-white h-20 border-2 border-black">
-                        <div class="grid grid-cols-2">
-                            <div class="text-left"><p>Esmorzar</p></div>
-                            <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
-                        </div>
-                        <div>LLISTA ALIMENTS</div>
-                    </div>
-                    <div class="bg-white h-20 border-2 border-black">
-                        <div class="grid grid-cols-2">
-                            <div class="text-left"><p>Esmorzar</p></div>
-                            <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
-                        </div>
-                        <div>LLISTA ALIMENTS</div>
-                    </div>
-                    <div class="bg-white h-20 border-2 border-black">
-                        <div class="grid grid-cols-2">
-                            <div class="text-left"><p>Esmorzar</p></div>
-                            <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
-                        </div>
-                        <div>LLISTA ALIMENTS</div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    let cercle = $("#cercleBar");
-    let radi = cercle.attr("r");
-    let perimetre = 2 * Math.PI * radi;
-    let pct = 100;
-    let percentatgeSuperior = (1 - (100-50)/100) * perimetre;
-    let percentatgeInferior = (1 - (25-50)/100) * perimetre;
-
-    cercle.css({
-        strokeDashoffset: percentatgeSuperior
-    });
-
-    $("#percentatge").text(pct+" %");
-</script>
