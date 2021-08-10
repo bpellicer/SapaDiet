@@ -14,18 +14,18 @@ class ControladorDieta extends Controller
             session()->flash('dataIncorrecte','Escull una data vàlida del mes i any actual');
             return redirect("/calendari");
         }
-        $title = "Sapa Diet | ";
+
         $usuari = User::findOrFail(Auth::id());
         $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
-
-
-            $title = "Sapa Diet | $data";
+        $dataAvui = date("m")."-20".date("y");
+        $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
+        $title = "Sapa Diet | $dataAvui";
 
 
         return view("pages.dieta",[
             "nombreApats"   => $planificacio->nombre_apats,
             "nomsApats"     => $this->getArrayApatsNoms($planificacio->nombre_apats),
-            "data"          => $data
+            "data"          => $dataAvui
         ],compact("title"));
     }
 
@@ -58,9 +58,13 @@ class ControladorDieta extends Controller
         $array = explode("-",$data);
         $mes = $array[1] == date("m") || $array[1] == "0".date("m") ? date("m") : "00000000";
         $any = $array[2] == date("y") ? "20".date("y") : "00000000";
-        if(count($array) != 3 || !checkdate($array[1],$array[0],intval($any)) || date("m") != $mes){
+        if(count($array) != 3 || !checkdate($array[1],$array[0],intval($any)) || date("m") != $mes || strlen($array[0]) > 2 ||  strlen($array[1]) > 2 ||  strlen($array[2]) > 2){
             $dataCorrecte = false;
         }
         return $dataCorrecte;
+    }
+
+    public function afegeixAlimentDieta(Request $request){
+        ddd("aaa");
     }
 }
