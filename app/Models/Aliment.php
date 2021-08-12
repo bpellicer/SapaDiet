@@ -12,4 +12,8 @@ class Aliment extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class);
     }
+
+    public function userApat(){
+        return $this->belongsToMany(UserApat::class, "users_apats_aliments")->withTimestamps();
+    }
 }

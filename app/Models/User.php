@@ -86,4 +86,8 @@ class User extends Authenticatable
     public function alimentpropi(){
         return $this->hasMany(AlimentPropi::class);
     }
+
+    public function apat(){
+        return $this->belongsToMany(Apat::class)->using(UserApat::class)->withTimestamps();
+    }
 }

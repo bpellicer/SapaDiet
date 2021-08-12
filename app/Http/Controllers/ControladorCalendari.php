@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ControladorCalendari extends Controller
 {
     public function create(){
+        $usuari = User::findOrFail(Auth::id());
+
+        /* Controla que l'Usuari només pugui entrar al calendari si ha guardat la planificació */
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
         $title = "Sapa Diet | Calendari";
 
         $diesMes = date('t');

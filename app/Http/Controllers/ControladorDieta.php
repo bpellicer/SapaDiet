@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Auth;
 class ControladorDieta extends Controller
 {
     public function create($data){
+        $usuari = User::findOrFail(Auth::id());
+        /* Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació */
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
+       /*  $array = $usuari->apat;
+        $array2 = [];
+        foreach($array as $apat){
+            array_push($array2,$apat->aliment);
+        }
+        ddd($array2); */
+
         if(!$this->comprovaData($data)){
             session()->flash('dataIncorrecte','Escull una data vàlida del mes i any actual');
             return redirect("/calendari");
