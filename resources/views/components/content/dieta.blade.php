@@ -40,14 +40,27 @@
                             </div>
                             <hr class=" border-1 border-black">
                             <div class="mt-2">
-                                @for($j= 0; $j < count($arrayAliments[$i]); $j++)
-                                    <div class="w-full text-left">
-                                        <p class="text-left mt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-                                        <img src="/imatges/crea.png" alt="" width="20px" class="inline-block">
+                                <div class="grid grid-cols-8">
+                                    @for($j= 0; $j < count($arrayAliments[$i]); $j++)
+                                    <div class="border-2 border-black text-left col-span-7">
+                                        <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
+                                        <p class="inline-block float-right pt-2">{{$arrayAliments[$i][$j]["kilocalories"]}} kcal</p>
+                                        <p class="inline-block float-right pt-2 mr-4">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
+
                                     </div>
-                                @endfor
+                                    <div class="border-2 border-black">
+                                        <img src="/imatges/esborra.png" alt="" width="35px" class="float-right cursor-pointer" onclick="alert('si')">
+                                    </div>
+                                    @endfor
+                                </div>
+
+                                {{-- @for($j= 0; $j < count($arrayAliments[$i]); $j++)
+                                    <div class="w-full text-left">
+                                        <p class="text-left mt-4 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
+                                        <img src="/imatges/esborra.png" alt="" width="25px" class="float-right cursor-pointer" onclick="alert('si')">
+                                    </div>
+                                @endfor --}}
                             </div>
-                            <img src="/imatges/afegeix.png" alt="" width="20px" class="inline-block">
                         </div>
                     @endfor
                 </div>

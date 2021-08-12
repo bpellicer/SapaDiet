@@ -46,7 +46,6 @@ class ControladorDieta extends Controller
         $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
         $title = "Sapa Diet | $dataAvui";
 
-
         return view("pages.dieta",[
             "nombreApats"   => $planificacio->nombre_apats,
             "nomsApats"     => $this->getArrayApatsNoms($planificacio->nombre_apats),
