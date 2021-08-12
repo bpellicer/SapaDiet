@@ -31,14 +31,23 @@
                 </div>
             </div>
             <div>
-                <div class="grid grid-rows-4 gap-4 px-16">
+                <div class="grid grid-cols-1 gap-4 px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
-                        <div class="bg-white h-20 border-2 border-black rounded-3xl p-3">
+                        <div class="bg-white border-2 border-black rounded-3xl p-3">
                             <div class="grid grid-cols-2">
-                                <div class="text-left"><p>{{$nomsApats[$i]}}</p></div>
+                                <div class="text-left font-bold"><p>{{$nomsApats[$i]}}</p></div>
                                 <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
                             </div>
-                            <div></div>
+                            <hr class=" border-1 border-black">
+                            <div class="mt-2">
+                                @for($j= 0; $j < count($arrayAliments[$i]); $j++)
+                                    <div class="w-full text-left">
+                                        <p class="text-left mt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
+                                        <img src="/imatges/crea.png" alt="" width="20px" class="inline-block">
+                                    </div>
+                                @endfor
+                            </div>
+                            <img src="/imatges/afegeix.png" alt="" width="20px" class="inline-block">
                         </div>
                     @endfor
                 </div>

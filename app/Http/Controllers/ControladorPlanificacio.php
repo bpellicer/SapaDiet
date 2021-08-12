@@ -42,14 +42,16 @@ class ControladorPlanificacio extends Controller
         /* Busca l'usuari */
         $usuari = User::findOrFail(Auth::id());
         $usuari->primera_vegada = false;
-        $apat = UserApat::where("user_id",Auth::id())->get();
-        ddd($apat[0]->aliment);
+
+
+       /*  $apat = UserApat::where("user_id",Auth::id())->get();
+        ddd($apat[0]->aliment[0]->pivot->data); */
 
         /* Guarda els aliments del request en una array */
         $aliments = $this->getAliments($request);
 
-        /* Guarda els àpats en una array */
-        $apats = $this->getApats($request->get("apat"));
+        /* Guarda els àpats de l'Usuari */
+        $this->updateApats($request->get("apat"));
 
         /* Si la planificació de l'Usuari és la estàndar, crea una nova planificació */
         if($usuari->planificacio->id == 1){
@@ -59,7 +61,6 @@ class ControladorPlanificacio extends Controller
             $planificacio->save();
             $planificacio->alimentpreferit()->attach($aliments);    //Afegeix tots els aliments triats del formulari a la taula pivot N:M aliment_preferit_planificacio
             $usuari->planificacio_id = $planificacio->id;           //Actualitza el camp Id de la planificació de l'Usuari
-            $usuari->apat()->attach($apats);                        //Afegeix els apats a la taula pivot N:M user_apats
             $usuari->save();
         }
         /* Modifica la planificació de l'Usuari i els seus aliments */
@@ -70,8 +71,6 @@ class ControladorPlanificacio extends Controller
             $planificacio->save();
             $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
-            $usuari->apat()->detach();
-            $usuari->apat()->attach($apats);
         }
 
         session()->flash('novaPlanificacio','Planificació guardada!');
@@ -91,7 +90,11 @@ class ControladorPlanificacio extends Controller
         return $aliments;
     }
 
-    public function getApats($nombreApats){
+    public function updateApats($nombreApats){
+        $userApats = UserApat::where("user_id",Auth::id())->get();
+        foreach($userApats as $element){
+            $element->delete();
+        }
         $apats = [];
         switch($nombreApats){
             case 2:
@@ -107,6 +110,12 @@ class ControladorPlanificacio extends Controller
                 $apats = [1,2,3,4,5];
             break;
         }
-        return $apats;
+
+        for($i = 0; $i < $nombreApats; $i++){
+            $userApat = new UserApat();
+            $userApat->user_id = Auth::id();
+            $userApat->apat_id = $apats[$i];
+            $userApat->save();
+        }
     }
 }

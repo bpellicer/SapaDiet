@@ -14,6 +14,6 @@ class Aliment extends Model
     }
 
     public function userApat(){
-        return $this->belongsToMany(UserApat::class, "users_apats_aliments")->withTimestamps();
+        return $this->belongsToMany(UserApat::class, "users_apats_aliments")->withPivot('data','mesura_quantitat')->withTimestamps();
     }
 }
