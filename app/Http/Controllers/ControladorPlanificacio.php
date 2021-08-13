@@ -43,15 +43,8 @@ class ControladorPlanificacio extends Controller
         $usuari = User::findOrFail(Auth::id());
         $usuari->primera_vegada = false;
 
-
-       /*  $apat = UserApat::where("user_id",Auth::id())->get();
-        ddd($apat[0]->aliment[0]->pivot->data); */
-
         /* Guarda els aliments del request en una array */
         $aliments = $this->getAliments($request);
-
-        /* Guarda els àpats de l'Usuari */
-        $this->updateApats($request->get("apat"));
 
         /* Si la planificació de l'Usuari és la estàndar, crea una nova planificació */
         if($usuari->planificacio->id == 1){
@@ -62,6 +55,9 @@ class ControladorPlanificacio extends Controller
             $planificacio->alimentpreferit()->attach($aliments);    //Afegeix tots els aliments triats del formulari a la taula pivot N:M aliment_preferit_planificacio
             $usuari->planificacio_id = $planificacio->id;           //Actualitza el camp Id de la planificació de l'Usuari
             $usuari->save();
+
+            /* Guarda els àpats de l'Usuari */
+            $this->updateApats($request->get("apat"));
         }
         /* Modifica la planificació de l'Usuari i els seus aliments */
         else{
@@ -71,6 +67,9 @@ class ControladorPlanificacio extends Controller
             $planificacio->save();
             $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
+
+            /* Guarda els àpats de l'Usuari */
+            if ($planificacio->nombre_apats != $request->get("apat"))$this->updateApats($request->get("apat"));
         }
 
         session()->flash('novaPlanificacio','Planificació guardada!');

@@ -2,19 +2,21 @@
     <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
             <div>
-                <h1 class="mb-0">Gestió Dieta: {{$data}}</h1>
+                <h1 class="mb-0 font-bold">Gestió Dieta: {{$data}}</h1>
                 <div class="grid grid-cols-2 place-content-end gap-3">
                     <div class="">
                         <div class="grid grid-cols-2 h-full place-content-center">
                             <div class="text-left w-full ml-20">
-                                <p class="text-xl ">Proteïnes consumides:</p>
-                                <p class="text-xl ">Carbohidrats consumits:</p>
-                                <p class="text-xl ">Greixos consumits:</p>
+                                <p class="text-xl font-bold">Proteïnes consumides:</p>
+                                <p class="text-xl font-bold">Carbohidrats consumits:</p>
+                                <p class="text-xl font-bold">Greixos consumits:</p>
+                                <p class="text-xl font-bold">Kilocalories totals:</p>
                             </div>
                             <div class="text-right ">
-                                <p class="text-xl">100 / 120 gr</p>
-                                <p class="text-xl">20 / 120 gr</p>
-                                <p class="text-xl">5 / 120 gr</p>
+                                <p class="text-xl">{{$arrayNutrientsTotals[0]}}/ 120 gr</p>
+                                <p class="text-xl">{{$arrayNutrientsTotals[1]}} / 120 gr</p>
+                                <p class="text-xl">{{$arrayNutrientsTotals[2]}} / 120 gr</p>
+                                <p class="text-xl">{{$arrayNutrientsTotals[3]}} / 2850 kcal</p>
                             </div>
                         </div>
                     </div>
@@ -26,7 +28,6 @@
                             <circle class="cercle" r="69" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"/>
                             <text id="percentatge" text-anchor="middle" x="102" y="112" style="font-size: 32px;" >0 %</text>
                         </svg>
-                        {{-- <h2 class="block">Kilocalories totals: 0 / 2850 kcal</h2> --}}
                     </div>
                 </div>
             </div>
@@ -36,7 +37,9 @@
                         <div class="bg-white border-2 border-black rounded-3xl p-3">
                             <div class="grid grid-cols-2">
                                 <div class="text-left font-bold"><p>{{$nomsApats[$i]}}</p></div>
-                                <div class="text-right"><p>P: 0gr | C: 0gr | G: 0gr | K: 0kcal</p></div>
+                                <div class="text-right">
+                                    <p id="seccio{{$i}}">P: {{$arrayNutrientsApat[$i][0]}}gr | C: {{$arrayNutrientsApat[$i][1]}}gr | G: {{$arrayNutrientsApat[$i][2]}}gr | K: {{$arrayNutrientsApat[$i][3]}}kcal</p>
+                                </div>
                             </div>
                             <hr class=" border-1 border-black">
                             <div class="mt-2">
@@ -46,24 +49,20 @@
                                         <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
                                         <p class="inline-block float-right pt-2">{{$arrayAliments[$i][$j]["kilocalories"]}} kcal</p>
                                         <p class="inline-block float-right pt-2 mr-4">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
-
                                     </div>
                                     <div class="border-2 border-black">
                                         <img src="/imatges/esborra.png" alt="" width="35px" class="float-right cursor-pointer" onclick="alert('si')">
                                     </div>
                                     @endfor
                                 </div>
-
-                                {{-- @for($j= 0; $j < count($arrayAliments[$i]); $j++)
-                                    <div class="w-full text-left">
-                                        <p class="text-left mt-4 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-                                        <img src="/imatges/esborra.png" alt="" width="25px" class="float-right cursor-pointer" onclick="alert('si')">
-                                    </div>
-                                @endfor --}}
                             </div>
                         </div>
                     @endfor
                 </div>
+            </div>
+            <div class="mt-4">
+                <button class="botoEstandar w-56 mr-4">Afegeix aliments</button>
+                <button class="botoDelete w-56">Esborra el dia</button>
             </div>
         </div>
     </div>

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ControladorDieta extends Controller
 {
+    /**
+     * Funció que retorna la vista del dia de la dieta que coincideix amb la data $data. Envía tot un seguit de dades a la vista
+     * per a omplir els diferents camps dels àpats, dels nutrients i tota la informació relacionada.
+     * @param String $data      String que conté la data del dia seleccionat pel calendari o per l'Url.
+     */
     public function create($data){
         $usuari = User::findOrFail(Auth::id());
         /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
@@ -24,19 +29,6 @@ class ControladorDieta extends Controller
             return redirect("/calendari");
         }
 
-        /** Rep els apats que té l'Usuari i els guarda en una array **/
-        $arrayUserApats = UserApat::where('user_id',$usuari->id)->get();
-
-        /** Crea una array que conté a cada posició una altra array amb els aliments de cada àpat que coincideixi amb la data del dia que s'ha seleccionat **/
-        $arrayAlimentsApatDia = [];
-        foreach($arrayUserApats as $apat){
-            $arrayAliments = $apat->aliment->filter(function($value,$key) use ($data){
-                return $value->pivot->data == $this->giraData($data);
-            });
-
-            array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
-        }
-
         /** Busca la planificació de l'Usuari per a mostrar X seccions a la gestió de la dieta segons el nombre d'àpats **/
         $usuari = User::findOrFail(Auth::id());
         $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
@@ -46,11 +38,33 @@ class ControladorDieta extends Controller
         $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
         $title = "Sapa Diet | $dataAvui";
 
+        /** Rep els apats que té l'Usuari i els guarda en una array **/
+        $arrayUserApats = UserApat::where('user_id',$usuari->id)->get();
+
+        /** Crea una array que conté a cada posició una altra array amb els aliments de cada àpat que coincideixi amb la data del dia que s'ha seleccionat **/
+        $arrayAlimentsApatDia = [];
+        foreach($arrayUserApats as $apat){
+            $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
+                return $value->pivot->data == $this->giraData($dataAvui);
+            });
+
+            array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
+
+        }
+
+        /** Guarda la quantitat de nutrients de cada àpat **/
+        $arrayNutrients = $this->getNutrientsCalculats($arrayAlimentsApatDia);
+
+        /** Guarda els nutrients totals de tots els àpats **/
+        $arrayNutrientsTotals = $this->getNutrientsTotals($arrayNutrients);
+
         return view("pages.dieta",[
-            "nombreApats"   => $planificacio->nombre_apats,
-            "nomsApats"     => $this->getArrayApatsNoms($planificacio->nombre_apats),
-            "data"          => $dataAvui,
-            "arrayAliments" => $arrayAlimentsApatDia
+            "nombreApats"           => $planificacio->nombre_apats,
+            "nomsApats"             => $this->getArrayApatsNoms($planificacio->nombre_apats),
+            "data"                  => $dataAvui,
+            "arrayAliments"         => $arrayAlimentsApatDia,
+            "arrayNutrientsApat"    => $arrayNutrients,
+            "arrayNutrientsTotals"  => $arrayNutrientsTotals
         ],compact("title"));
     }
 
@@ -113,8 +127,34 @@ class ControladorDieta extends Controller
      */
     public function giraData($data){
         $dataArray = explode("-",$data);
-        return "20".$dataArray[2]."-".$dataArray[1]."-".$dataArray[0];
+        return $dataArray[2]."-".$dataArray[1]."-".$dataArray[0];
     }
+
+    public function getNutrientsCalculats($arrayApatsAliments){
+        $superArrayNutrientsApats = [];
+        for($i = 0; $i < count($arrayApatsAliments); $i++){
+            $arrayNutrientsApat = [0, 0, 0, 0];
+            for($j = 0; $j < count($arrayApatsAliments[$i]); $j++){
+                $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"],2);
+                $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"],2);
+                $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"],2);
+                $arrayNutrientsApat[3] += round($arrayApatsAliments[$i][$j]["kilocalories"],2);
+            }
+            array_push($superArrayNutrientsApats,$arrayNutrientsApat);
+        }
+        return $superArrayNutrientsApats;
+    }
+
+    public function getNutrientsTotals($arrayNutrients){
+        $arrayTotals = [0,0,0,0];
+        for($i = 0; $i < count($arrayNutrients); $i++){
+            for($j = 0; $j < count($arrayNutrients[$i]); $j++){
+                $arrayTotals[$j] += $arrayNutrients[$i][$j];
+            }
+        }
+        return $arrayTotals;
+    }
+
 
     /**
      * Funció que afegeix a l'Àpat de l'Usuari triat, un Aliment amb la data del dia i la quantitat en grams d'aquest Aliment
@@ -124,4 +164,6 @@ class ControladorDieta extends Controller
         ddd("aaa");
         /* $userApat[0]->aliment()->attach($userApat[0]->id,["mesura_quantitat" => "90","aliment_id" => "180","data" => "2021-08-13"]); */
     }
+
+
 }
