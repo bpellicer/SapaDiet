@@ -38,6 +38,7 @@ class ControladorPerfil extends Controller
 
         /** Si les dades no han canviat, redirect al perfil**/
         if($usuari->nom == $request->get('nom') && $usuari->cognoms == $request->get('cognoms')){
+            session()->flash('perfilError','Canvia algún valor!');
             return redirect("/perfil");
         }
 
@@ -83,6 +84,9 @@ class ControladorPerfil extends Controller
         $usuari = User::findOrFail(Auth::id());
         $usuari->imatge_id = $request->get("imatge");
         $usuari->save();
+
+        session()->flash('imatgeNova','Imatge guardada!');
+
         return redirect("/perfil");
     }
 }

@@ -4,22 +4,31 @@
             <h1 class="font-bold text-xl sm:text-2xl md:text-3xl">Progrés</h1>
             <div class="grid grid-cols-1">
                 <x-form method="POST" action="/addPesAltura" class="form">
-                    <div class="sm:grid sm:grid-cols-4 gap-0">
-                        <div class="p-3 sm:place-self-end mb-2 inline-block w-20">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-0">
+                        <div class="p-3 place-self-center sm:place-self-end sm:mb-2 inline-block w-20">
                             <label for="pes" class="inline-block font-bold ">Pes: </label>
                         </div>
-                        <div class="p-3 sm:place-self-start inline-block w-40">
-                            <input type="number" name="pes" value="{{$pes}}" class="rounded-2xl p-2 mt-2 w-20 inline-block">
+                        <div class="p-3 place-self-start inline-block sm:w-40">
+                            <input type="number" name="pes" value="{{$pes}}" class="rounded-2xl p-2 sm:mt-2 w-16 sm:w-20 inline-block">
                             <span>Kg</span>
                         </div>
-                        <div class="p-3 sm:place-self-end mb-2 inline-block w-25">
+
+                        <div class="p-3 place-self-center sm:place-self-end sm:mb-2 inline-block w-25">
                             <label for="altura" class="inline-block font-bold ">Altura: </label>
                         </div>
-                        <div class="p-3 sm:place-self-start inline-block w-40">
-                            <input type="number" name="altura" value="{{$altura}}" class="rounded-2xl p-2 mt-2 w-20 inline-block">
+                        <div class="p-3 place-self-start inline-block sm:w-40">
+                            <input type="number" name="altura" value="{{$altura}}" class="rounded-2xl p-2 sm:mt-2 w-16 sm:w-20 inline-block">
                             <span>Cm</span>
                         </div>
+
                     </div>
+                    @error('pes')
+                        <p class="text-xs text-red-500 mb-2 font-bold">*{{ucfirst($message)}}</p>
+                    @enderror
+                    @error('altura')
+                        <p class="text-xs text-red-500 mb-2 font-bold">*{{ucfirst($message)}}</p>
+                    @enderror
+
                     <div class="mt-4">
                         <input type="submit" class="botoEstandar cursor-pointer" value="Guardar">
                     </div>
@@ -30,6 +39,10 @@
                     <div id="infoImc" class="flex justify-center mt-4 mb-4"></div>
                 </div>
             </div>
+            <div>
+
+            </div>
         </div>
     </div>
 </div>
+

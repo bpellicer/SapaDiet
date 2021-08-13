@@ -177,7 +177,7 @@ input,select,button{
 }
 
 .titolHomePage{
-    @apply xl:whitespace-pre-line leading-relaxed sm:leading-relaxed font-bold text-3xl sm:text-5xl lg:text-5xl xl:text-5xl md:leading-relaxed lg:leading-relaxed xl:leading-relaxed px-10 md:px-20 pt-20;
+    @apply xl:whitespace-pre-line leading-relaxed sm:leading-relaxed font-bold text-2xl 2xs:text-3xl sm:text-5xl lg:text-5xl xl:text-5xl md:leading-relaxed lg:leading-relaxed xl:leading-relaxed px-10 md:px-20 pt-20;
 }
 
 
@@ -303,6 +303,13 @@ input,select,button{
 
 .error{
     @apply bg-red-500 text-center sm:text-left;
+}
+
+.error2{
+    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-72 bg-red-500 font-bold;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /***************    ELEMENTS ESPECÍFICS   ***************/

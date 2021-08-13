@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('progres',[ControladorProgres::class, 'create']);
 
+    Route::post("addPesAltura",[ControladorProgres::class, 'store']);
+
 });
 
 Route::middleware(['guest'])->group(function () {
