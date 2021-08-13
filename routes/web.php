@@ -8,6 +8,7 @@ use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
 use App\Http\Controllers\ControladorPlanificacio;
+use App\Http\Controllers\ControladorProgres;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('calendari/{data}',[ControladorDieta::class,'create']);
 
     Route::post('afegeixAlimentDieta',[ControladorDieta::class,'afegeixAlimentDieta']);
+
+    Route::get('progres',[ControladorProgres::class, 'create']);
 
 });
 

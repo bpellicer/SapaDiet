@@ -6,7 +6,7 @@
             <a href="/cercador" class="linksApp mt-3">Cerca</a>
             <a href="/" class="linksApp mt-3">Llistes Compra</a>
             <a href="/planificacio" class="linksApp mt-3">Planificació</a>
-            <a href="/" class="linksApp mt-3">Progrés</a>
+            <a href="/progres" class="linksApp mt-3">Progrés</a>
             <a href="/perfil" class="linksApp mt-3">Perfil</a>
             <form action="/logout" method="post">@csrf<input type="submit" href="logout" class="botoNavApp mt-3" value="Tanca Sessió"></form>
         </x-layout.linksnav>
