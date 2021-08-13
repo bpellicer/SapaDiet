@@ -90,4 +90,8 @@ class User extends Authenticatable
     public function apat(){
         return $this->belongsToMany(Apat::class)->using(UserApat::class)->withTimestamps();
     }
+
+    public function pesAltura(){
+        return $this->hasMany(PesAltura::class);
+    }
 }

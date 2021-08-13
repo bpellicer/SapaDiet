@@ -292,3 +292,18 @@ $("#cercaDiv").on("submit",function(e){
         return src;
     }
 });
+
+$("#showImc").on("click",function(){
+    $(this).toggleClass('rota');
+    let info = `<div><table class=""><thead><tr class="bg-green5"><th class="w-1/3">IMC</th><th class="w-2/3">Classificació</th></tr></thead>
+                <tbody><tr><td><p> < 16.00</p></td><td><p>Pes baix: Primor severa</p></td></tr><tr><td><p> 16.00 - 16.99</p></td><td><p>Pes baix: Primor moderada</p></td></tr><tr><td><p> 17.00 - 18.49</p></td><td><p>Pes baix: Primor acceptable</p></td></tr><tr><td><p> 18.50 - 24.99</p></td>
+                <td><p>Pes normal</p></td></tr><tr><td><p> 25.00 - 29.99</p></td><td><p>Sobrepès</p></td></tr><tr><td><p> 30.00 - 34.99</p></td><td><p>Obesitat: Tipus I</p></td></tr><tr><td><p> 35.00 - 40.00</p></td><td><p>Obesitat: Tipus II</p></td></tr>
+                <tr><td><p> > 40.00</p></td><td><p>Obesitat: Tipus III</p></td></tr></tbody></table></div>`
+
+    if($(this).hasClass('rota')){
+        $(info).hide().appendTo("#infoImc").show("slow");
+    }
+    else{
+        $("#infoImc").html("");
+    }
+});

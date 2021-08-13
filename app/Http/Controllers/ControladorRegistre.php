@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PesAltura;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
@@ -32,7 +34,16 @@ class ControladorRegistre extends Controller
 
         session()->flash('usuariCreat','Compte creat!');
 
-        User::create($atributs);
+        $usuari = User::create($atributs) ;
+
+
+        /** Assigna uns valors per defecte al pes i altura de l'usuari i posa la data del registre **/
+        $pesAltura = new PesAltura();
+        $pesAltura->pes = 0;
+        $pesAltura->altura = 0;
+        $pesAltura->data = "20".date("y")."-".date("m")."-".date("d");
+        $pesAltura->user_id =  $usuari->id;
+        $pesAltura->save();
 
         return redirect('/login');
     }
