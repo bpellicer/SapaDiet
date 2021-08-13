@@ -1,13 +1,13 @@
 <x-layout.nav>
     <x-slot name="linksnav">
         <x-layout.linksnav navclass="navHome" btnclass="sm:hidden">
-            <div class="flex justify-center"><a href="/" class="linksHome w-10">Inici</a></div>
+            <a href="/" class="linksHome">Inici</a>
             @auth
-                <div class="flex justify-center"><a href="/perfil" class="linksHome mt-3 w-20">SapaDiet</a></div>
+                <a href="/perfil" class="linksHome mt-3">SapaDiet</a>
                 <form action="logout" method="post">@csrf<input type="submit" href="logout" class="botoNavHome mt-3" value="Tanca Sessió"></form>
             @endauth
             @guest
-                <div class="flex justify-center"><a href="/login" class="linksHome mt-3 w-10">Login</a></div>
+                <a href="/login" class="linksHome mt-3">Login</a>
                 <a href="/registre" class="botoNavHome mt-3">Registra't</a>
             @endguest
         </x-layout.linksnav>
