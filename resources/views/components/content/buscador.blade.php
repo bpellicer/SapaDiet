@@ -22,6 +22,22 @@
             </x-form>
             <div id="content">
             </div>
+            <div id="errors" class="mt-4">
+                @error('grams')
+                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                @enderror
+                @error('data')
+                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                @enderror
+                @error('apat')
+                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                @enderror
+
+                @if (session()->has('errorData'))
+                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorData') }}</p>
+                @endif
+            </div>
+
         </div>
     </div>
 </div>

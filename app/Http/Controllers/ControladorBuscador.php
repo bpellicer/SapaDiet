@@ -20,10 +20,6 @@ class ControladorBuscador extends Controller
         return view("pages.cerca", compact("title"));
     }
 
-    public function createCercador(){
-
-    }
-
     /**
      * Funció que retorna la vista de "Crea Aliment" amb una array de totes les Categories
      */

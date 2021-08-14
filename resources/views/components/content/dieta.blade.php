@@ -1,26 +1,26 @@
 <div class="container mx-auto my-auto">
-    <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
-        <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
+    <div class="flex justify-center px-2 sm:px-5 lg: my-12">
+        <div class="w-full lg:w-11/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
             <div>
-                <h1 class="mb-0 font-bold">Gestió Dieta: {{$data}}</h1>
-                <div class="grid grid-cols-2 place-content-end gap-3">
-                    <div class="">
+                <h1 class="text-lg sm:text-2xl md:text-3xl mb-0 font-bold">Gestió Dieta: {{$data}}</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 place-content-start lg:place-content-end gap-3">
+                    <div class="row-start-2 md:row-start-1 md:col-span-2">
                         <div class="grid grid-cols-2 h-full place-content-center">
-                            <div class="text-left w-full ml-20">
-                                <p class="text-xl font-bold">Proteïnes consumides:</p>
-                                <p class="text-xl font-bold">Carbohidrats consumits:</p>
-                                <p class="text-xl font-bold">Greixos consumits:</p>
-                                <p class="text-xl font-bold">Kilocalories totals:</p>
+                            <div class="text-left w-full md:ml-3 lg:ml-20">
+                                <p class="text-sm lg:text-lg font-bold">Proteïnes consumides:</p>
+                                <p class="text-sm lg:text-lg font-bold">Carbohidrats consumits:</p>
+                                <p class="text-sm lg:text-lg font-bold">Greixos consumits:</p>
+                                <p class="text-sm lg:text-lg font-bold">Kilocalories totals:</p>
                             </div>
                             <div class="text-right ">
-                                <p class="text-xl">{{$arrayNutrientsTotals[0]}}/ 120 gr</p>
-                                <p class="text-xl">{{$arrayNutrientsTotals[1]}} / 120 gr</p>
-                                <p class="text-xl">{{$arrayNutrientsTotals[2]}} / 120 gr</p>
-                                <p class="text-xl">{{$arrayNutrientsTotals[3]}} / 2850 kcal</p>
+                                <p class="text-sm lg:text-lg">{{$arrayNutrientsTotals[0]}}/ 120 gr</p>
+                                <p class="text-sm lg:text-lg">{{$arrayNutrientsTotals[1]}} / 120 gr</p>
+                                <p class="text-sm lg:text-lg">{{$arrayNutrientsTotals[2]}} / 120 gr</p>
+                                <p class="text-sm lg:text-lg">{{$arrayNutrientsTotals[3]}} / 2850 kcal</p>
                             </div>
                         </div>
                     </div>
-                    <div class=" flex justify-center">
+                    <div class="row-start-1 md:col-start-3 flex justify-center md:ml-10">
                         <svg id="svg" width="200" height="200" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <circle class="cercle" r="51" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"/>
                             <circle id="cercleOffset" r="60" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"/>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div>
-                <div class="grid grid-cols-1 gap-4 px-16">
+                <div class="grid grid-cols-1 gap-4 lg:px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
                         <div class="bg-white border-2 border-black rounded-3xl p-3">
                             <div class="grid grid-cols-2">
@@ -47,7 +47,7 @@
                                     @for($j= 0; $j < count($arrayAliments[$i]); $j++)
                                     <div class="border-2 border-black text-left col-span-7">
                                         <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-                                        <p class="inline-block float-right pt-2">{{$arrayAliments[$i][$j]["kilocalories"]}} kcal</p>
+                                        <p class="inline-block float-right pt-2">{{$arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100) }} kcal</p>
                                         <p class="inline-block float-right pt-2 mr-4">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
                                     </div>
                                     <div class="border-2 border-black">

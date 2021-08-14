@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserApat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ControladorDieta extends Controller
 {
@@ -135,10 +136,10 @@ class ControladorDieta extends Controller
         for($i = 0; $i < count($arrayApatsAliments); $i++){
             $arrayNutrientsApat = [0, 0, 0, 0];
             for($j = 0; $j < count($arrayApatsAliments[$i]); $j++){
-                $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"],2);
-                $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"],2);
-                $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"],2);
-                $arrayNutrientsApat[3] += round($arrayApatsAliments[$i][$j]["kilocalories"],2);
+                $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
+                $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
+                $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
+                $arrayNutrientsApat[3] += round($arrayApatsAliments[$i][$j]["kilocalories"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
             }
             array_push($superArrayNutrientsApats,$arrayNutrientsApat);
         }
@@ -161,8 +162,24 @@ class ControladorDieta extends Controller
      * @param Request $request      Conté les dades per a afegir un nou aliment
      */
     public function afegeixAlimentDieta(Request $request){
-        ddd("aaa");
-        /* $userApat[0]->aliment()->attach($userApat[0]->id,["mesura_quantitat" => "90","aliment_id" => "180","data" => "2021-08-13"]); */
+
+        $request->validate([
+            'data'      => ['date','required'],
+            'grams'     => ['numeric','required', 'min:0'],
+            'apat'      => ['string',Rule::exists("apats","nom")]
+        ]);
+
+        $arrayData = explode("-",$request->data);
+        if($arrayData[1] != date('m') || $arrayData[0] != "20".date("y")){
+            session()->flash("errorData", "Només pots afegir aliments a l'any i mes actual!");
+            return redirect()->back();
+        }
+
+        $userApat = UserApat::where("apat_id",Apat::where("nom",$request->apat)->first()->id)->where("user_id",Auth::id())->first();
+
+        $userApat->aliment()->attach([$userApat->id,$request->alimentId],["mesura_quantitat" => $request->grams, "data" => $request->data]);
+
+        return redirect("/cercador/cerca_aliments");
     }
 
 
