@@ -217,12 +217,6 @@ input,select,button{
 .subcontenidor-login{
     @apply w-full bg-green4 lg:w-7/12 p-5 rounded-3xl;
 }
-.contenidor-registre{
-    @apply w-full flex sm:justify-center;
-}
-.subcontenidor-registre{
-    @apply w-full bg-green4 lg:w-2/3 p-5 rounded-3xl border-2 border-black;
-}
 
 /***************    PERFIL   ***************/
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
 use App\Http\Controllers\ControladorPlanificacio;
 use App\Http\Controllers\ControladorProgres;
+use App\Http\Controllers\ControladorResetPassword;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,14 @@ Route::middleware(['guest'])->group(function () {
     Route::get('login', [ControladorLogin::class, 'create'])->name('login');
 
     Route::post('login', [ControladorLogin::class, 'store']);
+
+    Route::get('recuperacio', [ControladorResetPassword::class, 'createFormContra'])->name('forget.password.get');
+
+    Route::post('recuperacio', [ControladorResetPassword::class, 'submitFormContra'])->name('forget.password.post');
+
+    Route::get('reinicia-contrasenya/{token}', [ControladorResetPassword::class, 'createReiniciaContra'])->name('reset.password.get');
+
+    Route::post('reinicia-contrasenya', [ControladorResetPassword::class, 'submitReiniciaContra'])->name('reset.password.post');
 });
 
 

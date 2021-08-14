@@ -1865,11 +1865,9 @@ $("#btnInfo").on("click", function (e) {
 $("#btnPass").on("click", function (e) {
   if ($(this).is(":checked")) {
     $(".contrasenya").attr('type', 'text');
-    $("#btnPass").attr("src", "/imatges/invisible.svg");
     $("#labelPass").text("Amaga contrasenya");
   } else {
     $(".contrasenya").attr('type', 'password');
-    $("#btnPass").attr("src", "/imatges/eye.svg");
     $("#labelPass").text("Mostra contrasenya");
   }
 });
