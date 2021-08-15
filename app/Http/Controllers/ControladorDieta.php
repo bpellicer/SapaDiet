@@ -45,10 +45,16 @@ class ControladorDieta extends Controller
 
         /** Crea una array que conté a cada posició una altra array amb els aliments de cada àpat que coincideixi amb la data del dia que s'ha seleccionat **/
         $arrayAlimentsApatDia = [];
+
+        /** Array d'imatges **/
+        $arrayImatges = [];
         foreach($arrayUserApats as $apat){
             $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
                 return $value->pivot->data == $this->giraData($dataAvui);
             });
+            for($i = 0; $i < count($arrayAliments); $i++){
+                array_push($arrayImatges,$arrayAliments[$i]->categoria->imatge->url);
+            }
 
             array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
 
@@ -60,13 +66,15 @@ class ControladorDieta extends Controller
         /** Guarda els nutrients totals de tots els àpats **/
         $arrayNutrientsTotals = $this->getNutrientsTotals($arrayNutrients);
 
+
         return view("pages.dieta",[
             "nombreApats"           => $planificacio->nombre_apats,
             "nomsApats"             => $this->getArrayApatsNoms($planificacio->nombre_apats),
             "data"                  => $dataAvui,
             "arrayAliments"         => $arrayAlimentsApatDia,
             "arrayNutrientsApat"    => $arrayNutrients,
-            "arrayNutrientsTotals"  => $arrayNutrientsTotals
+            "arrayNutrientsTotals"  => $arrayNutrientsTotals,
+            "arrayImatges"          => $arrayImatges
         ],compact("title"));
     }
 

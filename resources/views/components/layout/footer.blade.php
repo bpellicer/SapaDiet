@@ -22,7 +22,7 @@
     </div>
     <div class="flex place-content-center text-center w-full overflow-hidden">
         <div class="copyright w-full" style="width: 50vw">
-            <p class="text-gray-500 text-xs">Il·lustracions per Freepik Storyset & Flaticon</p>
+            <p class="text-gray-500 text-mini 2xs:text-xs">Il·lustracions per Freepik Storyset & Flaticon</p>
         </div>
     </div>
 </footer>

@@ -202,7 +202,7 @@ $("#cercaDiv").on("submit",function(e){
                                             <option>Sopar</option>
                                         </select>
                                         <label for="grams" class="font-bold text-xs">Grams</label>
-                                        <input type="number" name="grams" placeholder="Grams" class="inputPerfil" id="inputGrams" min=0>
+                                        <input type="number" name="grams" placeholder="Grams" class="inputPerfil" id="inputGrams" min=0 step="0.001">
                                         <div class="flex justify-center">
                                             <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
                                         </div>
@@ -213,16 +213,25 @@ $("#cercaDiv").on("submit",function(e){
                         <script id="scriptData">
                             $("#inputGrams").on("input", function(){
 
-                                if(!isNaN($(this).val()) && $(this).val() >= 0 && $(this).val() <= 9999 ){
+                                if(!isNaN($(this).val()) && $(this).val() >= 0 && $(this).val().length < 5 ){
                                     let kcal = (`+dades[index].kilocalories +`*($(this).val()/100)).toFixed(2);
                                     let pro = (`+dades[index].proteines +`*($(this).val()/100)).toFixed(2);
                                     let hid = (`+dades[index].hidrats +`*($(this).val()/100)).toFixed(2);
                                     let gre = (`+dades[index].greixos +`*($(this).val()/100)).toFixed(2);
 
                                     /** Canvia els valors de la informació de l'Aliment per a que l'Usuari ho entengui tot millor **/
-
-                                    $(this).val() != 1 ? $("#infoGrams") .text($(this).val() + " grams") :  $("#infoGrams").text($(this).val() + " gram")
-                                    if($(this).val() == "") $("#infoGrams").text("0 grams");
+                                    if($(this).val() != 1){
+                                        if($(this).val() == "" || $(this).val() == 0){
+                                            $("#infoGrams").text("0 grams");
+                                        }
+                                        else{
+                                            console.log(parseFloat($(this).val()));
+                                            $("#infoGrams") .text(parseFloat($(this).val()) + " grams");
+                                        }
+                                    }
+                                    else{
+                                        $("#infoGrams").text(parseFloat($(this).val()) + " gram");
+                                    }
 
                                     $("#infoKcal").text(kcal +" kcal.");
                                     $("#infoProte").text(pro +" g.");
