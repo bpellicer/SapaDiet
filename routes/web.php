@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('afegeixAlimentDieta',[ControladorDieta::class,'afegeixAlimentDieta']);
 
+    Route::post('esborraDia',[ControladorDieta::class, 'deleteDia']);
+
     Route::get('progres',[ControladorProgres::class, 'create']);
 
     Route::post("addPesAltura",[ControladorProgres::class, 'store']);

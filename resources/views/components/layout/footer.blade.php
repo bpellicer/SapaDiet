@@ -14,15 +14,15 @@
                 <a class="text-black font-bold logo text-2xl" href="/">SAPA<span class="text-green3 text-2xl">DIET</span><img class="inline-block ml-2 logoKiwi" src="/imatges/logo.svg" alt="logo kiwi" width="50" height="50"></a>
             </div>
             <div class="mt-2">
-                <p>La web per a gestionar la teva dieta.</p>
-                <p class="mt-3">Ara més fàcil que mai!</p>
+                <p class="text-sm md:text-base">La web per a gestionar la teva dieta.</p>
+                <p class="mt-3 text-sm md:text-base">Ara més fàcil que mai!</p>
             </div>
         </div>
         {{$mapaweb}}
     </div>
     <div class="flex place-content-center text-center w-full overflow-hidden">
         <div class="copyright w-full" style="width: 50vw">
-            <p class="text-gray-500 text-sm">Il·lustracions per Freepik Storyset & Flaticon</p>
+            <p class="text-gray-500 text-xs">Il·lustracions per Freepik Storyset & Flaticon</p>
         </div>
     </div>
 </footer>

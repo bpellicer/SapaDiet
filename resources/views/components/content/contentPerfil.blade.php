@@ -21,7 +21,6 @@
                     <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
                 </x-form>
                 <x-form method="post" action="/esborraUsuari" class="mt-2" id="eliminaForm">
-                    @csrf
                     <div class="flex justify-center">
                         <button type="button" class="botoDelete w-full md:w-1/2" id="eliminaPerfil">Esborrar el compte</button>
                     </div>

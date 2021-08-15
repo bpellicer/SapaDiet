@@ -36,6 +36,10 @@
                 @if (session()->has('errorData'))
                     <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorData') }}</p>
                 @endif
+
+                @if (session()->has('errorApat'))
+                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorApat') }}</p>
+                @endif
             </div>
 
         </div>

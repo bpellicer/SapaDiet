@@ -37,10 +37,10 @@ $("#btnPass").on("click", function(e){
 $("#eliminaPerfil").on("click", function(event){
     event.preventDefault();
     swal({
-        title: "Estas segur que vols esborrar el teu compte?",
+        title: "Estàs segur que vols esborrar el teu compte?",
         text: "No seràs capaç de recuperar el teu usuari!",
         icon:'warning',
-        buttons:['Cancel·la','Si, esborra el meu compte'],
+        buttons:['Cancel·la','Sí, esborra el meu compte'],
         closeOnClickOutside: false,
         dangerMode:true
     }).then((esborra) => {
@@ -55,10 +55,10 @@ $("#eliminaPerfil").on("click", function(event){
 $("#eliminaAliment").on("click", function(event){
     event.preventDefault();
     swal({
-        title: "Estas segur que vols esborrar aquest aliment?",
+        title: "Estàs segur que vols esborrar aquest aliment?",
         text: "No seràs capaç de tornar enrere!",
         icon:'warning',
-        buttons:["Cancel·la","Si, esborra l'aliment"],
+        buttons:["Cancel·la","Sí, esborra l'aliment"],
         closeOnClickOutside: false,
         dangerMode:true
     }).then((esborra) => {
@@ -68,6 +68,26 @@ $("#eliminaAliment").on("click", function(event){
         else return false;
     });
 });
+
+
+
+$("#eliminaDia").on("click", function(event){
+    event.preventDefault();
+    swal({
+        title: "Estàs segur que vols esborrar la informació del dia?",
+        text: "No seràs capaç de tornar enrere!",
+        icon:'warning',
+        buttons:["Cancel·la","Sí, esborra el dia"],
+        closeOnClickOutside: false,
+        dangerMode:true
+    }).then((esborra) => {
+        if(esborra){
+            $("#eliminaForm").submit();
+        }
+        else return false;
+    });
+});
+
 
 /** Amaga el missatge de success després de 3 segons **/
 window.setTimeout(function(){
@@ -184,7 +204,7 @@ $("#cercaDiv").on("submit",function(e){
                                                     <option>Sopar</option>
                                                 </select>
                                                 <label for="grams" class="font-bold text-xs">Grams</label>
-                                                <input type="text" name="grams" placeholder="Grams" class="inputPerfil">
+                                                <input type="number" name="grams" placeholder="Grams" class="inputPerfil">
                                                 <div class="flex justify-center">
                                                     <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
                                                 </div>

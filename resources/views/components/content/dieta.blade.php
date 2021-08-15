@@ -61,8 +61,12 @@
                 </div>
             </div>
             <div class="mt-4">
-                <button class="botoEstandar w-56 mr-4">Afegeix aliments</button>
-                <button class="botoDelete w-56">Esborra el dia</button>
+                <a class="botoDieta w-56 mb-4 sm:mr-4 inline-block" href="/cercador/cerca_aliments">Afegeix aliments</a>
+                <x-form action="/esborraDia" method="post" class="inline-block" id="eliminaForm">
+                    <input type="hidden" name="data" value="{{$data}}">
+                    <button class="botoDelete w-56" type="submit" id="eliminaDia">Esborra el dia</button>
+                </x-form>
+
             </div>
         </div>
     </div>

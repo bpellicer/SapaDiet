@@ -9,6 +9,7 @@ use App\Models\UserApat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use PhpParser\Node\Expr\AssignOp\Plus;
 
 class ControladorDieta extends Controller
 {
@@ -131,11 +132,22 @@ class ControladorDieta extends Controller
         return $dataArray[2]."-".$dataArray[1]."-".$dataArray[0];
     }
 
+    /**
+     * Funció que calcula els nutrients de cada àpat del dia i els guarda en una $superArrayNutrientsApats.
+     * @param Array $arrayApatsAliments     Conté una array d'àpats amb els seus aliments
+     */
     public function getNutrientsCalculats($arrayApatsAliments){
         $superArrayNutrientsApats = [];
         for($i = 0; $i < count($arrayApatsAliments); $i++){
+
+            /** $arrayNutrientsApat[0] => proteïnes | $arrayNutrientsApat[1] = hidrats
+            *   $arrayNutrientsApat[2] => greixos   | $arrayNutrientsApat[3] => kilocalories */
             $arrayNutrientsApat = [0, 0, 0, 0];
+
             for($j = 0; $j < count($arrayApatsAliments[$i]); $j++){
+
+                /** Cada nutrient de cada aliment es multiplica per la quantitat d'aquest aliment triat i dividit per 100 (Estàndard de 100 grams)
+                *   El resultat s'arrodoneix a 2 decimals per a una millor comoditat visual **/
                 $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
                 $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
                 $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
@@ -146,6 +158,12 @@ class ControladorDieta extends Controller
         return $superArrayNutrientsApats;
     }
 
+    /**
+     * Funció que retorna una array de nutrients calculats totals del dia.
+     * $arrayTotals[0] => proteïnes | $arrayTotals[1] = hidrats
+     * $arrayTotals[2] => greixos   | $arrayTotals[3] => kilocalories
+     * @param Array $arrayNutrients     Conté els nutrients de cada àpat del dia ja sumats
+     */
     public function getNutrientsTotals($arrayNutrients){
         $arrayTotals = [0,0,0,0];
         for($i = 0; $i < count($arrayNutrients); $i++){
@@ -159,28 +177,71 @@ class ControladorDieta extends Controller
 
     /**
      * Funció que afegeix a l'Àpat de l'Usuari triat, un Aliment amb la data del dia i la quantitat en grams d'aquest Aliment
-     * @param Request $request      Conté les dades per a afegir un nou aliment
+     * @param Request $request      Conté les dades per a afegir un nou aliment.
      */
     public function afegeixAlimentDieta(Request $request){
-
         $request->validate([
             'data'      => ['date','required'],
             'grams'     => ['numeric','required', 'min:0'],
             'apat'      => ['string',Rule::exists("apats","nom")]
         ]);
 
+        /** Comprova que la data d'inserció de l'aliment sigui de l'any i mes actual **/
         $arrayData = explode("-",$request->data);
         if($arrayData[1] != date('m') || $arrayData[0] != "20".date("y")){
             session()->flash("errorData", "Només pots afegir aliments a l'any i mes actual!");
             return redirect()->back();
         }
 
+        /** Comprova que l'aliment s'afegeixi a un àpat dels que disposa l'Usuari a la seva Planificació **/
+        $planificacio = User::where("id",Auth::id())->first()->planificacio;
+        if(!$this->comprovaApats($planificacio->nombre_apats,$request->apat)){
+            session()->flash("errorApat", "No disposes d'aquest àpat!");
+            return redirect()->back();
+        }
+
+        /**  Obté l'Àpat de l'Usuari que coincideix amb el nom de l'àpat del $request i amb l'id de l'Usuari **/
         $userApat = UserApat::where("apat_id",Apat::where("nom",$request->apat)->first()->id)->where("user_id",Auth::id())->first();
 
-        $userApat->aliment()->attach([$userApat->id,$request->alimentId],["mesura_quantitat" => $request->grams, "data" => $request->data]);
+        /** Afegeix l'aliment a la taula pivot user_apats_aliments amb la data, la mesura i els corresponents ids **/
+        $userApat->aliment()->attach([$userApat->id => ["aliment_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+
+        session()->flash("alimentAfegit","Aliment afegit!");
 
         return redirect("/cercador/cerca_aliments");
     }
 
+    /**
+     * Funció que recorre una $arrayApats de $nombreApats iteracions. Si troba el $nomApat,
+     * retorna un booleà $trobat = true, altrament retorna false.
+     * @param String $nombreApats   Conté el nombre d'àpats de la Planificació de l'Usuari.
+     * @param String $nomApat       Conté el nom de l'àpat a on es vol afegir l'aliment.
+     */
+    public function comprovaApats($nombreApats, $nomApat){
+        $arrayApats = ["Dinar","Sopar","Esmorzar","Berenar","Mig matí"];
+        $trobat = false;
+        for($i = 0; $i < $nombreApats; $i++){
+            if($arrayApats[$i] == $nomApat) $trobat = true;
+        }
+        return $trobat;
+    }
+
+    public function deleteDia(Request $request){
+
+        $data = $this->giraData($request->data);
+        $userApats = UserApat::where("user_id",Auth::id())->get();
+        $arrayAlimentsAborrar = [];
+        for($i= 0; $i < count($userApats); $i++){
+            for($j=0; $j < count($userApats[$i]->aliment); $j++){
+                if($userApats[$i]->aliment[$j]->pivot["data"] == $data){
+                    array_push($arrayAlimentsAborrar,$userApats[$i]->aliment[$j]);
+                    $userApats[$i]->aliment[$j]->delete();
+                }
+            }
+        }
+
+        session()->flash("diaEsborrat","Dia esborrat!");
+        return redirect("/calendari");
+    }
 
 }

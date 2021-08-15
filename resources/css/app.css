@@ -92,13 +92,13 @@ input,select,button{
 
 /***************    Botons      ***************/
 
-.botoNavApp, .botoNavHome, .botoForm, .botoPerfil{
+.botoNavApp, .botoNavHome, .botoForm, .botoPerfil,.botoDieta{
     @apply px-5 py-2 inline-block bg-green1 rounded-full border-black border-2 cursor-pointer;
     @apply transition duration-200 ease-in-out hover:bg-green2;
     @apply transform hover:scale-110 transition ease-in-out;
 }
 
-.botoForm,.botoPerfil{
+.botoForm,.botoPerfil,.botoDieta{
     @apply hover:bg-green5;
 }
 
