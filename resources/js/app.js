@@ -144,7 +144,6 @@ $("#cercaDiv").on("submit",function(e){
             type:"post",
             dataType:"json",
             success:function(dades){
-                console.log(dades);
                 if(dades.length == 0){
                     setTimeout(function(){
                         $("#content").append(`<p class="text-red-600 font-bold mt-4 text-xs sm:text-base">*No s'ha trobat cap resultat!</p>`);
@@ -161,71 +160,92 @@ $("#cercaDiv").on("submit",function(e){
                                                 <p class="mt-2">Categoria: `+categoria[0]+`</p>
                                             </div></div>`);
                         $("#aliment"+comptador).on("click", function(e){
-                            $(document.body).append(
-                                `<div class="divExtern" id="divExtern2">
-                                    <div class="divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110" id="divIntern2">
-                                        <img src="/imatges/creu.png" class="creu" id="creu2" onclick="amaga()">
-                                        <h1 class="text-center font-bold md:text-3xl text-xl">`+dades[index].nom+` </h1>
-                                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 place-items-center">
-                                            <div class="bg-white rounded-3xl border-2 border-black w-20 h-20 sm:w-28 sm:h-28 hidden sm:inline">
-                                                <img src="`+categoria[1]+`" alt="" class="w-40">
+                            let info = `<div class="divExtern" id="divExtern2">
+                            <div class="divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110" id="divIntern2">
+                                <img src="/imatges/creu.png" class="creu" id="creu2" onclick="amaga()">
+                                <h1 class="text-center font-bold md:text-3xl text-xl">`+dades[index].nom+` </h1>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 place-items-center">
+                                    <div class="bg-white rounded-3xl border-2 border-black w-20 h-20 sm:w-28 sm:h-28 hidden sm:inline">
+                                        <img src="`+categoria[1]+`" alt="" class="w-40">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <h2 class="font-semibold text-xs sm:text-sm mb-2">Informació nutricional <span id="infoGrams">100 grams</span>: </h2>
+                                        <div class="grid grid-cols-2 gap-1">
+                                            <div>
+                                                <p class="mb-2 text-sm">Kilocalories:</p>
+                                                <p class="mb-2 text-sm">Proteïnes:</p>
+                                                <p class="mb-2 text-sm">Hidrats:</p>
+                                                <p class="mb-2 text-sm">Greixos:</p>
                                             </div>
-                                            <div class="col-span-2">
-                                                <h2 class="font-semibold text-xs sm:text-sm mb-2">Informació nutricional 100 grams: </h2>
-                                                <div class="grid grid-cols-2 gap-1">
-                                                    <div>
-                                                        <p class="mb-2 text-sm">Kilocalories:</p>
-                                                        <p class="mb-2 text-sm">Proteïnes:</p>
-                                                        <p class="mb-2 text-sm">Hidrats:</p>
-                                                        <p class="mb-2 text-sm">Greixos:</p>
-                                                    </div>
-                                                    <div class="text-right">
-                                                        <p class="mb-2 text-sm">`+dades[index].kilocalories+` kcal.</p>
-                                                        <p class="mb-2 text-sm">`+dades[index].proteines+` g.</p>
-                                                        <p class="mb-2 text-sm">`+dades[index].hidrats+` g.</p>
-                                                        <p class="mb-2 text-sm">`+dades[index].greixos+` g.</p>
-                                                    </div>
-                                                </div>
+                                            <div class="text-right">
+                                                <p class="mb-2 text-sm" id="infoKcal">`+dades[index].kilocalories+` kcal.</p>
+                                                <p class="mb-2 text-sm" id="infoProte">`+dades[index].proteines+` g.</p>
+                                                <p class="mb-2 text-sm" id="infoHidrats">`+dades[index].hidrats+` g.</p>
+                                                <p class="mb-2 text-sm" id="infoGreix">`+dades[index].greixos+` g.</p>
                                             </div>
-                                        </div>
-                                        <div class="xs:px-2 py-1">
-                                        <h2 class="font-bold text-xs sm:text-sm mb-2">Afegeix l'aliment a un àpat diari</h2>
-                                            <form action="/afegeixAlimentDieta" method="post" class="">
-                                                <input type="hidden" name="_token" value="`+$('meta[name="csrf-token"]').attr("content")+`">
-                                                <input type="hidden" name="alimentId" value="`+dades[index].id+`">
-                                                <label for="data" class="text-xs mb-2">Data</label>
-                                                <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">
-                                                <label for="apat" class="text-xs mb-2">Àpat</label>
-                                                <select name="apat" class="text-sm rounded-md w-full mb-2" style="padding:5.2px">
-                                                    <option>Esmorzar</option>
-                                                    <option>Mig Matí</option>
-                                                    <option>Dinar</option>
-                                                    <option>Berenar</option>
-                                                    <option>Sopar</option>
-                                                </select>
-                                                <label for="grams" class="font-bold text-xs">Grams</label>
-                                                <input type="number" name="grams" placeholder="Grams" class="inputPerfil">
-                                                <div class="flex justify-center">
-                                                    <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <script>
-                                    $("#divIntern2").ready(function(){
-                                        let ara = new Date();
-                                        let dia = ("0" + ara.getDate()).slice(-2);
-                                        let mes = ("0" + (ara.getMonth() + 1)).slice(-2);
+                                <div class="xs:px-2 py-1">
+                                <h2 class="font-bold text-xs sm:text-sm mb-2">Afegeix l'aliment a un àpat diari</h2>
+                                    <form action="/afegeixAlimentDieta" method="post" class="">
+                                        <input type="hidden" name="_token" value="`+$('meta[name="csrf-token"]').attr("content")+`">
+                                        <input type="hidden" name="alimentId" value="`+dades[index].id+`">
+                                        <label for="data" class="text-xs mb-2">Data</label>
+                                        <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">
+                                        <label for="apat" class="text-xs mb-2">Àpat</label>
+                                        <select name="apat" class="text-sm rounded-md w-full mb-2" style="padding:5.2px">
+                                            <option>Esmorzar</option>
+                                            <option>Mig Matí</option>
+                                            <option>Dinar</option>
+                                            <option>Berenar</option>
+                                            <option>Sopar</option>
+                                        </select>
+                                        <label for="grams" class="font-bold text-xs">Grams</label>
+                                        <input type="number" name="grams" placeholder="Grams" class="inputPerfil" id="inputGrams" min=0>
+                                        <div class="flex justify-center">
+                                            <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <script id="scriptData">
+                            $("#inputGrams").on("input", function(){
 
-                                        let avui = ara.getFullYear()+"-"+(mes)+"-"+(dia) ;
-                                        $("#dataInput").val(avui);
-                                    });
-                                </script>`
-                            );
+                                if(!isNaN($(this).val()) && $(this).val() >= 0 && $(this).val() <= 9999 ){
+                                    let kcal = (`+dades[index].kilocalories +`*($(this).val()/100)).toFixed(2);
+                                    let pro = (`+dades[index].proteines +`*($(this).val()/100)).toFixed(2);
+                                    let hid = (`+dades[index].hidrats +`*($(this).val()/100)).toFixed(2);
+                                    let gre = (`+dades[index].greixos +`*($(this).val()/100)).toFixed(2);
+
+                                    /** Canvia els valors de la informació de l'Aliment per a que l'Usuari ho entengui tot millor **/
+
+                                    $(this).val() != 1 ? $("#infoGrams") .text($(this).val() + " grams") :  $("#infoGrams").text($(this).val() + " gram")
+                                    if($(this).val() == "") $("#infoGrams").text("0 grams");
+
+                                    $("#infoKcal").text(kcal +" kcal.");
+                                    $("#infoProte").text(pro +" g.");
+                                    $("#infoHidrats").text(hid +" g.");
+                                    $("#infoGreix").text(gre +" g.");
+                                }
+                            });
+
+                            $("#divIntern2").ready(function(){
+                                let ara = new Date();
+                                let dia = ("0" + ara.getDate()).slice(-2);
+                                let mes = ("0" + (ara.getMonth() + 1)).slice(-2);
+
+                                let avui = ara.getFullYear()+"-"+(mes)+"-"+(dia) ;
+                                $("#dataInput").val(avui);
+                            });
+                        </script>`;
+
+                            $(info).insertBefore(".footer");
                         });
                         ++comptador;
                     });
+
             }
         },
             error:function(){

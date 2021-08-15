@@ -50,5 +50,6 @@
     function amaga(){
         $("#divIntern2").remove();
         $("#divExtern2").remove();
+        $("#scriptData").remove();
     }
 </script>
