@@ -4,7 +4,7 @@
 <div class="mx-auto my-auto container">
     <div class="flex justify-center px-2 sm:px-10 my-12">
         <div class="bg-green2 rounded-3xl border-2 border-black w-full lg:w-9/12 xl:w-7/12">
-            <h1 class="font-bold text-center">Planificació</h1>
+            <h1 class="font-bold text-center text-xl sm:text-2xl md:text-3xl">Planificació</h1>
             <div class="px-10 pt-2 pb-11">
                 <p class="text-xs text-gray-500"><span class=" text-red-500">*</span> Recorda que si canvies el nombre d'àpats, tots els dies es reiniciaran!</p>
                 <form action="planificacioUsuari" method="post">

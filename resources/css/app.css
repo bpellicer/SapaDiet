@@ -324,7 +324,7 @@ input,select,button{
 }
 
 .cartaAliment{
-    @apply bg-green1 rounded-3xl sm:w-full md:w-32 lg:w-40 border-2 border-black hover:bg-green5 text-center cursor-pointer p-2;
+    @apply bg-green1 border-2 border-black mt-4 rounded-3xl w-80 sm:w-64 xl:w-96 sm:inline-block mx-2 p-4 cursor-pointer hover:bg-green5;
     @apply transform hover:scale-110 duration-75;
 }
 

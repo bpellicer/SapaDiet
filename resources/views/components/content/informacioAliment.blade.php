@@ -14,7 +14,7 @@
                         <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
                     @enderror
 
-                    <h2 class="text-xl md:text-2xl mt-2 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
+                    <h2 class="text-sm 2xs:text-base md:text-2xl mt-10 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
                     <label for="kilocalories" class="labelGeneral ">Kilocalories</label>
                     <div class="kcal">
                         <input type="number" name="kilocalories" value="{{$aliment[0]->kilocalories}}" class="inputPerfil">

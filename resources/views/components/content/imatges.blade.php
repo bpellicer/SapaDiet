@@ -1,6 +1,6 @@
 <div class="divIntern" id="divIntern" hidden>
     <img src="/imatges/creu.png" class="creu" id="creu">
-    <h1 class=" text-2xl">IMATGE DE PERFIL</h1>
+    <h1 class="text-lg sm:text-2xl">IMATGE DE PERFIL</h1>
     <x-form method="post" action="updateImatgePerfil" id="formImatgePerfil">
         <div class="gridImatges">
                 @foreach ($imatges as $imatge)

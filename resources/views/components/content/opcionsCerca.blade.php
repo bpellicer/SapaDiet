@@ -1,8 +1,8 @@
 <div class="container mx-auto my-auto">
-    <div class="flex justify-center px-5 sm:px-10 my-12">
-        <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
-            <h1 class="font-semibold">Cercador SapaDiet</h1>
-            <div class="grid md:grid-cols-3 gap-4 md:px-0 sm:p-10">
+    <div class="flex justify-center px-2 sm:px-10 my-12">
+        <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black px-2  text-center">
+            <h1 class="font-semibold text-xl sm:text-2xl md:text-3xl">Cercador SapaDiet</h1>
+            <div class="grid md:grid-cols-3 gap-4 md:px-0 sm:p-10 mb-4 mt-4">
                 <a href="cercador/cerca_aliments">
                     <div class="bg-green1 border-2 border-black rounded-3xl hover:bg-green5">
                         <h2 class="text-xl font-medium mt-2">Cerca un aliment</h2>

@@ -356,3 +356,8 @@ $("#showImc").on("click",function(){
         $("#infoImc").html("");
     }
 });
+
+$("#showAlimentsPropis").on("click", function(){
+    $(this).toggleClass('rota');
+    $("#alimentsPropis").toggleClass("hidden");
+});

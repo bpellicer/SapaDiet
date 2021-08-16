@@ -48,16 +48,20 @@ class ControladorDieta extends Controller
 
         /** Array d'imatges **/
         $arrayImatges = [];
+
+
+        /**  Bucle que recorre l'array dels àpats de l'Usuari i filtra els aliments per la $dataAvui **/
         foreach($arrayUserApats as $apat){
             $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
                 return $value->pivot->data == $this->giraData($dataAvui);
             });
-            for($i = 0; $i < count($arrayAliments); $i++){
-                array_push($arrayImatges,$arrayAliments[$i]->categoria->imatge->url);
+            $arrayImatgesApat = [];
+            /** Bucle per afegir les imatges de cada aliment a l' $arrayImatges **/
+            foreach($arrayAliments as $aliment){
+                array_push($arrayImatgesApat, $aliment->categoria->imatge->url);
             }
-
+            array_push($arrayImatges,$arrayImatgesApat);
             array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
-
         }
 
         /** Guarda la quantitat de nutrients de cada àpat **/

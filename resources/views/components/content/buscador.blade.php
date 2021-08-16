@@ -1,6 +1,6 @@
 <div class="container mx-auto my-auto">
     <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
-        <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-5 text-center">
+        <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black px-2 sm:px-10 text-center">
             <h1 class="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">Cercador d'Aliments</h1>
             <x-form method="post" action="/cercaAliment" id="cercaDiv">
                 <div class="grid md:grid-cols-2 gap-4">
@@ -20,8 +20,10 @@
                     <button type="submit" class="botoPerfil w-40" id="cercaAliment">Cerca</button>
                 </div>
             </x-form>
+
             <div id="content">
             </div>
+
             <div id="errors" class="mt-4">
                 @error('grams')
                     <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
@@ -41,7 +43,6 @@
                     <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorApat') }}</p>
                 @endif
             </div>
-
         </div>
     </div>
 </div>

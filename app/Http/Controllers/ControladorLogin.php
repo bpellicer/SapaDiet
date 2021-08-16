@@ -32,7 +32,7 @@ class ControladorLogin extends Controller
 
         if(!Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('contrasenya')])){
            throw ValidationException::withMessages([
-                'email' => 'No hem trobat a cap usuari amb aquest email'
+                'email' => 'Les credencials no són correctes!',
             ]);
         }
 

@@ -87,8 +87,9 @@ class ControladorBuscador extends Controller
     public function createBuscador(){
         $title = "Sapa Diet | Buscador d'aliments";
         return view("pages.buscador",[
-            'aliments' => Aliment::orderBy('id')->get(),
-            'categories' => Categoria::orderBy('nom')->get()
+            'aliments'          => Aliment::orderBy('id')->get(),
+            'categories'        => Categoria::orderBy('nom')->get(),
+            'alimentsPropis'   => User::findOrFail(Auth::id())->alimentpropi
         ],compact("title"));
     }
 
