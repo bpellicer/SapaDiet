@@ -212,6 +212,9 @@ class ControladorDieta extends Controller
 
         /** Calcula els macronutrients que ha de consumir una persona de X pes, Y altura i Z objectius **/
 
+
+
+
     }
 
     /**
