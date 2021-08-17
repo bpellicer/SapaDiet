@@ -56,6 +56,49 @@
                     <button type="button" class="botoDelete w-96" id="eliminaAliment">Esborra l'aliment</button>
                 </div>
             </x-form>
+            <div class="mt-4 mb-4  text-center">
+                <h2 class="text-sm 2xs:text-base md:text-2xl mt-10 mb-4 font-semibold underline">Afegeix l'aliment a la teva dieta</h2>
+                <div class="flex justify-center">
+                    <x-form action="/afegeixAlimentDieta" method="post" class="w-96">
+                        <input type="hidden" name="alimentId" value="{{$aliment[0]->id}}">
+                        <label for="data" class="labelGeneral">Data</label>
+                        <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">
+
+                        <label for="apat" class="labelGeneral">Àpat</label>
+                        <select name="apat" class="text-sm rounded-md w-full mb-2" style="padding:5.2px">
+                            <option>Esmorzar</option>
+                            <option>Mig Matí</option>
+                            <option>Dinar</option>
+                            <option>Berenar</option>
+                            <option>Sopar</option>
+                        </select>
+                        <label for="grams" class="labelGeneral">Grams</label>
+                        <input type="number" name="grams" placeholder="Grams" class="inputPerfil" id="inputGrams" min=0 step="0.001">
+                        <div class="flex justify-center">
+                            <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
+                        </div>
+                    </x-form>
+                </div>
+                <div id="errors" class="mt-4">
+                    @error('grams')
+                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    @enderror
+                    @error('data')
+                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    @enderror
+                    @error('apat')
+                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    @enderror
+
+                    @if (session()->has('errorData'))
+                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorData') }}</p>
+                    @endif
+
+                    @if (session()->has('errorApat'))
+                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorApat') }}</p>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

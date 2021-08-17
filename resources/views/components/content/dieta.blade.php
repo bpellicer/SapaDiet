@@ -70,7 +70,6 @@
                     <input type="hidden" name="data" value="{{$data}}">
                     <button class="botoDelete w-56" type="submit" id="eliminaDia">Esborra el dia</button>
                 </x-form>
-
             </div>
         </div>
     </div>

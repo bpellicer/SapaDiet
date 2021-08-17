@@ -1,5 +1,5 @@
 <div class="container mx-auto my-auto">
-    <div class="flex justify-center px-10 my-12">
+    <div class="flex justify-center px-2 sm:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black px-2 sm:px-10 text-center">
             @if (count($aliments) === 0)
                 <h1 class="font-bold mb-0 text-base sm:text-4xl">0 Aliments propis</h1>
