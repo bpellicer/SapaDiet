@@ -22,4 +22,8 @@ class UserApat extends Model
         return $this->belongsToMany(Aliment::class,"users_apats_aliments")->withPivot('data','mesura_quantitat')->withTimestamps();
     }
 
+    public function alimentPropi(){
+        return $this->belongsToMany(AlimentPropi::class,"users_apats_aliments_propis")->withPivot('data','mesura_quantitat')->withTimestamps();
+    }
+
 }

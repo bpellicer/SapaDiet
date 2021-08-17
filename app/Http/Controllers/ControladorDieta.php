@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aliment;
+use App\Models\AlimentPropi;
 use App\Models\Apat;
 use App\Models\Planificacio;
 use App\Models\User;
@@ -50,11 +52,21 @@ class ControladorDieta extends Controller
         $arrayImatges = [];
 
 
-        /**  Bucle que recorre l'array dels àpats de l'Usuari i filtra els aliments per la $dataAvui **/
+        /**  Bucle que recorre l'array dels àpats de l'Usuari **/
         foreach($arrayUserApats as $apat){
+            /** Guarda els aliments de l'àpat de l'Usuari en una arrayAliments filtrant per la data **/
             $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
                 return $value->pivot->data == $this->giraData($dataAvui);
             });
+
+            /** Fa el mateix que el codi d'amunt però amb els aliments propis de l'Usuari **/
+            $arrayAlimentsPropis = $apat->alimentPropi->filter(function($value,$key) use($dataAvui){
+                return $value->pivot->data == $this->giraData($dataAvui);
+            });
+
+            /** Fusiona les 2 Collections en una sola array **/
+            $arrayAliments = $arrayAliments->merge($arrayAlimentsPropis);
+
             $arrayImatgesApat = [];
             /** Bucle per afegir les imatges de cada aliment a l' $arrayImatges **/
             foreach($arrayAliments as $aliment){
@@ -215,12 +227,29 @@ class ControladorDieta extends Controller
         /**  Obté l'Àpat de l'Usuari que coincideix amb el nom de l'àpat del $request i amb l'id de l'Usuari **/
         $userApat = UserApat::where("apat_id",Apat::where("nom",$request->apat)->first()->id)->where("user_id",Auth::id())->first();
 
-        /** Afegeix l'aliment a la taula pivot user_apats_aliments amb la data, la mesura i els corresponents ids **/
-        $userApat->aliment()->attach([$userApat->id => ["aliment_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+        if($request->tipusAliment == "propi"){
+            /** Comprova que l'AlimentPropi existeixi a la BDD i que sigui de l'Usuari **/
+            if(AlimentPropi::where("id",$request->alimentId)->where("user_id",Auth::id())->first()){
+                /** Afegeix l'aliment a la taula pivot users_apats_aliments_propis amb la data, la mesura i els corresponents ids **/
+                $userApat->alimentPropi()->attach([$userApat->id => ["aliment_propi_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+                session()->flash("alimentAfegit","Aliment afegit!");
+                return redirect("/cercador/aliments_propis");
+            }
+            else return view("errors.404");
+        }
+        else if($request->tipusAliment == "bdd"){
+            /** Comprova que l'Aliment existeixi a la BDD **/
+            if(Aliment::where("id",$request->alimentId)->first()){
+                /** Afegeix l'aliment a la taula pivot user_apats_aliments amb la data, la mesura i els corresponents ids **/
+                $userApat->aliment()->attach([$userApat->id => ["aliment_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+                session()->flash("alimentAfegit","Aliment afegit!");
+                return redirect("/cercador/cerca_aliments");
+            }
+            else return view("errors.404");
 
-        session()->flash("alimentAfegit","Aliment afegit!");
+        }
+        else return view("errors.404");
 
-        return redirect("/cercador/cerca_aliments");
     }
 
     /**

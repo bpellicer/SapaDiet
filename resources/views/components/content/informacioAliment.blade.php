@@ -60,7 +60,9 @@
                 <h2 class="text-sm 2xs:text-base md:text-2xl mt-10 mb-4 font-semibold underline">Afegeix l'aliment a la teva dieta</h2>
                 <div class="flex justify-center">
                     <x-form action="/afegeixAlimentDieta" method="post" class="w-96">
+                        <input type="hidden" name="tipusAliment" value="propi"/>
                         <input type="hidden" name="alimentId" value="{{$aliment[0]->id}}">
+                        <input type="hidden" name="alimentNom" value="{{$aliment[0]->nom}}">
                         <label for="data" class="labelGeneral">Data</label>
                         <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">
 

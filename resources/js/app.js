@@ -189,7 +189,9 @@ $("#cercaDiv").on("submit",function(e){
                                 <div class="xs:px-2 py-1">
                                 <h2 class="font-bold text-xs sm:text-sm mb-2">Afegeix l'aliment a un àpat diari</h2>
                                     <form action="/afegeixAlimentDieta" method="post" class="">
+                                        <input type="hidden" name="tipusAliment" value="bdd">
                                         <input type="hidden" name="_token" value="`+$('meta[name="csrf-token"]').attr("content")+`">
+                                        <input type="hidden" name="alimentNom" value="`+dades[index].nom+`">
                                         <input type="hidden" name="alimentId" value="`+dades[index].id+`">
                                         <label for="data" class="text-xs mb-2">Data</label>
                                         <input type="date" name="data" class="p-1 w-full mb-2 rounded-md" id="dataInput">

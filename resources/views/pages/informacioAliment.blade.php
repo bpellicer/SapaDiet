@@ -11,5 +11,4 @@
     $("#dataInput").val(avui);
 });
 </script>
-
 <x-layout.footerAuth/>

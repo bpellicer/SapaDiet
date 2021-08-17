@@ -24,11 +24,12 @@ class AlimentPropi extends Model
         return $this->belongsTo(Categoria::class);
     }
 
-    public function imatge(){
-        return $this->belongsTo(Imatge::class);
-    }
-
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function userApat(){
+        return $this->belongsToMany(UserApat::class, "users_apats_aliments_propis")->withPivot('data','mesura_quantitat')->withTimestamps();
+    }
+
 }
