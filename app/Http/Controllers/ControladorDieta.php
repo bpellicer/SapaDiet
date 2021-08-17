@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aliment;
 use App\Models\AlimentPropi;
 use App\Models\Apat;
+use App\Models\PesAltura;
 use App\Models\Planificacio;
 use App\Models\User;
 use App\Models\UserApat;
@@ -32,66 +33,74 @@ class ControladorDieta extends Controller
             session()->flash('dataIncorrecte','Escull una data vàlida del mes i any actual');
             return redirect("/calendari");
         }
-
-        /** Busca la planificació de l'Usuari per a mostrar X seccions a la gestió de la dieta segons el nombre d'àpats **/
-        $usuari = User::findOrFail(Auth::id());
-        $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
-
-        /** Posa la data del dia seleccionat al títol amb el format DD-MM-YYYY **/
-        $dataAvui = date("m")."-20".date("y");
-        $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
-        $title = "Sapa Diet | $dataAvui";
-
-        /** Rep els apats que té l'Usuari i els guarda en una array **/
-        $arrayUserApats = UserApat::where('user_id',$usuari->id)->get();
-
-        /** Crea una array que conté a cada posició una altra array amb els aliments de cada àpat que coincideixi amb la data del dia que s'ha seleccionat **/
-        $arrayAlimentsApatDia = [];
-
-        /** Array d'imatges **/
-        $arrayImatges = [];
-
-
-        /**  Bucle que recorre l'array dels àpats de l'Usuari **/
-        foreach($arrayUserApats as $apat){
-            /** Guarda els aliments de l'àpat de l'Usuari en una arrayAliments filtrant per la data **/
-            $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
-                return $value->pivot->data == $this->giraData($dataAvui);
-            });
-
-            /** Fa el mateix que el codi d'amunt però amb els aliments propis de l'Usuari **/
-            $arrayAlimentsPropis = $apat->alimentPropi->filter(function($value,$key) use($dataAvui){
-                return $value->pivot->data == $this->giraData($dataAvui);
-            });
-
-            /** Fusiona les 2 Collections en una sola array **/
-            $arrayAliments = $arrayAliments->merge($arrayAlimentsPropis);
-
-            $arrayImatgesApat = [];
-            /** Bucle per afegir les imatges de cada aliment a l' $arrayImatges **/
-            foreach($arrayAliments as $aliment){
-                array_push($arrayImatgesApat, $aliment->categoria->imatge->url);
-            }
-            array_push($arrayImatges,$arrayImatgesApat);
-            array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
+        /** Controla que l'Usuari només pugui entrar una vegada ha afegit el seu pes i la seva altura **/
+        else if(PesAltura::where("user_id",$usuari->id)->get()->last()->pes == 0 && PesAltura::where("user_id",$usuari->id)->get()->last()->altura == 0){
+            session()->flash("pesAlturaError","Falta altura i pes");
+            return redirect("/progres");
         }
+        else{
+            /** Busca la planificació de l'Usuari per a mostrar X seccions a la gestió de la dieta segons el nombre d'àpats **/
+            $usuari = User::findOrFail(Auth::id());
+            $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
 
-        /** Guarda la quantitat de nutrients de cada àpat **/
-        $arrayNutrients = $this->getNutrientsCalculats($arrayAlimentsApatDia);
+            /** Posa la data del dia seleccionat al títol amb el format DD-MM-YYYY **/
+            $dataAvui = date("m")."-20".date("y");
+            $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
+            $title = "Sapa Diet | $dataAvui";
 
-        /** Guarda els nutrients totals de tots els àpats **/
-        $arrayNutrientsTotals = $this->getNutrientsTotals($arrayNutrients);
+            /** Rep els apats que té l'Usuari i els guarda en una array **/
+            $arrayUserApats = UserApat::where('user_id',$usuari->id)->get();
+
+            /** Crea una array que conté a cada posició una altra array amb els aliments de cada àpat que coincideixi amb la data del dia que s'ha seleccionat **/
+            $arrayAlimentsApatDia = [];
+
+            /** Array d'imatges **/
+            $arrayImatges = [];
 
 
-        return view("pages.dieta",[
-            "nombreApats"           => $planificacio->nombre_apats,
-            "nomsApats"             => $this->getArrayApatsNoms($planificacio->nombre_apats),
-            "data"                  => $dataAvui,
-            "arrayAliments"         => $arrayAlimentsApatDia,
-            "arrayNutrientsApat"    => $arrayNutrients,
-            "arrayNutrientsTotals"  => $arrayNutrientsTotals,
-            "arrayImatges"          => $arrayImatges
-        ],compact("title"));
+            /**  Bucle que recorre l'array dels àpats de l'Usuari **/
+            foreach($arrayUserApats as $apat){
+                /** Guarda els aliments de l'àpat de l'Usuari en una arrayAliments filtrant per la data **/
+                $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
+                    return $value->pivot->data == $this->giraData($dataAvui);
+                });
+
+                /** Fa el mateix que el codi d'amunt però amb els aliments propis de l'Usuari **/
+                $arrayAlimentsPropis = $apat->alimentPropi->filter(function($value,$key) use($dataAvui){
+                    return $value->pivot->data == $this->giraData($dataAvui);
+                });
+
+                /** Fusiona les 2 Collections en una sola array **/
+                $arrayAliments = $arrayAliments->toBase()->merge($arrayAlimentsPropis);
+
+                $arrayImatgesApat = [];
+                /** Bucle per afegir les imatges de cada aliment a l' $arrayImatges **/
+                foreach($arrayAliments as $aliment){
+                    array_push($arrayImatgesApat, $aliment->categoria->imatge->url);
+                }
+                array_push($arrayImatges,$arrayImatgesApat);
+                array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
+            }
+
+            /** Guarda la quantitat de nutrients de cada àpat **/
+            $arrayNutrients = $this->getNutrientsCalculats($arrayAlimentsApatDia);
+
+            /** Guarda els nutrients totals de tots els àpats **/
+            $arrayNutrientsTotals = $this->getNutrientsTotals($arrayNutrients);
+
+            /** Guarda els objectius que l'Usuari haurà d'intentar complir cada dia **/
+            $arrayGestioDieta = $this->getDietaCalculada($usuari->id,$planificacio->objectius);
+
+            return view("pages.dieta",[
+                "nombreApats"           => $planificacio->nombre_apats,
+                "nomsApats"             => $this->getArrayApatsNoms($planificacio->nombre_apats),
+                "data"                  => $dataAvui,
+                "arrayAliments"         => $arrayAlimentsApatDia,
+                "arrayNutrientsApat"    => $arrayNutrients,
+                "arrayNutrientsTotals"  => $arrayNutrientsTotals,
+                "arrayImatges"          => $arrayImatges
+                ],compact("title"));
+            }
     }
 
     /**
@@ -172,10 +181,10 @@ class ControladorDieta extends Controller
 
                 /** Cada nutrient de cada aliment es multiplica per la quantitat d'aquest aliment triat i dividit per 100 (Estàndard de 100 grams)
                 *   El resultat s'arrodoneix a 2 decimals per a una millor comoditat visual **/
-                $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
-                $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
-                $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
-                $arrayNutrientsApat[3] += round($arrayApatsAliments[$i][$j]["kilocalories"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100),2);
+                $arrayNutrientsApat[0] += round($arrayApatsAliments[$i][$j]["proteines"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100));
+                $arrayNutrientsApat[1] += round($arrayApatsAliments[$i][$j]["hidrats"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100));
+                $arrayNutrientsApat[2] += round($arrayApatsAliments[$i][$j]["greixos"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100));
+                $arrayNutrientsApat[3] += round($arrayApatsAliments[$i][$j]["kilocalories"] * ($arrayApatsAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100));
             }
             array_push($superArrayNutrientsApats,$arrayNutrientsApat);
         }
@@ -198,6 +207,12 @@ class ControladorDieta extends Controller
         return $arrayTotals;
     }
 
+    public function getDietaCalculada($idUsuari,$objectius){
+        $pesAltura = PesAltura::where("user_id",$idUsuari)->get()->last();
+
+        /** Calcula els macronutrients que ha de consumir una persona de X pes, Y altura i Z objectius **/
+
+    }
 
     /**
      * Funció que afegeix a l'Àpat de l'Usuari triat, un Aliment amb la data del dia i la quantitat en grams d'aquest Aliment
@@ -206,7 +221,7 @@ class ControladorDieta extends Controller
     public function afegeixAlimentDieta(Request $request){
         $request->validate([
             'data'      => ['date','required'],
-            'grams'     => ['numeric','required', 'min:0'],
+            'grams'     => ['numeric','required', 'min:0', 'max:1000'],
             'apat'      => ['string',Rule::exists("apats","nom")]
         ]);
 

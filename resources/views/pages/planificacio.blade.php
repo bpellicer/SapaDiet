@@ -6,7 +6,7 @@
 @endif
 
 @if (session()->has('novaPlanificacio'))
-    <x-alerta nom="success" missatge="{{ session('novaPlanificacio') }}"/>
+    <x-alerta nom="success2" missatge="{{ session('novaPlanificacio') }}"/>
 @endif
 
 @if (session()->has('planificacioDefecte'))

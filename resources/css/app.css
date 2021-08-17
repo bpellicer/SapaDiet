@@ -235,7 +235,7 @@ input,select,button{
 }
 
 .divIntern2{
-    @apply absolute m-auto p-8 left-0 top-0 right-0 bottom-0 bg-green2 rounded-3xl;
+    @apply absolute m-auto px-4 py-8 2xs:px-8 left-0 top-0 right-0 bottom-0 bg-green2 rounded-3xl;
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 
@@ -280,27 +280,17 @@ input,select,button{
 
 
 
-/***************    ALERTAS   ***************/
-.success, .error{
-    @apply p-4 rounded-3xl border-2 border-black flex justify-center mx-auto my-4;
-}
+/***************    ALERTES   ***************/
 
 .success2{
-    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-72 bg-green1 font-bold;
+    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-64 xs:w-72 md:w-96 bg-green1 font-bold;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.success{
-    @apply bg-green1;
-}
-
-.error{
-    @apply bg-red-500 text-center sm:text-left;
-}
 
 .error2{
-    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-72 bg-red-500 font-bold;
+    @apply py-4 rounded-3xl border-2 border-black flex justify-center absolute w-64 xs:w-72 md:w-96 bg-red-500 font-bold;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);

@@ -35,7 +35,7 @@ class ControladorPlanificacio extends Controller
         if ($request->get("proteines") == null || $request->get("hidrats") == null ||
             $request->get("greixos") == null  || $request->get("lactics") == null ||
             $request->get("fruites") == null){
-                session()->flash('formulariInvalid','Mínim 1 aliment per categoria');
+                session()->flash('formulariInvalid','Mínim 1 aliment per grup');
                 return redirect()->back();
         }
 

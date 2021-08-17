@@ -35,20 +35,24 @@
                 <div class="grid grid-cols-1 gap-4 lg:px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
                         <div class="bg-white border-2 border-black rounded-3xl p-3">
-                            <div class="grid sm:grid-cols-2">
+                            <div class="grid sm:grid-cols-3">
                                 <div class="text-left font-bold text-sm md:text-base"><p>{{$nomsApats[$i]}}</p></div>
-                                <div class="sm:text-right mt-2 sm:mt-0">
-                                    <p id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">P: {{$arrayNutrientsApat[$i][0]}}gr | C: {{$arrayNutrientsApat[$i][1]}}gr | G: {{$arrayNutrientsApat[$i][2]}}gr | K: {{$arrayNutrientsApat[$i][3]}}kcal</p>
+                                <div class="sm:text-right mt-2 sm:mt-0 col-span-2 grid grid-cols-4">
+                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">P: {{$arrayNutrientsApat[$i][0]}}gr</div>
+                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">C: {{$arrayNutrientsApat[$i][1]}}gr</div>
+                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">G: {{$arrayNutrientsApat[$i][2]}}gr</div>
+                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">K: {{$arrayNutrientsApat[$i][3]}}kcal</div>
+                                   {{--  <p id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">P: {{$arrayNutrientsApat[$i][0]}}gr | C: {{$arrayNutrientsApat[$i][1]}}gr | G: {{$arrayNutrientsApat[$i][2]}}gr | K: {{$arrayNutrientsApat[$i][3]}}kcal</p> --}}
                                 </div>
                             </div>
                             <hr class=" border-1 border-black">
                             <div class="mt-2">
                                 <div class="grid grid-cols-8">
                                     @for($j= 0; $j < count($arrayAliments[$i]); $j++)
-                                    <div class="text-left col-span-7 text-mini">
+                                    <div class="text-left col-span-7 text-mini sm:text-sm">
                                         <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="w-8 2xs:w-10 inline-block">
                                         <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-                                        <p class="inline-block float-right pt-2.5">{{$arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100) }} kcal</p>
+                                        <p class="inline-block float-right pt-2.5">{{round($arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100)) }} kcal</p>
                                         <p class="inline-block float-right pt-2.5 mr-1">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
                                     </div>
                                     <div>

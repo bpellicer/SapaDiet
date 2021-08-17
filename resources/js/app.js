@@ -163,7 +163,7 @@ $("#cercaDiv").on("submit",function(e){
                             let info = `<div class="divExtern" id="divExtern2">
                             <div class="divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110" id="divIntern2">
                                 <img src="/imatges/creu.png" class="creu" id="creu2" onclick="amaga()">
-                                <h1 class="text-center font-bold md:text-3xl text-xl">`+dades[index].nom+` </h1>
+                                <h1 class="text-center font-bold md:text-xl text-base">`+dades[index].nom+` </h1>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 place-items-center">
                                     <div class="bg-white rounded-3xl border-2 border-black w-20 h-20 sm:w-28 sm:h-28 hidden sm:inline">
                                         <img src="`+categoria[1]+`" alt="" class="w-40">
@@ -186,8 +186,8 @@ $("#cercaDiv").on("submit",function(e){
                                         </div>
                                     </div>
                                 </div>
-                                <div class="xs:px-2 py-1">
-                                <h2 class="font-bold text-xs sm:text-sm mb-2">Afegeix l'aliment a un àpat diari</h2>
+                                <div class="xs:px-2 py-1 mt-4">
+                                <h2 class="font-bold text-xs sm:text-sm mb-4">Afegeix l'aliment a un àpat diari</h2>
                                     <form action="/afegeixAlimentDieta" method="post" class="">
                                         <input type="hidden" name="tipusAliment" value="bdd">
                                         <input type="hidden" name="_token" value="`+$('meta[name="csrf-token"]').attr("content")+`">
@@ -205,7 +205,7 @@ $("#cercaDiv").on("submit",function(e){
                                         </select>
                                         <label for="grams" class="font-bold text-xs">Grams</label>
                                         <input type="number" name="grams" placeholder="Grams" class="inputPerfil" id="inputGrams" min=0 step="0.001">
-                                        <div class="flex justify-center">
+                                        <div class="flex justify-center mt-4">
                                             <input type="submit" value="Afegeix" class="botoPerfil w-full md:w-80 mt-2">
                                         </div>
                                     </form>

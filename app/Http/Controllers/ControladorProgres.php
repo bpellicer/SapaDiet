@@ -47,6 +47,8 @@ class ControladorProgres extends Controller
 
         $pesAltura->save();
 
+        session()->flash("pesAlturaUpdate","Informació guardada!");
+
         return redirect("/progres");
     }
 }

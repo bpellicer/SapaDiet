@@ -6,7 +6,7 @@
 @endif
 
 @if (session()->has('missatge'))
-    <x-alerta nom="success" missatge="{{ session('missatge') }}"/>
+    <x-alerta nom="success2" missatge="{{ session('missatge') }}"/>
 @endif
 
 @include("components.content.login")
