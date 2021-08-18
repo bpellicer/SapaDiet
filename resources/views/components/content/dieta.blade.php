@@ -42,27 +42,29 @@
                                     <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">C: {{$arrayNutrientsApat[$i][1]}}gr</div>
                                     <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">G: {{$arrayNutrientsApat[$i][2]}}gr</div>
                                     <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">K: {{$arrayNutrientsApat[$i][3]}}kcal</div>
-                                   {{--  <p id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">P: {{$arrayNutrientsApat[$i][0]}}gr | C: {{$arrayNutrientsApat[$i][1]}}gr | G: {{$arrayNutrientsApat[$i][2]}}gr | K: {{$arrayNutrientsApat[$i][3]}}kcal</p> --}}
                                 </div>
                             </div>
                             <hr class=" border-1 border-black">
-                            <div class="mt-2">
-                                <div class="grid grid-cols-8">
-                                    @for($j= 0; $j < count($arrayAliments[$i]); $j++)
-                                    <div class="text-left col-span-7 text-mini sm:text-sm">
-                                        <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="w-8 2xs:w-10 inline-block">
-                                        <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-                                        <p class="inline-block float-right pt-2.5">{{round($arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100)) }} kcal</p>
-                                        <p class="inline-block float-right pt-2.5 mr-1">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
+                            <div class="mt-4">
+                                @for($j= 0; $j < count($arrayAliments[$i]); $j++)
+                                    <div class="grid grid-cols-12 grid-rows-2 h-9 mb-4 place-items-center">
+                                        <div class="row-span-2 col-span-2">
+                                            <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="">
+                                        </div>
+                                        <div class="row-span-2 col-span-5 w-full pl-1">
+                                            <p class="text-mini text-left">{{$arrayAliments[$i][$j]["nom"]}}</p>
+                                        </div>
+                                        <div class="row-span-2 col-span-3 w-full">
+                                            <p class="text-mini text-right">{{round($arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100)) }} kcal</p>
+                                            <p class="text-mini text-right text-gray-500">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
+                                        </div>
+                                        <div class="row-span-2 col-span-2">
+                                            <x-form method="post" action="esborraAlimentApat">
+                                                <img src="/imatges/esborra.png" alt="" class="cursor-pointer w-7" onclick="alert('si')">
+                                            </x-form>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <x-form method="post" action="esborraAlimentApat">
-                                            {{-- <x-boto tipus="submit" classe="botoPerfil" text="Esborra"/> --}}
-                                        </x-form>
-                                        <img src="/imatges/esborra.png" alt="" class="w-5 float-right mt-2 cursor-pointer" onclick="alert('si')">
-                                    </div>
-                                    @endfor
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     @endfor
@@ -78,3 +80,21 @@
         </div>
     </div>
 </div>
+{{--
+    <div class="grid grid-cols-8">
+
+                                    <div class="text-left col-span-7 text-mini sm:text-sm">
+                                        <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="w-8 2xs:w-10 inline-block">
+                                        <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
+
+                                        <p class="inline-block float-right pt-2.5 mr-1">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
+                                    </div>
+                                    <div>
+                                        <x-form method="post" action="esborraAlimentApat">
+                                            <img src="/imatges/esborra.png" alt="" class="w-10 float-right cursor-pointer" onclick="alert('si')">
+                                        </x-form>
+
+                                    </div>
+
+                                </div> --}}
+
