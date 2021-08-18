@@ -2,7 +2,7 @@
 <x-layout.navAuth/>
 
 @if (session()->has('formulariInvalid'))
-    <x-alerta nom="error" missatge="{{ session('formulariInvalid') }}"/>
+    <x-alerta nom="error2" missatge="{{ session('formulariInvalid') }}"/>
 @endif
 
 @if (session()->has('novaPlanificacio'))
@@ -10,7 +10,7 @@
 @endif
 
 @if (session()->has('planificacioDefecte'))
-    <x-alerta nom="error" missatge="{{ session('planificacioDefecte') }}"/>
+    <x-alerta nom="error2" missatge="{{ session('planificacioDefecte') }}"/>
 @endif
 
 

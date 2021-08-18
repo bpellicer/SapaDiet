@@ -13,10 +13,10 @@
                                 <p class="text-xs xs:text-sm sm:text-lg font-bold">Kilocalories:</p>
                             </div>
                             <div class="2xs:pr-10 sm:pr-20 md:pr-0 text-right col-span-2">
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[0]}}/ 120 gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[1]}} / 120 gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[2]}} / 120 gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[3]}} / 2850 kcal</p>
+                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[0]}} / {{round($kcalTotals * 0.2 / 4)}}gr</p>
+                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[1]}} / {{round($kcalTotals * 0.45 / 4)}}gr</p>
+                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[2]}} / {{round($kcalTotals * 0.35 / 9)}}gr</p>
+                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[3]}} / {{$kcalTotals}} kcal</p>
                             </div>
                         </div>
                     </div>

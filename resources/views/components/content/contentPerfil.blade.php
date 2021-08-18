@@ -17,6 +17,10 @@
                         <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
                      @enderror
 
+                    <x-inputPerfil tipus="number" classe="inputPerfil" id="edat" nom="edat" placeholder="Edat"/>
+                    @error('edat')
+                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                    @enderror
 
                     <label class="block text-sm font-bold text-gray-700 text-left" for="sexe">Sexe</label>
                     <select name="sexe" id="sexe" class="inputClassic mb-3">

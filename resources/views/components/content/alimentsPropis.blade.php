@@ -4,7 +4,7 @@
             @if (count($aliments) === 0)
                 <h1 class="font-bold mb-0 text-base sm:text-4xl">0 Aliments propis</h1>
                 <div class="flex justify-center"><img src="/imatges/empty.png" class="w-96"></div>
-                <div class="flex justify-center"><a class="botoPerfil w-full sm:w-96 text-xs sm:text-base" href="/cercador/afegeix_aliment">Comença a crear-ne!</a></div>
+                <div class="flex justify-center mb-4"><a class="botoPerfil w-full sm:w-96 text-xs sm:text-base" href="/cercador/afegeix_aliment">Comença a crear-ne!</a></div>
             @else
                 <h1 class="text-base xs:text-xl sm:text-2xl md:text-3xl font-bold">Els meus Aliments</h1>
                 <div class=" mb-4">

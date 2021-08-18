@@ -23,7 +23,8 @@ class User extends Authenticatable
         'cognoms',
         'email',
         'contrasenya',
-        'sexe'
+        'sexe',
+        'edat'
     ];
 
     /**

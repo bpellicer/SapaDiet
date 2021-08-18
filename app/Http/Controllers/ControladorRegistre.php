@@ -29,7 +29,8 @@ class ControladorRegistre extends Controller
             'email'                 => ['required','max:255','email',Rule::unique('users','email')],
             'contrasenya'           => ['required','max:255','same:password_confirmation',Password::min(8)->mixedCase()->symbols()],
             'sexe'                  => ['required','string','alpha'],
-            'password_confirmation' => ['required','min:8','max:255']
+            'password_confirmation' => ['required','min:8','max:255'],
+            'edat'                  => ['required','min:12','max:100','numeric']
         ]);
 
         /** Comprova que el camp Sexe sigui Home o Dona i si no és cap, torna enrere **/

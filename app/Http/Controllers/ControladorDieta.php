@@ -88,8 +88,8 @@ class ControladorDieta extends Controller
             /** Guarda els nutrients totals de tots els àpats **/
             $arrayNutrientsTotals = $this->getNutrientsTotals($arrayNutrients);
 
-            /** Guarda els objectius que l'Usuari haurà d'intentar complir cada dia **/
-            $arrayGestioDieta = $this->getDietaCalculada($usuari->id,$planificacio->objectius);
+            /** Guarda les kcal que l'Usuari haurà d'intentar complir cada dia **/
+            $kcalTotals = $this->getDietaCalculada($usuari,$planificacio);
 
             return view("pages.dieta",[
                 "nombreApats"           => $planificacio->nombre_apats,
@@ -98,7 +98,8 @@ class ControladorDieta extends Controller
                 "arrayAliments"         => $arrayAlimentsApatDia,
                 "arrayNutrientsApat"    => $arrayNutrients,
                 "arrayNutrientsTotals"  => $arrayNutrientsTotals,
-                "arrayImatges"          => $arrayImatges
+                "arrayImatges"          => $arrayImatges,
+                "kcalTotals"            => $kcalTotals
                 ],compact("title"));
             }
     }
@@ -207,14 +208,103 @@ class ControladorDieta extends Controller
         return $arrayTotals;
     }
 
-    public function getDietaCalculada($idUsuari,$objectius){
-        $pesAltura = PesAltura::where("user_id",$idUsuari)->get()->last();
+    public function getDietaCalculada($usuari,$planificacio){
+        $pesAltura = PesAltura::where("user_id",$usuari->id)->get()->last();
+        $kcalTotals = 0;
+        /** La primera part és calcular el Metabolisme Basal(La energia que es gasta cada dia de forma normal) **/
 
-        /** Calcula els macronutrients que ha de consumir una persona de X pes, Y altura i Z objectius **/
+        /** Es fa servir la fòrmula de MIFFLIN-ST JEOR **/
+        $metabolismeBasal = $this->getMetabolismeBasal($pesAltura, $usuari);
+
+        /** Es calcula la TDEE (Total Daily Energy Expenditure) i es multiplica pel metabolisme basal **/
+        $kcalTotals = $this->getKcalTdee($metabolismeBasal,$planificacio->esport);
+
+        /** Es suma o resta unes kilocalories de més segons els objectius de l'Usuri **/
+        $kcalTotals = $this->getKcalObjectiu($planificacio->objectius, $kcalTotals);
+
+        return $kcalTotals;
+    }
+
+    /**
+     * Funció que fa servir la fòrmula de MIFFLIN-ST JEOR per a calcular el
+     * metabolisme basal diari d'una persona i el retorna.
+     * @param PesAltura $pesAltura      Conté l'Objecte $pesAltura
+     * @param User  $usuari             Conté l'Objecte $usuari
+     */
+    public function getMetabolismeBasal($pesAltura,$usuari){
+        $metabolismeBasal = 0;
+        switch ($usuari->sexe){
+            case "Home":
+                $metabolismeBasal = (10 * $pesAltura->pes) + (6.25 * $pesAltura->altura) - (5 * $usuari->edat) + 5;
+            break;
+            case "Dona":
+                $metabolismeBasal = (10 * $pesAltura->pes) + (6.25 * $pesAltura->altura) - (5 * $usuari->edat) -161;
+            break;
+        }
+        return $metabolismeBasal;
+    }
 
 
+    /**
+     * Funció que retorna les kilocalories totals que l'Usuari ha de consumir segons els
+     * seus objectius de pes.
+     * @param String $objectius     Conté l'objectiu de pes de l'Usuari.
+     * @param Float $kcalTotals     Conté les kcal totals fins el moment.
+     */
+    public function getKcalObjectiu($objectius, $kcalTotals){
+
+        $kcal = 0;
+        switch($objectius){
+            case "perdre pes":
+                /** Per perdre pes es necessita un dèficit calòric, és a dir, menjar menys
+                 * kilocalories de les que se't recomanen per dia. Es recomana entre 300 i
+                 * 500 menys**/
+
+                $kcal = $kcalTotals - 400;
+            break;
+
+            case "mantenir pes":
+                $kcal = $kcalTotals;
+            break;
+
+            case "guanyar pes":
+                /** Per guanyar pes es necessita un superàvit calòric, és a dir, menjar més
+                 * kilocalories de les que se't recomanen per dia. Es recomana entre 300 i
+                 * 500 més**/
+
+                $kcal = $kcalTotals + 400;
+            break;
+        }
+        return round($kcal);
+    }
 
 
+    /**
+     * Funció que retorna les kilocalories que ha de consumir l'Usuari segons l'esport que fa
+     * a la setmana.
+     * @param Float $mtb       Conté les kcal del metabolisme basal de l'Usuari
+     * @param String $esport    Conté la quantitat d'esport que fa l'Usuari a la setmana
+     */
+    public function getKcalTdee($mtb, $esport){
+        $kcal = 0;
+        switch($esport){
+            case "Cap":
+                $kcal = 1.2 * $mtb;
+            break;
+
+            case "Poc":
+                $kcal = 1.375 * $mtb;
+            break;
+
+            case "Normal":
+                $kcal = 1.55 * $mtb;
+            break;
+
+            case "Molt":
+                $kcal = 1.725 * $mtb;
+            break;
+        }
+        return $kcal;
     }
 
     /**
@@ -285,6 +375,10 @@ class ControladorDieta extends Controller
         return $trobat;
     }
 
+    /**
+     * Funció que esborra els aliments dels Àpats de l'Usuari
+     * @param Request $request      Conté la data del dia a esborrar
+     */
     public function deleteDia(Request $request){
 
         $data = $this->giraData($request->data);

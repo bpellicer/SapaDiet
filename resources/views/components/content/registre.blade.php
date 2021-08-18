@@ -28,6 +28,12 @@
                     <p class="text-xs text-red-500 mb-2">{{ session('errorSexe') }}</p>
                 @endif
 
+                <x-input tipus="number" classe="inputClassic" id="edat" nom="edat" placeholder="Edat" />
+
+                @error('edat')
+                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                @enderror
+
                 <x-input tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email" />
 
                 @error('email')

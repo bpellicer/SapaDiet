@@ -1,7 +1,7 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
 @if (session()->has('dataIncorrecte'))
-    <x-alerta nom="error" missatge="{{ session('dataIncorrecte') }}"/>
+    <x-alerta nom="error2" missatge="{{ session('dataIncorrecte') }}"/>
 @endif
 
 @if (session()->has('diaEsborrat'))
