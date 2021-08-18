@@ -26,8 +26,8 @@ class ControladorLogin extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'email'=>['required','max:255','email',Rule::exists('users','email')],
-            'contrasenya'=>['required','min:8','max:255']
+            'email'         =>['required','max:255','email',Rule::exists('users','email')],
+            'contrasenya'   =>['required','min:8','max:255']
         ]);
 
         if(!Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('contrasenya')])){

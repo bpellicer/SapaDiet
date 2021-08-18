@@ -1987,7 +1987,7 @@ $("#cercaDiv").on("submit", function (e) {
         }
       },
       error: function error() {
-        alert("error!");
+        alert("Error");
       }
     });
   }
@@ -2065,7 +2065,7 @@ $("#cercaDiv").on("submit", function (e) {
         break;
 
       case "Llegums i Fruits Secs":
-        src = "/imatges/aliments/cacahuet.png";
+        src = "/imatges/aliments/llegums.png";
         break;
 
       case "Làctics":

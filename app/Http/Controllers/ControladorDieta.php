@@ -380,6 +380,9 @@ class ControladorDieta extends Controller
      * @param Request $request      Conté la data del dia a esborrar
      */
     public function deleteDia(Request $request){
+        $request->validate([
+            'data'    => ['string','required']
+        ]);
 
         $data = $this->giraData($request->data);
         $userApats = UserApat::where("user_id",Auth::id())->get();
@@ -398,6 +401,29 @@ class ControladorDieta extends Controller
 
         session()->flash("diaEsborrat","Dia esborrat!");
         return redirect("/calendari");
+    }
+
+    public function deleteAlimentApat(Request $request){
+        $request->validate([
+            'nomAliment'    => ['string','min:1','required'],
+            'idAliment'     => ['required','string'],
+            'data'          => ['required','string','date'],
+            'apat'          => [Rule::exists('apats','nom'),'required','string']
+        ]);
+        $arrayAborrar = [];
+        $data = $this->giraData($request->data);
+        $userApat = UserApat::where("user_id",Auth::id())->where("apat_id",Apat::where('nom',$request->apat)->first()->id)->first();
+        ddd($userApat->aliment);
+        foreach($userApat->aliment as $aliment){
+            array_push($arrayAborrar,$aliment->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->get());
+        }
+        ddd($arrayAborrar);
+        /* foreach($userApat->aliment as $aliment){
+            if($aliment->pivot['data'] == $data && $aliment->nom = $request->nomAliment && $aliment->id == $request->idAliment){
+                array_push($arrayAborrar,$aliment);
+            }
+        }
+        ddd($arrayAborrar[0]->pivot->detach()); */
     }
 
 }

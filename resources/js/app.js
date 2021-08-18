@@ -260,7 +260,7 @@ $("#cercaDiv").on("submit",function(e){
             }
         },
             error:function(){
-                alert("error!");
+               alert("Error");
             }
         });
     }
@@ -319,7 +319,7 @@ $("#cercaDiv").on("submit",function(e){
                 src="/imatges/aliments/verdura.png";
             break;
             case "Llegums i Fruits Secs":
-                src="/imatges/aliments/cacahuet.png";
+                src="/imatges/aliments/llegums.png";
             break;
             case "Làctics":
                 src="/imatges/aliments/formatge.png";

@@ -47,20 +47,24 @@
                             <hr class=" border-1 border-black">
                             <div class="mt-4">
                                 @for($j= 0; $j < count($arrayAliments[$i]); $j++)
-                                    <div class="grid grid-cols-12 grid-rows-2 h-9 mb-4 place-items-center">
-                                        <div class="row-span-2 col-span-2">
-                                            <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="">
+                                    <div class="grid grid-cols-12 md:grid-cols-10 grid-rows-2 h-9 mb-4 place-items-center">
+                                        <div class="row-span-2 col-span-2 md:col-span-1">
+                                            <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}">
                                         </div>
-                                        <div class="row-span-2 col-span-5 w-full pl-1">
-                                            <p class="text-mini text-left">{{$arrayAliments[$i][$j]["nom"]}}</p>
+                                        <div class="row-span-2 col-span-5 w-full pl-1 text-mini sm:text-sm text-left">
+                                            <p>{{$arrayAliments[$i][$j]["nom"]}}</p>
                                         </div>
-                                        <div class="row-span-2 col-span-3 w-full">
-                                            <p class="text-mini text-right">{{round($arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100)) }} kcal</p>
-                                            <p class="text-mini text-right text-gray-500">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
+                                        <div class="row-span-2 col-span-3 w-full text-mini sm:text-sm text-right">
+                                            <p>{{round($arrayAliments[$i][$j]["kilocalories"] * ($arrayAliments[$i][$j]["pivot"]["mesura_quantitat"] / 100)) }} kcal</p>
+                                            <p class="text-gray-500">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
                                         </div>
-                                        <div class="row-span-2 col-span-2">
-                                            <x-form method="post" action="esborraAlimentApat">
-                                                <img src="/imatges/esborra.png" alt="" class="cursor-pointer w-7" onclick="alert('si')">
+                                        <div class="row-span-2 col-span-2 md:col-span-1">
+                                            <x-form method="post" action="/esborraAlimentApat">
+                                                <input type="hidden" name="nomAliment" value="{{$arrayAliments[$i][$j]["nom"]}}">
+                                                <input type="hidden" name="idAliment" value="{{$arrayAliments[$i][$j]["id"]}}">
+                                                <input type="hidden" name="data" value="{{$data}}">
+                                                <input type="hidden" name="apat" value="{{$nomsApats[$i]}}">
+                                                <button type="submit"><img src="/imatges/esborra.png" alt="" class="cursor-pointer w-7"></button>
                                             </x-form>
                                         </div>
                                     </div>
