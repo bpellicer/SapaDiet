@@ -17,6 +17,7 @@ class CreatePlanificacionsTable extends Migration
             $table->id();
             $table->enum("nombre_apats",['2','3','4','5']);
             $table->enum('objectius',['perdre pes','guanyar pes','mantenir pes']);
+            $table->enum("esport",["Cap","Poc","Normal","Molt"]);
             $table->timestamps();
         });
     }

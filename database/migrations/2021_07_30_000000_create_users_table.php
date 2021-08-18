@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nom',30);
             $table->string('cognoms',255);
             $table->string('email',255)->unique();
+            $table->enum("sexe",["Home","Dona"]);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('contrasenya',255);
             $table->boolean('primera_vegada')->default(true);

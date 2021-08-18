@@ -16,6 +16,18 @@
                     <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                 @enderror
 
+                <div class="mb-2">
+                    <label class="block mb-2 text-sm font-bold text-gray-700" for="sexe">Sexe</label>
+                    <select name="sexe" id="sexe" class="inputClassic" value='{{old("sexe")}}'>
+                        <option value="Home">Home</option>
+                        <option value="Dona">Dona</option>
+                    </select>
+                </div>
+
+                @if(session()->has("errorSexe"))
+                    <p class="text-xs text-red-500 mb-2">{{ session('errorSexe') }}</p>
+                @endif
+
                 <x-input tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email" />
 
                 @error('email')
@@ -34,7 +46,8 @@
                     <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
                 @enderror
 
-                <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass">Mostra contrasenya</label>
+                <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass" class="text-sm md:text-base">Mostra contrasenya</label>
+
                 <div class="text-center">
                     <x-boto tipus="submit" classe="botoForm w-full" text="Registra't"/>
                 </div>

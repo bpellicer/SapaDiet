@@ -22,7 +22,8 @@ class User extends Authenticatable
         'nom',
         'cognoms',
         'email',
-        'contrasenya'
+        'contrasenya',
+        'sexe'
     ];
 
     /**

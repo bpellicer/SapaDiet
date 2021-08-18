@@ -32,12 +32,13 @@ class ControladorPerfil extends Controller
 
         /** Validem les dades del request **/
         $request->validate([
-            'nom'=>['required','max:30','string','alpha'],
-            'cognoms' =>['required','max:255','string','regex:/[A-zÀ-ú ]*$/']
+            'nom'       => ['required','max:30','string','alpha'],
+            'cognoms'   => ['required','max:255','string','regex:/[A-zÀ-ú ]*$/'],
+            'sexe'      => ['required','string','alpha']
         ]);
 
         /** Si les dades no han canviat, redirect al perfil**/
-        if($usuari->nom == $request->get('nom') && $usuari->cognoms == $request->get('cognoms')){
+        if($usuari->nom == $request->get('nom') && $usuari->cognoms == $request->get('cognoms') && $usuari->sexe == $request->get("sexe")){
             session()->flash('perfilError','Canvia algún valor!');
             return redirect("/perfil");
         }
@@ -45,6 +46,7 @@ class ControladorPerfil extends Controller
         /** Altrament, canvia els valors de l'usuari i redirigeix al perfil amb un missatge **/
         $usuari->nom = $request->get('nom');
         $usuari->cognoms = $request->get('cognoms');
+        $usuari->sexe = $request->get('sexe');
 
         $usuari->save();
 

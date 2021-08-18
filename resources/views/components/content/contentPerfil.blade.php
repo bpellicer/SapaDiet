@@ -17,6 +17,16 @@
                         <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
                      @enderror
 
+
+                    <label class="block text-sm font-bold text-gray-700 text-left" for="sexe">Sexe</label>
+                    <select name="sexe" id="sexe" class="inputClassic mb-3">
+                        <option value="Home" >Home</option>
+                        <option value="Dona" @if(auth()->user()->sexe == "Dona") selected @endif>Dona</option>
+                    </select>
+                    @if(session()->has("errorSexe"))
+                        <p class="text-xs text-red-500 mb-2">{{ session('errorSexe') }}</p>
+                    @endif
+
                     <x-inputPerfil tipus="email" classe="inputPerfil" id="email" nom="email" placeholder="Email"/>
                     <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
                 </x-form>

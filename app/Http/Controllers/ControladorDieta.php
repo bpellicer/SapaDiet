@@ -277,7 +277,7 @@ class ControladorDieta extends Controller
      * @param String $nomApat       Conté el nom de l'àpat a on es vol afegir l'aliment.
      */
     public function comprovaApats($nombreApats, $nomApat){
-        $arrayApats = ["Dinar","Sopar","Esmorzar","Berenar","Mig matí"];
+        $arrayApats = ["Dinar","Sopar","Esmorzar","Berenar","Mig Matí"];
         $trobat = false;
         for($i = 0; $i < $nombreApats; $i++){
             if($arrayApats[$i] == $nomApat) $trobat = true;
@@ -289,12 +289,15 @@ class ControladorDieta extends Controller
 
         $data = $this->giraData($request->data);
         $userApats = UserApat::where("user_id",Auth::id())->get();
-        $arrayAlimentsAborrar = [];
-        for($i= 0; $i < count($userApats); $i++){
-            for($j=0; $j < count($userApats[$i]->aliment); $j++){
+        for($i = 0; $i < count($userApats); $i++){
+            for($j = 0; $j < count($userApats[$i]->aliment); $j++){
                 if($userApats[$i]->aliment[$j]->pivot["data"] == $data){
-                    array_push($arrayAlimentsAborrar,$userApats[$i]->aliment[$j]);
                     $userApats[$i]->aliment[$j]->delete();
+                }
+            }
+            for($k = 0; $k < count($userApats[$i]->alimentPropi); $k++){
+                if($userApats[$i]->alimentPropi[$k]->pivot["data"] == $data){
+                    $userApats[$i]->alimentPropi[$k]->delete();
                 }
             }
         }

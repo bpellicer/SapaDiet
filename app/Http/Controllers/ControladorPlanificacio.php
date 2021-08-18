@@ -51,6 +51,7 @@ class ControladorPlanificacio extends Controller
             $planificacio = new Planificacio;
             $planificacio->nombre_apats = $request->get("apat");
             $planificacio->objectius = $request->get("objectius");
+            $planificacio->esport = $request->get("esport");
             $planificacio->save();
             $planificacio->alimentpreferit()->attach($aliments);    //Afegeix tots els aliments triats del formulari a la taula pivot N:M aliment_preferit_planificacio
             $usuari->planificacio_id = $planificacio->id;           //Actualitza el camp Id de la planificació de l'Usuari
@@ -64,6 +65,7 @@ class ControladorPlanificacio extends Controller
             $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
             $planificacio->nombre_apats = $request->get("apat");
             $planificacio->objectius = $request->get("objectius");
+            $planificacio->esport = $request->get("esport");
             $planificacio->save();
             $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
@@ -89,6 +91,12 @@ class ControladorPlanificacio extends Controller
         return $aliments;
     }
 
+    /**
+     * Funció que actualitza els Àpats de l'Usuari. En aquest cas, no contemplo guardar els aliments
+     * que hi ha a cada àpat si el nombre d'aquests canvia. En un futur ho faré, però hauria de
+     * contemplar masses coses com per fer-ho ara mateix.
+     * @param String $nombreApats   Conté el nombre d'àpats de la planificació de l'Usuari.
+     */
     public function updateApats($nombreApats){
         $userApats = UserApat::where("user_id",Auth::id())->get();
         foreach($userApats as $element){

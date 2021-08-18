@@ -83,12 +83,23 @@
                     </div>
                     <div class="py-3">
                         <h1 class="text-base font-bold sm:text-2xl">Objectius</h1>
-                        <select name="objectius" id="objectiu" class="rounded-2xl w-full sm:w-6/12 md:w-3/12 mt-2 sm:ml-12">
+                        <select name="objectius" id="objectiu" class="selectClassic">
                             <option value="perdre pes">Perdre pes</option>
                             <option value="guanyar pes">Guanyar pes</option>
                             <option value="mantenir pes">Mantenir pes</option>
                         </select>
                     </div>
+
+                    <div class="py-3">
+                        <h1 class="text-base font-bold sm:text-2xl">Activitat Física</h1>
+                        <select name="esport" id="esport" class="selectClassic">
+                            <option value="Cap">Sedentarisme</option>
+                            <option value="Poc">1 vegada a la setmana</option>
+                            <option value="Normal">2-3 vegades a la setmana</option>
+                            <option value="Molt">4-5 o més vegades a la setmana</option>
+                        </select>
+                    </div>
+
                     <div class="flex justify-center mt-3">
                         <x-boto tipus="submit" classe="botoPerfil w-8/12 " text="Guarda"/>
                     </div>

@@ -24,12 +24,20 @@ class ControladorRegistre extends Controller
      */
     public function store(Request $request){
         $atributs = $request->validate([
-            'nom'=>['required','max:30','alpha'],
-            'cognoms' =>['required','max:255','string','regex:/[A-zÀ-ú ]*$/'],
-            'email'=>['required','max:255','email',Rule::unique('users','email')],
-            'contrasenya'=>['required','max:255','same:password_confirmation',Password::min(8)->mixedCase()->symbols()],
-            'password_confirmation'=>['required','min:8','max:255']
+            'nom'                   => ['required','max:30','alpha'],
+            'cognoms'               => ['required','max:255','string','regex:/[A-zÀ-ú ]*$/'],
+            'email'                 => ['required','max:255','email',Rule::unique('users','email')],
+            'contrasenya'           => ['required','max:255','same:password_confirmation',Password::min(8)->mixedCase()->symbols()],
+            'sexe'                  => ['required','string','alpha'],
+            'password_confirmation' => ['required','min:8','max:255']
         ]);
+
+        /** Comprova que el camp Sexe sigui Home o Dona i si no és cap, torna enrere **/
+        if($request->sexe != "Home" && $request->sexe != "Dona"){
+            session()->flash("errorSexe","Escull un Sexe de la llista!");
+            return redirect()->back()->withInput();
+        }
+
 
         session()->flash('usuariCreat','Compte creat!');
 
