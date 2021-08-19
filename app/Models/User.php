@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -90,7 +89,7 @@ class User extends Authenticatable
     }
 
     public function apat(){
-        return $this->belongsToMany(Apat::class)->using(UserApat::class)->withTimestamps();
+        return $this->belongsToMany(Apat::class,'users_apats')->using(UserApat::class)->withTimestamps();
     }
 
     public function pesAltura(){

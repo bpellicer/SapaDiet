@@ -59,29 +59,32 @@ class ControladorDieta extends Controller
             /** Array d'imatges **/
             $arrayImatges = [];
 
-
             /**  Bucle que recorre l'array dels àpats de l'Usuari **/
             foreach($arrayUserApats as $apat){
                 /** Guarda els aliments de l'àpat de l'Usuari en una arrayAliments filtrant per la data **/
-                $arrayAliments = $apat->aliment->filter(function($value,$key) use ($dataAvui){
-                    return $value->pivot->data == $this->giraData($dataAvui);
-                });
+                $arrayAliments = [];
 
-                /** Fa el mateix que el codi d'amunt però amb els aliments propis de l'Usuari **/
-                $arrayAlimentsPropis = $apat->alimentPropi->filter(function($value,$key) use($dataAvui){
-                    return $value->pivot->data == $this->giraData($dataAvui);
-                });
-
-                /** Fusiona les 2 Collections en una sola array **/
-                $arrayAliments = $arrayAliments->toBase()->merge($arrayAlimentsPropis);
+                /** Filtra els aliments per la data i els afegeix a l'array d'Aliments **/
+                foreach($apat->aliment as $aliment){
+                    if($aliment->pivot->data == $this->giraData($dataAvui)){
+                        array_push($arrayAliments,$aliment);
+                    }
+                }
+                /** Filtra els aliments propis per la data i els afegeix a l'Array d'Aliments **/
+               foreach($apat->alimentPropi as $alimentPropi){
+                   if($alimentPropi->pivot->data == $this->giraData($dataAvui)){
+                       array_push($arrayAliments,$alimentPropi);
+                   }
+               }
 
                 $arrayImatgesApat = [];
                 /** Bucle per afegir les imatges de cada aliment a l' $arrayImatges **/
                 foreach($arrayAliments as $aliment){
                     array_push($arrayImatgesApat, $aliment->categoria->imatge->url);
                 }
+
                 array_push($arrayImatges,$arrayImatgesApat);
-                array_push($arrayAlimentsApatDia,array_values($arrayAliments->toArray()));
+                array_push($arrayAlimentsApatDia,array_values($arrayAliments));
             }
 
             /** Guarda la quantitat de nutrients de cada àpat **/

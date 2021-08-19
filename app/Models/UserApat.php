@@ -19,11 +19,11 @@ class UserApat extends Model
     ];
 
     public function aliment(){
-        return $this->belongsToMany(Aliment::class,'users_apats_aliments')->using(UserApatAliment::class)->withTimestamps();
+        return $this->belongsToMany(Aliment::class,'users_apats_aliments')->using(UserApatAliment::class)->withPivot('data','mesura_quantitat')->withTimestamps();
     }
 
     public function alimentPropi(){
-        return $this->belongsToMany(AlimentPropi::class,'users_apats_aliments_propis')->using(UserApatAlimentPropi::class)->withTimestamps();
+        return $this->belongsToMany(AlimentPropi::class,'users_apats_aliments_propis')->using(UserApatAlimentPropi::class)->withPivot('data','mesura_quantitat')->withTimestamps();
     }
 
 }
