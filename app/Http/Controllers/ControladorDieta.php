@@ -14,7 +14,6 @@ use App\Models\UserApatAlimentPropi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use PhpParser\Node\Expr\AssignOp\Plus;
 
 class ControladorDieta extends Controller
 {
@@ -32,7 +31,7 @@ class ControladorDieta extends Controller
         }
         /** Controla que l'Usuari només pugui entrar a les dates del mes actual i l'any actual **/
         else if(!$this->comprovaData($data)){
-            session()->flash('dataIncorrecte','Escull una data vàlida del mes i any actual');
+            session()->flash('dataIncorrecte','Escull una data del mes i any actual');
             return redirect("/calendari");
         }
         /** Controla que l'Usuari només pugui entrar una vegada ha afegit el seu pes i la seva altura **/
@@ -156,7 +155,10 @@ class ControladorDieta extends Controller
         $any = $array[2] == date("y") ? "20".date("y") : "00000000";
 
         /** If que comprova si la data és correcte, entre altres condicions. Si la data no compleix els requisits, el booleà dataCorrecte = false **/
-        if(count($array) != 3 || !checkdate($array[1],$array[0],intval($any)) || date("m") != $mes || strlen($array[0]) > 2 ||  strlen($array[1]) > 2 ||  strlen($array[2]) > 2){
+        if(count($array) != 3       || !checkdate($array[1],$array[0],intval($any)) ||
+            date("m") != $mes       ||  strlen($array[0]) > 2                       ||
+            strlen($array[1]) > 2   ||  strlen($array[2]) > 2                       ){
+
             $dataCorrecte = false;
         }
         return $dataCorrecte;
@@ -436,28 +438,54 @@ class ControladorDieta extends Controller
         session()->flash("diaEsborrat","Dia esborrat!");
         return redirect("/calendari");
     }
-
+    /**
+     * Funció que esborra un Aliment de l'Àpat escollit.
+     * @param Request $request      Conté les dades per a poder esborrar un Aliment d'un Àpat correctament
+     */
     public function deleteAlimentApat(Request $request){
         $request->validate([
-            'nomAliment'    => ['string','min:1','required'],
+            'grams'         => ['string','required','min:1','max:9999'],
             'idAliment'     => ['required','string'],
             'data'          => ['required','string','date'],
             'apat'          => [Rule::exists('apats','nom'),'required','string']
         ]);
 
+        /** Gira la data en format YYYY-MM-DD per a buscar-la a la BDD **/
         $data = $this->giraData($request->data);
-        $userApat = UserApat::where("user_id",Auth::id())->where("apat_id",Apat::where('nom',$request->apat)->first()->id)->first();
-       /*  ddd($userApat->aliment[0]->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->delete()); */
-        foreach($userApat->aliment as $aliment){
-            $aliment->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->delete();
+
+        /** Obté l'Àpat de l'Usuari escollit **/
+        $userApat = UserApat::where('user_id',Auth::id())->where("apat_id",Apat::where("nom",$request->apat)->first()->id)->first();
+
+        /** Busca a la taula users_apats_aliments el registre que coincideixi amb l'Àpat de l'Usuari, la data, l'aliment id i la mesura_quantitat **/
+        $alimentUserApat = UserApatAliment::where('user_apat_id',$userApat->id)
+                            ->where('data',$data)->where("aliment_id",$request->idAliment)
+                            ->where("mesura_quantitat",$request->grams)->first();
+
+        /** Busca a la taula users_apats_aliments_propis el registre que coincideixi amb l'Àpat de l'Usuari, la data, l'aliment id i la mesura_quantitat **/
+        $alimentPropiUserApat = UserApatAlimentPropi::where('user_apat_id',$userApat->id)
+                                ->where("data",$data)->where("aliment_propi_id",$request->idAliment)
+                                ->where("mesura_quantitat",$request->grams)->first();
+
+        /** Formateja la data al format DD-MM-YY per a enviar-la per url a la ruta del calendari **/
+        $formatData = substr($request->data, 0,6).substr($request->data, 8, strpos($request->data, "-"));
+
+        /** Si troba l'Aliment a l'Àpat de l'Usuari, l'esborra **/
+        if($alimentUserApat){
+            $alimentUserApat->delete();
+            session()->flash("alimentEsborrat","Aliment esborrat!");
+            return redirect("/calendari/".$formatData);
+        }
+        /** Si troba l'AlimentPropi a l'Àpat de l'Usuari, l'esborra **/
+        else if($alimentPropiUserApat){
+            $alimentPropiUserApat->delete();
+            session()->flash("alimentEsborrat","Aliment esborrat!");
+            return redirect("/calendari/".$formatData);
+        }
+        /** Si els dos són NULL, redirigeix a la pàgina de 404 **/
+        else{
+            return view("errors.404");
         }
 
-        /* foreach($userApat->aliment as $aliment){
-            if($aliment->pivot['data'] == $data && $aliment->nom = $request->nomAliment && $aliment->id == $request->idAliment){
-                array_push($arrayAborrar,$aliment);
-            }
-        }
-        ddd($arrayAborrar[0]->pivot->detach()); */
     }
 
 }

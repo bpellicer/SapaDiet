@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="row-span-2 col-span-2 md:col-span-1">
                                             <x-form method="post" action="/esborraAlimentApat">
-                                                <input type="hidden" name="nomAliment" value="{{$arrayAliments[$i][$j]["nom"]}}">
+                                                <input type="hidden" name="grams" value="{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}}">
                                                 <input type="hidden" name="idAliment" value="{{$arrayAliments[$i][$j]["id"]}}">
                                                 <input type="hidden" name="data" value="{{$data}}">
                                                 <input type="hidden" name="apat" value="{{$nomsApats[$i]}}">

@@ -234,7 +234,7 @@ input,select,button{
 }
 
 .divIntern{
-    @apply z-10 absolute mx-auto my-20 p-8 left-0 top-0 right-0 h-auto bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
+    @apply z-10 absolute mx-auto my-20 p-2 sm:p-8 left-0 top-0 right-0 h-auto bg-green4 rounded-3xl w-10/12 md:w-8/12 lg:w-8/12;
     box-shadow:8px 8px 24px 0 rgb(0 0 0 / 50%);
 }
 

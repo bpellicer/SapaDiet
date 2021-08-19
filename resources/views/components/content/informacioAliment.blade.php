@@ -7,13 +7,7 @@
             <div class="flex justify-center text-center">
                 <x-form method="post" action="/updateAliment" class="mt-2 inline-block w-96">
                     <input type="hidden" name="id" value="{{$aliment[0]->id}}">
-
-                    <label for="nom" class="labelGeneral">Nom</label>
-                    <input type="text" name="nom" value="{{$aliment[0]->nom}}" class="inputPerfil">
-                    @error('nom')
-                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
-                    @enderror
-
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-bold">{{$aliment[0]->nom}}</h2>
                     <h2 class="text-sm 2xs:text-base md:text-2xl mt-10 mb-4 font-semibold underline">Valors energètics 100 grams</h2>
                     <label for="kilocalories" class="labelGeneral ">Kilocalories</label>
                     <div class="kcal">

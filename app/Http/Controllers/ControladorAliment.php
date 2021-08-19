@@ -42,12 +42,7 @@ class ControladorAliment extends Controller
      */
     public function update(Request $request){
         $atributs = $request->validate([
-            'nom' => ['required','string','regex:/^[A-zÀ-ú ]*$/','max:20',Rule::unique('aliment_propis','nom')->where(
-                function($query){
-                    return $query->where('user_id',Auth::id());
-                })
-            ],
-            'kilocalories' => ['required','numeric','min:0','max:1000'],
+            'kilocalories' => ['required','numeric','max:1000','min:0'],
             'proteines' => ['required','numeric', 'max:1000', 'min:0'],
             'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
             'greixos' => ['required','numeric', 'max:1000', 'min:0']
@@ -66,7 +61,6 @@ class ControladorAliment extends Controller
      */
     public function updateDadesAliment($atributs, $alimentPropi){
 
-        $alimentPropi->nom = $atributs["nom"];
         $alimentPropi->proteines = $atributs["proteines"];
         $alimentPropi->hidrats = $atributs["hidrats"];
         $alimentPropi->greixos = $atributs["greixos"];
