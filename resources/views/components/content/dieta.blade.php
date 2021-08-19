@@ -34,7 +34,7 @@
             <div class="mt-10 mb-10">
                 <div class="grid grid-cols-1 gap-4 lg:px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
-                        <div class="bg-white border-2 border-black rounded-3xl p-3">
+                        <div class="bg-white border-2 border-black rounded-3xl p-2.5">
                             <div class="grid sm:grid-cols-3">
                                 <div class="text-left font-bold text-sm md:text-base"><p>{{$nomsApats[$i]}}</p></div>
                                 <div class="sm:text-right mt-2 sm:mt-0 col-span-2 grid grid-cols-4">

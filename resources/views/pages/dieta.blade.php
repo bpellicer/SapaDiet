@@ -2,11 +2,13 @@
 <x-layout.navAuth/>
 @include("components.content.dieta")
 <script>
-    let kcalTotals = {!! json_encode($arrayNutrientsTotals[3]) !!};
+    let kcalConsumides = {!! json_encode($arrayNutrientsTotals[3]) !!};
+    let kcalTotals = {!! json_encode($kcalTotals) !!}
+
     let cercle = $("#cercleBar");
     let radi = cercle.attr("r");
     let perimetre = 2 * Math.PI * radi;
-    let pct = Math.round(kcalTotals * 100 / 2850);
+    let pct = Math.round(kcalConsumides * 100 / kcalTotals);
 
     if(pct > 50 && pct < 100){
         let percentatgeSuperior = (1 - (pct-50)/100) * perimetre;
