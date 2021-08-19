@@ -215,6 +215,11 @@ class ControladorDieta extends Controller
         return $arrayTotals;
     }
 
+    /**
+     * Funció que retorna les kilocalories que ha de consumir l'Usuari segons els seus desitjos
+     * @param User $usuari                  Conté un objecte de la classe l'Usuari
+     * @param Planificacio $planificació    Conté un objecte de la classe Planificació
+     */
     public function getDietaCalculada($usuari,$planificacio){
         $pesAltura = PesAltura::where("user_id",$usuari->id)->get()->last();
         $kcalTotals = 0;

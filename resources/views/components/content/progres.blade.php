@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div>
-
+                <div id="chart_div" class="w-56"></div>
             </div>
         </div>
     </div>
