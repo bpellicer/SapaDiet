@@ -9,6 +9,7 @@ use App\Models\PesAltura;
 use App\Models\Planificacio;
 use App\Models\User;
 use App\Models\UserApat;
+use App\Models\UserApatAliment;
 use App\Models\UserApatAlimentPropi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -339,10 +340,13 @@ class ControladorDieta extends Controller
         if($request->tipusAliment == "propi"){
             /** Comprova que l'AlimentPropi existeixi a la BDD i que sigui de l'Usuari **/
             if(AlimentPropi::where("id",$request->alimentId)->where("user_id",Auth::id())->first()){
-                $alimentPropiUserApat = UserApatAlimentPropi::where('user_apat_id',$userApat->id)->where("data",$request->data)->first();
+                /** Busca a la classe pivot UserApatAlimentPropi si existeix l'aliment afegit a l'apat i a la data corresponent **/
+                $alimentPropiUserApat = UserApatAlimentPropi::where('user_apat_id',$userApat->id)->where("data",$request->data)->where("aliment_propi_id",$request->alimentId)->first();
+                /** Si existeix, actualitza els grams de l'aliment **/
                 if($alimentPropiUserApat){
                     $alimentPropiUserApat->mesura_quantitat += $request->grams;
                 }
+                /** Altrament, crea un nou Aliment dins de l'Àpat de l'Usuari **/
                 else{
                     $alimentPropiUserApat = new UserApatAlimentPropi();
                     $alimentPropiUserApat->user_apat_id = $userApat->id;
@@ -359,8 +363,24 @@ class ControladorDieta extends Controller
         else if($request->tipusAliment == "bdd"){
             /** Comprova que l'Aliment existeixi a la BDD **/
             if(Aliment::where("id",$request->alimentId)->first()){
-                /** Afegeix l'aliment a la taula pivot user_apats_aliments amb la data, la mesura i els corresponents ids **/
-                $userApat->aliment()->attach([$userApat->id => ["aliment_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+                /** Busca a la classe pivot UserApatAliment si existeix l'aliment afegit a l'apat i a la data corresponent **/
+                $alimentUserApat = UserApatAliment::where('user_apat_id',$userApat->id)->where('data',$request->data)->where("aliment_id",$request->alimentId)->first();
+
+                /** Si existeix, actualitza els grams de l'aliment **/
+                if($alimentUserApat){
+                    $alimentUserApat->mesura_quantitat += $request->grams;
+                }
+
+                /** Altrament, crea un nou Aliment dins de l'Àpat de l'Usuari **/
+                else{
+                    $alimentUserApat = new UserApatAliment();
+                    $alimentUserApat->user_apat_id = $userApat->id;
+                    $alimentUserApat->data = $request->data;
+                    $alimentUserApat->mesura_quantitat = $request->grams;
+                    $alimentUserApat->aliment_id = $request->alimentId;
+                }
+
+                $alimentUserApat->save();
                 session()->flash("alimentAfegit","Aliment afegit!");
                 return redirect("/cercador/cerca_aliments");
             }
