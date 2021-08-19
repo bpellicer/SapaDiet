@@ -417,22 +417,30 @@ class ControladorDieta extends Controller
      */
     public function deleteDia(Request $request){
         $request->validate([
-            'data'    => ['string','required']
+            'data'    => ['string','required','date_format:d-m-Y','date']
         ]);
-
+        /** Format de la data en YYYY-MM-DD **/
         $data = $this->giraData($request->data);
+
+        /** Obté els Àpats de l'Usuari **/
         $userApats = UserApat::where("user_id",Auth::id())->get();
-        for($i = 0; $i < count($userApats); $i++){
-            for($j = 0; $j < count($userApats[$i]->aliment); $j++){
-                if($userApats[$i]->aliment[$j]->pivot["data"] == $data){
-                    $userApats[$i]->aliment[$j]->delete();
-                }
+        $arrayExtra = [];
+
+        /** Bucle que guarda a una array auxiliar $arrayExtra els aliments que es troben als àpats de l'Usuari i que coincideixin amb la data del dia **/
+        foreach($userApats as $apat){
+
+            array_push($arrayExtra,UserApatAliment::where('user_apat_id',$apat->id)
+                            ->where('data',$data)->get());
+            array_push($arrayExtra,UserApatAlimentPropi::where('user_apat_id',$apat->id)
+                            ->where('data',$data)->get());
+        }
+
+        /** Bucle que recorre l'array auxiliar $arrayExtra i esborra els aliments que hi apareixen **/
+        foreach($arrayExtra as $apat){
+            foreach($apat as $aliment){
+                $aliment->delete();
             }
-            for($k = 0; $k < count($userApats[$i]->alimentPropi); $k++){
-                if($userApats[$i]->alimentPropi[$k]->pivot["data"] == $data){
-                    $userApats[$i]->alimentPropi[$k]->delete();
-                }
-            }
+
         }
 
         session()->flash("diaEsborrat","Dia esborrat!");
