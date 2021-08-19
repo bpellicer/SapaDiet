@@ -9,11 +9,13 @@ class Aliment extends Model
 {
     use HasFactory;
 
+    protected $table="aliments";
+
     public function categoria(){
         return $this->belongsTo(Categoria::class);
     }
 
     public function userApat(){
-        return $this->belongsToMany(UserApat::class, "users_apats_aliments")->withPivot('data','mesura_quantitat')->withTimestamps();
+        return $this->belongsToMany(UserApat::class)->using(UserApatAliment::class)->withTimestamps();
     }
 }

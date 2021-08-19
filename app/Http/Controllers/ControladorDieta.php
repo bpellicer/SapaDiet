@@ -9,6 +9,7 @@ use App\Models\PesAltura;
 use App\Models\Planificacio;
 use App\Models\User;
 use App\Models\UserApat;
+use App\Models\UserApatAlimentPropi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -314,7 +315,7 @@ class ControladorDieta extends Controller
     public function afegeixAlimentDieta(Request $request){
         $request->validate([
             'data'      => ['date','required'],
-            'grams'     => ['numeric','required', 'min:0', 'max:1000'],
+            'grams'     => ['numeric','required', 'min:0', 'max:9999'],
             'apat'      => ['string',Rule::exists("apats","nom")]
         ]);
 
@@ -338,8 +339,18 @@ class ControladorDieta extends Controller
         if($request->tipusAliment == "propi"){
             /** Comprova que l'AlimentPropi existeixi a la BDD i que sigui de l'Usuari **/
             if(AlimentPropi::where("id",$request->alimentId)->where("user_id",Auth::id())->first()){
-                /** Afegeix l'aliment a la taula pivot users_apats_aliments_propis amb la data, la mesura i els corresponents ids **/
-                $userApat->alimentPropi()->attach([$userApat->id => ["aliment_propi_id" => $request->alimentId, "mesura_quantitat" => $request->grams, "data" => $request->data]]);
+                $alimentPropiUserApat = UserApatAlimentPropi::where('user_apat_id',$userApat->id)->where("data",$request->data)->first();
+                if($alimentPropiUserApat){
+                    $alimentPropiUserApat->mesura_quantitat += $request->grams;
+                }
+                else{
+                    $alimentPropiUserApat = new UserApatAlimentPropi();
+                    $alimentPropiUserApat->user_apat_id = $userApat->id;
+                    $alimentPropiUserApat->data = $request->data;
+                    $alimentPropiUserApat->mesura_quantitat = $request->grams;
+                    $alimentPropiUserApat->aliment_propi_id = $request->alimentId;
+                }
+                $alimentPropiUserApat->save();
                 session()->flash("alimentAfegit","Aliment afegit!");
                 return redirect("/cercador/aliments_propis");
             }
@@ -410,14 +421,14 @@ class ControladorDieta extends Controller
             'data'          => ['required','string','date'],
             'apat'          => [Rule::exists('apats','nom'),'required','string']
         ]);
-        $arrayAborrar = [];
+
         $data = $this->giraData($request->data);
         $userApat = UserApat::where("user_id",Auth::id())->where("apat_id",Apat::where('nom',$request->apat)->first()->id)->first();
-        ddd($userApat->aliment);
+       /*  ddd($userApat->aliment[0]->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->delete()); */
         foreach($userApat->aliment as $aliment){
-            array_push($arrayAborrar,$aliment->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->get());
+            $aliment->pivot->where("data",$data)->where("user_apat_id",$userApat->id)->where("aliment_id",$request->idAliment)->delete();
         }
-        ddd($arrayAborrar);
+
         /* foreach($userApat->aliment as $aliment){
             if($aliment->pivot['data'] == $data && $aliment->nom = $request->nomAliment && $aliment->id == $request->idAliment){
                 array_push($arrayAborrar,$aliment);
