@@ -2,7 +2,7 @@
     <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-8/12 bg-green4 rounded-3xl border-2 border-black p-1 sm:p-5 text-center">
             <h1 class="font-bold text-xl sm:text-2xl md:text-3xl">Progrés</h1>
-            <div class="grid grid-cols-1">
+            <div class="grid grid-cols-1" id="prog">
                 <x-form method="POST" action="/addPesAltura" class="form">
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-0">
                         <div class="p-3 place-self-center sm:place-self-end sm:mb-2 inline-block w-20">
@@ -40,7 +40,13 @@
                 </div>
             </div>
             <div class="px-1 sm:px-3 md:px-10 mb-4 chart-container" style="position: relative; heigth:80vh;">
-                <canvas id="myChart" aria-label="Kilocalories consumides els últims 7 dies" role="img" class="bg-white border-2 border-black rounded-lg">
+                <canvas id="historicPes" aria-label="Histograma del teu pes de les últimes 7 dates on vas actualitzar el pes" role="img" class="bg-white border-2 border-black rounded-lg px-2">
+                    <p class="text-mini xs:text-xs sm:text-sm text-red-500 font-bold">*El teu buscador no soporta aquest gràfic.</p>
+                </canvas>
+            </div>
+
+            <div class="chart-container px-1 sm:px-3 md:px-10 mb-4" style="position: relative height:80vh;">
+                <canvas id="historicKcal" aria-label="Kilocalories consumides els últims 7 dies" role="img" class="bg-white border-2 border-black rounded-lg px-2">
                     <p class="text-mini xs:text-xs sm:text-sm text-red-500 font-bold">*El teu buscador no soporta aquest gràfic.</p>
                 </canvas>
             </div>

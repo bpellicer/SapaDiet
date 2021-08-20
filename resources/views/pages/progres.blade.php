@@ -11,42 +11,39 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
 <script>
+    /** Obté l'array de pes de l'Usuari **/
     let pesos = {!! json_encode($pesos) !!};
-    console.log(pesos);
-    var ctx = $('#myChart');
+    var historicPes = $('#historicPes');
+    /** Aplica la font Poppins **/
     Chart.defaults.font.family = "Poppins";
     let arrayData = [];
-    for(let i = 0; i<pesos.length; i++){
+    /** Bucle que guarda en una array objectes del tipus {data:x, pes:y} **/
+    for(let i = pesos.length - 1; i>=0; i--){
         let data = {};
         data.x = pesos[i].data;
         data.y = pesos[i].pes;
         arrayData.push(data);
-        console.log(pesos[i]);
     }
-    var myChart = new Chart(ctx, {
+    /** Crea un nou gràfic **/
+    var myChart = new Chart(historicPes, {
         type: 'line',
         data: {
             datasets: [{
-                label: 'Pes Usuari',
+                label:"Pes",
                 data: arrayData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(255, 159, 64)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 206, 86)',
+                    'rgba(255, 99, 132)',
+                    'rgba(173,99,89)'
                 ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                borderColor: "#5DCA53",
                 borderWidth: 1,
-                hoverBackgroundColor: "#555"
+                hoverBackgroundColor: "#555",
+                pointRadius:8,
             }]
         },
         options: {
@@ -56,7 +53,28 @@
                 title: {
                     display: true,
                     text: 'Histograma del pes',
-                    fontSize:10
+                    font:{
+                        size: 15
+                    }
+                },
+                subtitle:{
+                    display:true,
+                    text:'(Kg)',
+                    position:"left"
+                },
+                legend:{
+                    display:true,
+                    position:'bottom',
+                    labels:{
+                        color:"black"
+                    }
+                },
+                tooltip:{
+                    backgroundColor: "#D7F1B7",
+                    borderWidth:1,
+                    borderColor:"black",
+                    titleColor:"black",
+                    bodyColor:"black"
                 }
             }
         }
@@ -64,4 +82,7 @@
     myChart.canvas.parentNode.style.height = '430px';
 </script>
 
+<script>
+
+</script>
 <x-layout.footerAuth/>
