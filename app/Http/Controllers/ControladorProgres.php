@@ -15,11 +15,14 @@ class ControladorProgres extends Controller
         $pesAltura = PesAltura::where("user_id",Auth::id())->orderBy("data","DESC")->first();
 
         $imc = $this->getImc($pesAltura->pes,$pesAltura->altura);
+        $arrayPesos = PesAltura::where('user_id',Auth::id())->orderBy("data","ASC")->get();
+
 
         return view("pages.progres",[
             "pes"       => $pesAltura->pes,
             "altura"    => $pesAltura->altura,
-            "imc"       => $imc
+            "imc"       => $imc,
+            'pesos'     => $arrayPesos
         ],compact("title"));
     }
 

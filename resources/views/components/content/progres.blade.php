@@ -39,9 +39,12 @@
                     <div id="infoImc" class="flex justify-center mt-4 mb-4"></div>
                 </div>
             </div>
-            <div>
-                <div id="chart_div" class="w-56"></div>
+            <div class="px-1 sm:px-3 md:px-10 mb-4 chart-container" style="position: relative; heigth:80vh;">
+                <canvas id="myChart" aria-label="Kilocalories consumides els últims 7 dies" role="img" class="bg-white border-2 border-black rounded-lg">
+                    <p class="text-mini xs:text-xs sm:text-sm text-red-500 font-bold">*El teu buscador no soporta aquest gràfic.</p>
+                </canvas>
             </div>
+
         </div>
     </div>
 </div>
