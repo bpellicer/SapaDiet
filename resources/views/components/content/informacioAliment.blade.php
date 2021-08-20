@@ -14,7 +14,7 @@
                         <input type="number" name="kilocalories" value="{{$aliment[0]->kilocalories}}" class="inputPerfil">
                     </div>
                     @error('kilocalories')
-                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        <p class="missatgeError">*{{ucfirst($message)}}</p>
                     @enderror
 
                     <label for="proteines" class="labelGeneral">Proteïnes</label>
@@ -22,7 +22,7 @@
                         <input type="number" name="proteines" value="{{$aliment[0]->proteines}}" class="inputPerfil">
                     </div>
                     @error('proteines')
-                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        <p class="missatgeError">*{{ucfirst($message)}}</p>
                     @enderror
 
                     <label for="hidrats" class="labelGeneral">Carbohidrats</label>
@@ -30,7 +30,7 @@
                         <input type="number" name="hidrats" value="{{$aliment[0]->hidrats}}" class="inputPerfil">
                     </div>
                     @error('hidrats')
-                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        <p class="missatgeError">*{{ucfirst($message)}}</p>
                     @enderror
 
                     <label for="greixos" class="labelGeneral">Greixos</label>
@@ -38,7 +38,7 @@
                         <input type="number" name="greixos" value="{{$aliment[0]->greixos}}" class="inputPerfil">
                     </div>
                     @error('greixos')
-                        <p class="text-xs text-red-500 mb-2">*{{ucfirst($message)}}</p>
+                        <p class="missatgeError">*{{ucfirst($message)}}</p>
                     @enderror
 
                     <button type="submit" class="botoPerfil w-full">Actualitza les dades</button>
@@ -77,21 +77,21 @@
                 </div>
                 <div id="errors" class="mt-4">
                     @error('grams')
-                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                        <p class="missatgeError">* {{ucfirst($message)}}</p>
                     @enderror
                     @error('data')
-                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                        <p class="missatgeError">* {{ucfirst($message)}}</p>
                     @enderror
                     @error('apat')
-                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                        <p class="missatgeError">* {{ucfirst($message)}}</p>
                     @enderror
 
                     @if (session()->has('errorData'))
-                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorData') }}</p>
+                        <p class="missatgeError">* {{ session('errorData') }}</p>
                     @endif
 
                     @if (session()->has('errorApat'))
-                        <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorApat') }}</p>
+                        <p class="missatgeError">* {{ session('errorApat') }}</p>
                     @endif
                 </div>
             </div>

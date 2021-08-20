@@ -4,29 +4,29 @@
             <h1 class="font-semibold text-xl sm:text-2xl md:text-3xl">Cercador SapaDiet</h1>
             <div class="grid md:grid-cols-3 gap-4 md:px-0 sm:p-10 mb-4 mt-4">
                 <a href="cercador/cerca_aliments">
-                    <div class="bg-green1 border-2 border-black rounded-3xl hover:bg-green5">
-                        <h2 class="text-lg sm:text-xl font-medium mt-2">Cerca un aliment</h2>
-                        <div class="flex justify-center p-7 h-full">
-                            <img src="/imatges/busca.png" class="w-20 h-20 sm:mx-4">
-                            <img src="/imatges/aliments/burger.png" class="w-20 h-20 sm:mx-4">
+                    <div class="divCerca">
+                        <h2 class="titolCerca">Cerca un aliment</h2>
+                        <div class="divCercaImatge">
+                            <img src="/imatges/busca.png" class="imatgeCerca1">
+                            <img src="/imatges/aliments/burger.png" class="imatgeCerca1">
                         </div>
                     </div>
                 </a>
                 <a href="cercador/afegeix_aliment">
-                    <div class="bg-green1 border-2 border-black rounded-3xl hover:bg-green5 ">
-                        <h2 class="text-lg sm:text-xl font-medium mt-2">Afegeix un aliment</h2>
-                        <div class="flex justify-center p-7 h-full">
-                            <img src="/imatges/crea.png" class="w-20 h-20 sm:mx-4">
-                            <img src="/imatges/aliments/pancake.png" class="w-20 h-20 sm:mx-4">
+                    <div class="divCerca">
+                        <h2 class="titolCerca">Afegeix un aliment</h2>
+                        <div class="divCercaImatge">
+                            <img src="/imatges/crea.png" class="">
+                            <img src="/imatges/aliments/pancake.png" class="imatgeCerca1">
                         </div>
                     </div>
                 </a>
                 <a href="cercador/aliments_propis">
-                    <div class="bg-green1 border-2 border-black rounded-3xl hover:bg-green5 ">
-                        <h2 class="text-lg sm:text-xl font-medium mt-2">Els teus aliments</h2>
-                        <div class="flex justify-center p-7 h-full">
-                            <img src="/imatges/cor.png" class="w-16 h-16 mx-4 mt-2">
-                            <img src="/imatges/aliments/muffin.png" class="w-20 h-20 sm:mx-4">
+                    <div class="divCerca">
+                        <h2 class="titolCerca">Els teus aliments</h2>
+                        <div class="divCercaImatge">
+                            <img src="/imatges/cor.png" class="imatgeCerca2">
+                            <img src="/imatges/aliments/muffin.png" class="imatgeCerca1">
                         </div>
                     </div>
                 </a>

@@ -7,13 +7,13 @@
                 <x-input tipus="text" classe="inputClassic" id="nom" nom="nom" placeholder="Nom"/>
 
                 @error('nom')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <x-input tipus="text" classe="inputClassic" id="cognoms" nom="cognoms" placeholder="Cognoms" />
 
                 @error('cognoms')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <div class="mb-2">
@@ -25,31 +25,31 @@
                 </div>
 
                 @if(session()->has("errorSexe"))
-                    <p class="text-xs text-red-500 mb-2">{{ session('errorSexe') }}</p>
+                    <p class="missatgeError">{{ session('errorSexe') }}</p>
                 @endif
 
                 <x-input tipus="number" classe="inputClassic" id="edat" nom="edat" placeholder="Edat" />
 
                 @error('edat')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <x-input tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email" />
 
                 @error('email')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" id="contra1" placeholder="Contrasenya"/>
 
                 @error('contrasenya')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <x-input tipus="password" classe="inputClassic contrasenya" nom="password_confirmation" id="contra2" placeholder="Repeteix Contrasenya" />
 
                 @error('password_confirmation')
-                    <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                    <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
                 <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass" class="text-sm md:text-base">Mostra contrasenya</label>

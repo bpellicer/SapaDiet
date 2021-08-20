@@ -2,6 +2,7 @@
 <x-layout.navAuth/>
 @include('components.content.informacioAliment')
 <script>
+    /** Quan el document es carregui posa la data d'avui a l'input #dataInput **/
     $(document).ready(function(){
     let ara = new Date();
     let dia = ("0" + ara.getDate()).slice(-2);

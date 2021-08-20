@@ -19,6 +19,7 @@ a{
 }
 
 /***************    NORMES GENERALS ***************/
+
 input,select,button{
 @apply focus:outline-none focus:ring focus:border-blue-300;
 }
@@ -146,7 +147,6 @@ input,select,button{
    @apply border-t-2 border-gray-500 mt-5 pt-2;
 }
 
-/**     Logos Footer Tecnologies     **/
 .logosTecno{
     @apply inline-block text-black hover:underline mt-2 p-2 focus:outline-none;
     @apply transform hover:scale-125 transition ease-in-out;
@@ -155,6 +155,12 @@ input,select,button{
 
 .mapaWeb{
     @apply w-full overflow-hidden sm:w-1/3 order-3 pt-3;
+}
+
+
+/***************    ERRORS    ***************/
+.missatgeError{
+    @apply text-xs text-red-500 mb-2 font-bold;
 }
 
 
@@ -312,6 +318,28 @@ input,select,button{
     @apply block text-sm font-bold text-gray-700 text-left;
 }
 
+
+/***************    APARTAT CERCA   ***************/
+.divCerca{
+    @apply bg-green1 border-2 border-black rounded-3xl hover:bg-green5;
+}
+
+.divCercaImatge{
+    @apply flex justify-center p-7 h-full;
+}
+
+.imatgeCerca1{
+    @apply w-20 h-20 sm:mx-4;
+}
+
+.imatgeCerca2{
+    @apply w-16 h-16 mx-4 mt-2;
+}
+
+.titolCerca{
+    @apply text-lg sm:text-xl font-medium mt-2;
+}
+
 /***************    CARTA ALIMENTS  **********************/
 .cartaAliment2{
     @apply bg-green1 border-2 border-black mt-4 rounded-3xl w-80 sm:w-64 xl:w-96 sm:inline-block mx-2 p-4 cursor-pointer hover:bg-green5;
@@ -336,7 +364,9 @@ input,select,button{
     content: 'gr';
 }
 
-/*************** BARRA DE PROGRÉS ***************/
+
+/*************** APARTAT DIETA ***************/
+/** BARRA DE PROGRÉS **/
 
 #cercleOffset, #cercleBar {
   stroke-dashoffset: 0;
@@ -354,7 +384,16 @@ input,select,button{
     stroke-width: 3;
 }
 
-/*************** TAULA DEL IMC ***************/
+/** ALTRES ELEMENTS **/
+
+.pDieta{
+    @apply text-xs xs:text-sm sm:text-lg;
+}
+
+.divInfoAliment{
+    @apply text-mini 2xs:text-sm md:text-base;
+}
+/*************** PROGRÉS ***************/
 table,tr,th,td{
     border: 2px solid black;
     border-collapse:collapse;
@@ -373,6 +412,33 @@ td{
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+.divAlturaPes{
+    @apply p-3 place-self-start inline-block sm:w-40;
+}
+
+.divLabelPesAltura{
+    @apply p-3 place-self-center sm:place-self-end sm:mb-2 inline-block;
+}
+
+.inputPesAltura{
+    @apply rounded-2xl p-2 sm:mt-2 w-16 sm:w-20 inline-block;
+}
+
+/*************** CLASSES DELS GRÀFICS ***************/
+.grafic{
+    @apply px-1 sm:px-3 md:px-10 mb-10;
+    position: relative;
+    heigth:80vh;
+}
+
+.grafic canvas{
+    @apply bg-white border-2 border-black rounded-lg px-5;
+}
+
+.grafic_p{
+    @apply text-mini xs:text-xs sm:text-sm text-red-500 font-bold;
 }
 
 /************************* NORMALIZE     *************************/

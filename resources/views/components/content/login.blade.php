@@ -8,13 +8,13 @@
                     <x-input tipus="email" classe="inputClassic" id="email" nom="email" placeholder="Email"/>
 
                     @error('email')
-                        <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                        <p class="missatgeError">{{ucfirst($message)}}</p>
                      @enderror
 
                     <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" id="contra1" placeholder="Contrasenya"/>
 
                     @error('contrasenya')
-                        <p class="text-xs text-red-500 mb-2">{{ucfirst($message)}}</p>
+                        <p class="missatgeError">{{ucfirst($message)}}</p>
                     @enderror
 
                     <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass">Mostra contrasenya</label>

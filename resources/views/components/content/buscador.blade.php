@@ -26,21 +26,21 @@
 
             <div id="errors" class="mt-4">
                 @error('grams')
-                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    <p class="missatgeError">* {{ucfirst($message)}}</p>
                 @enderror
                 @error('data')
-                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    <p class="missatgeError">* {{ucfirst($message)}}</p>
                 @enderror
                 @error('apat')
-                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ucfirst($message)}}</p>
+                    <p class="missatgeError">* {{ucfirst($message)}}</p>
                 @enderror
 
                 @if (session()->has('errorData'))
-                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorData') }}</p>
+                    <p class="missatgeError">* {{ session('errorData') }}</p>
                 @endif
 
                 @if (session()->has('errorApat'))
-                    <p class="text-sm text-red-500 mb-2 font-bold">* {{ session('errorApat') }}</p>
+                    <p class="missatgeError">* {{ session('errorApat') }}</p>
                 @endif
             </div>
         </div>

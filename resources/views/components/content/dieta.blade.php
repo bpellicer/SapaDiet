@@ -7,16 +7,16 @@
                     <div class="row-start-2 md:row-start-1 md:col-span-2">
                         <div class="grid grid-cols-3 h-full place-content-center">
                             <div class="2xs:pl-10 text-left sm:pl-20 md:pl-0 w-20 md:ml-20 lg:ml-20">
-                                <p class="text-xs xs:text-sm sm:text-lg font-bold">Proteïnes:</p>
-                                <p class="text-xs xs:text-sm sm:text-lg font-bold">Carbohidrats: </p>
-                                <p class="text-xs xs:text-sm sm:text-lg font-bold">Greixos:</p>
-                                <p class="text-xs xs:text-sm sm:text-lg font-bold">Kilocalories:</p>
+                                <p class="pDieta font-bold">Proteïnes:</p>
+                                <p class="pDieta font-bold">Carbohidrats: </p>
+                                <p class="pDieta font-bold">Greixos:</p>
+                                <p class="pDieta font-bold">Kilocalories:</p>
                             </div>
                             <div class="2xs:pr-10 sm:pr-20 md:pr-0 text-right col-span-2">
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[0]}} / {{round($kcalTotals * 0.25 / 4)}}gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[1]}} / {{round($kcalTotals * 0.5 / 4)}}gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[2]}} / {{round($kcalTotals * 0.25 / 9)}}gr</p>
-                                <p class="text-xs xs:text-sm sm:text-lg">{{$arrayNutrientsTotals[3]}} / {{$kcalTotals}} kcal</p>
+                                <p class="pDieta">{{$arrayNutrientsTotals[0]}} / {{round($kcalTotals * 0.25 / 4)}}gr</p>
+                                <p class="pDieta">{{$arrayNutrientsTotals[1]}} / {{round($kcalTotals * 0.5 / 4)}}gr</p>
+                                <p class="pDieta">{{$arrayNutrientsTotals[2]}} / {{round($kcalTotals * 0.25 / 9)}}gr</p>
+                                <p class="pDieta">{{$arrayNutrientsTotals[3]}} / {{$kcalTotals}} kcal</p>
                             </div>
                         </div>
                     </div>
@@ -38,10 +38,10 @@
                             <div class="grid sm:grid-cols-3">
                                 <div class="text-left font-bold text-sm md:text-base"><p>{{$nomsApats[$i]}}</p></div>
                                 <div class="sm:text-right mt-2 sm:mt-0 col-span-2 grid grid-cols-4">
-                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">P: {{$arrayNutrientsApat[$i][0]}}gr</div>
-                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">C: {{$arrayNutrientsApat[$i][1]}}gr</div>
-                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">G: {{$arrayNutrientsApat[$i][2]}}gr</div>
-                                    <div id="seccio{{$i}}" class="text-mini 2xs:text-sm md:text-base">K: {{$arrayNutrientsApat[$i][3]}}kcal</div>
+                                    <div id="seccio{{$i}}" class="divInfoAliment">P: {{$arrayNutrientsApat[$i][0]}}gr</div>
+                                    <div id="seccio{{$i}}" class="divInfoAliment">C: {{$arrayNutrientsApat[$i][1]}}gr</div>
+                                    <div id="seccio{{$i}}" class="divInfoAliment">G: {{$arrayNutrientsApat[$i][2]}}gr</div>
+                                    <div id="seccio{{$i}}" class="divInfoAliment">K: {{$arrayNutrientsApat[$i][3]}}kcal</div>
                                 </div>
                             </div>
                             <hr class=" border-1 border-black">
@@ -84,21 +84,4 @@
         </div>
     </div>
 </div>
-{{--
-    <div class="grid grid-cols-8">
-
-                                    <div class="text-left col-span-7 text-mini sm:text-sm">
-                                        <img src="{{$arrayImatges[$i][$j]}}" alt="{{$j}}" class="w-8 2xs:w-10 inline-block">
-                                        <p class="pt-2 inline-block">{{$arrayAliments[$i][$j]["nom"]}}</p>
-
-                                        <p class="inline-block float-right pt-2.5 mr-1">{{$arrayAliments[$i][$j]["pivot"]["mesura_quantitat"]}} g</p>
-                                    </div>
-                                    <div>
-                                        <x-form method="post" action="esborraAlimentApat">
-                                            <img src="/imatges/esborra.png" alt="" class="w-10 float-right cursor-pointer" onclick="alert('si')">
-                                        </x-form>
-
-                                    </div>
-
-                                </div> --}}
 

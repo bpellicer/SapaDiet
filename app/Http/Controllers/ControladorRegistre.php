@@ -49,7 +49,7 @@ class ControladorRegistre extends Controller
         $pesAltura = new PesAltura();
         $pesAltura->pes = 0;
         $pesAltura->altura = 0;
-        $pesAltura->data = "20".date("y")."-".date("m")."-".date("d");
+        $pesAltura->data = date("Y-m-d");
         $pesAltura->user_id =  $usuari->id;
         $pesAltura->save();
 

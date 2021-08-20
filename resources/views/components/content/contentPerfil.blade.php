@@ -9,17 +9,17 @@
                 <x-form method="post" action="/updatePerfil" class="form" id="updateForm">
                     <x-inputPerfil tipus="text" classe="inputPerfil" id="nom" nom="nom" placeholder="Nom"/>
                     @error('nom')
-                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                        <p class="missatgeError text-left">{{ucfirst($message)}}</p>
                      @enderror
 
                     <x-inputPerfil tipus="text" classe="inputPerfil" id="cognoms" nom="cognoms" placeholder="Cognoms"/>
                     @error('cognoms')
-                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                        <p class="missatgeError text-left">{{ucfirst($message)}}</p>
                      @enderror
 
                     <x-inputPerfil tipus="number" classe="inputPerfil" id="edat" nom="edat" placeholder="Edat"/>
                     @error('edat')
-                        <p class="text-xs text-red-500 mb-2 text-left">{{ucfirst($message)}}</p>
+                        <p class="missatgeError text-left">{{ucfirst($message)}}</p>
                     @enderror
 
                     <label class="block text-sm font-bold text-gray-700 text-left" for="sexe">Sexe</label>
