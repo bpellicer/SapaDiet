@@ -16,7 +16,7 @@
                     <div class="divCerca">
                         <h2 class="titolCerca">Afegeix un aliment</h2>
                         <div class="divCercaImatge">
-                            <img src="/imatges/crea.png" class="">
+                            <img src="/imatges/crea.png" class="imatgeCerca1">
                             <img src="/imatges/aliments/pancake.png" class="imatgeCerca1">
                         </div>
                     </div>

@@ -18,7 +18,7 @@ class ControladorPlanificacio extends Controller
         $title = "Sapa Diet | Planificació";
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
-        $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
+        $planificacio =  $usuari->planificacio;
         $aliments = $planificacio->alimentpreferit;
         return view("pages.planificacio",[
             'planificacio'=> $planificacio,

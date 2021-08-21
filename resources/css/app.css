@@ -134,6 +134,15 @@ input,select,button{
     transform: rotate(360deg)
 }
 
+.random{
+    @apply w-3 sm:w-5 cursor-pointer;
+}
+
+/***************    Random Arrow   ***************/
+.random:hover{
+    transition:2s ease;
+    transform: rotate(360deg);
+}
 
 /***************    Elements del Footer     ***************/
 
@@ -201,11 +210,11 @@ input,select,button{
 }
 
 .titolCarta{
-    @apply text-2xl font-bold text-center;
+    @apply text-lg 2xs:text-xl sm:text-2xl font-bold text-center;
 }
 
 .textCarta{
-    @apply ml-2 text-sm px-5 lg:px-10 text-justify md:text-base;
+    @apply ml-2 text-xs sm:text-sm px-5 lg:px-10 text-justify md:text-base;
 }
 
 

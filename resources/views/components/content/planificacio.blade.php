@@ -49,7 +49,7 @@
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 place-items-center">
                             <x-labelCheckbox src="/imatges/aliments/alvocat.png" value="17" tipus="checkbox" nom="greixos[]" span="Alvocat"/>
                             <x-labelCheckbox src="/imatges/aliments/anacard.png" value="18" tipus="checkbox" nom="greixos[]" span="Anacard"/>
-                            <x-labelCheckbox src="/imatges/aliments/atmetlla.png" value="19" tipus="checkbox" nom="greixos[]" span="Atmetlla"/>
+                            <x-labelCheckbox src="/imatges/aliments/atmetlla.png" value="19" tipus="checkbox" nom="greixos[]" span="Ametlla"/>
                             <x-labelCheckbox src="/imatges/aliments/cacahuet.png" value="20" tipus="checkbox" nom="greixos[]" span="Cacahuet"/>
                             <x-labelCheckbox src="/imatges/aliments/chia.png" value="21" tipus="checkbox" nom="greixos[]" span="Chia"/>
                             <x-labelCheckbox src="/imatges/aliments/chocolata.png" value="22" tipus="checkbox" nom="greixos[]" span="Chocolata"/>

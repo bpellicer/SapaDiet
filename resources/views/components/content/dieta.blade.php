@@ -32,11 +32,20 @@
                 </div>
             </div>
             <div class="mt-10 mb-10">
-                <div class="grid grid-cols-1 gap-4 lg:px-16">
+                <div class="grid grid-cols-1 gap-1 lg:px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
+                    <div class="flex justify-end mr-5">
+                        <x-form method="post" action="/randomApat">
+                            <input type="hidden" name="apat" value="{{$nomsApats[$i]}}">
+                            <input type="hidden" name="data" value="{{$data}}">
+                            <button type="submit"><img src="/imatges/random.png" alt="" class="random"></button>
+                        </x-form>
+                    </div>
                         <div class="bg-white border-2 border-black rounded-3xl p-2.5">
                             <div class="grid sm:grid-cols-3">
-                                <div class="text-left font-bold text-sm md:text-base"><p>{{$nomsApats[$i]}}</p></div>
+                                <div class="text-left font-bold text-sm md:text-base">
+                                    <p class="inline-block">{{$nomsApats[$i]}}</p>
+                                </div>
                                 <div class="sm:text-right mt-2 sm:mt-0 col-span-2 grid grid-cols-4">
                                     <div id="seccio{{$i}}" class="divInfoAliment">P: {{$arrayNutrientsApat[$i][0]}}gr</div>
                                     <div id="seccio{{$i}}" class="divInfoAliment">C: {{$arrayNutrientsApat[$i][1]}}gr</div>

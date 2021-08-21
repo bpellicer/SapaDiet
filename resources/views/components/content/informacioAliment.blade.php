@@ -1,4 +1,4 @@
-<div class="container mx-auto my-auto">
+<div class="contenidor">
     <div class="flex justify-center px-2 sm:px-10 my-12">
         <div class="w-full lg:w-8/12 xl:w-7/12 bg-green4 rounded-3xl border-2 border-black p-5">
             <div class="w-full rounded-full">

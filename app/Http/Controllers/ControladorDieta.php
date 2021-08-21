@@ -42,7 +42,7 @@ class ControladorDieta extends Controller
         else{
             /** Busca la planificació de l'Usuari per a mostrar X seccions a la gestió de la dieta segons el nombre d'àpats **/
             $usuari = User::findOrFail(Auth::id());
-            $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
+            $planificacio = $usuari->planificacio;
 
             /** Posa la data del dia seleccionat al títol amb el format DD-MM-YYYY **/
             $dataAvui = date("m")."-20".date("y");
@@ -498,6 +498,17 @@ class ControladorDieta extends Controller
         else{
             return view("errors.404");
         }
+    }
+
+    /**
+     * Funció que afegeix una sèrie d'aliments aleatoris a la data i àpat escollit de l'Usuari, els quals
+     * estan condicionats pels Aliments Preferits que tries a la Planificació.
+     */
+    public function getRandomApat(Request $request){
+        $usuari = User::findOrFail(Auth::id());
+        $arrayAlimentsPreferits = $usuari->planificacio->alimentpreferit;
+
+        /**  **/
 
     }
 

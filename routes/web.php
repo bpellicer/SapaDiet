@@ -72,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('esborraAlimentApat',[ControladorDieta::class, 'deleteAlimentApat']);
 
+    Route::post('randomApat',[ControladorDieta::class, 'getRandomApat']);
+
     Route::get('progres',[ControladorProgres::class, 'create']);
 
     Route::post("addPesAltura",[ControladorProgres::class, 'store']);
