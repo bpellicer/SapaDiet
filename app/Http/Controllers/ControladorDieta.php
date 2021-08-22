@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aliment;
 use App\Models\AlimentPropi;
 use App\Models\Apat;
+use App\Models\Categoria;
 use App\Models\PesAltura;
 use App\Models\Planificacio;
 use App\Models\User;
@@ -512,12 +513,19 @@ class ControladorDieta extends Controller
             'nombreApats'   => ['required','min:2','max:5','numeric']
         ]);
 
-        /* ddd($request); */
-        $data = $this->giraData($request->data);
         $usuari = User::findOrFail(Auth::id());
         $arrayAlimentsPreferits = $usuari->planificacio->alimentpreferit;
+        $userApat = UserApat::where("user_id",Auth::id())->where("apat_id",Apat::where("nom",$request->apat)->first()->id)->first();
+        $data = $this->giraData($request->data);
 
-        /** Calculem quantes proteïnes, hidrats i greixos necessita l'Usuari per cada àpat **/
+        /** Esborra els aliments que hi ha a l'Àpat a la data seleccionada **/
+        $arrayAlimentsABorrar = UserApatAliment::where("user_apat_id",$userApat->id)->where("data",$data)->get();
+        foreach($arrayAlimentsABorrar as $aliment){
+            $aliment->delete();
+        }
+
+        /** Calculem quantes proteïnes, hidrats i greixos necessita l'Usuari per cada àpat
+         *  Els divisors 4 i 9 provenen de les kcal per gram de nutrient. En 1 gram de proteïna hi ha 4 kcal. **/
         $proteines = round($request->kcalTotals * 0.25 / 4);
         $hidrats = round($request->kcalTotals * 0.5 / 4);
         $greixos = round($request->kcalTotals * 0.25 / 9);
@@ -529,23 +537,73 @@ class ControladorDieta extends Controller
 
         /** Per a fer els Àpats més còmodes, a cada un d'aquests es posarà 1 Aliment de cada categoria (Proteïnes, Hidrats, Greixos, Begudes...) **/
 
-        /* ddd($arrayAlimentsPreferits->where("tipus","proteines")->random()); */
         $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
 
+        /** Per a cada aliment, es crea un UserApatAliment i es guarda a la BDD **/
+        foreach($arrayAliments as $aliment){
+            $userApatAliment = new UserApatAliment();
+            $userApatAliment->aliment_id = $aliment->id;
+            $userApatAliment->user_apat_id = $userApat->id;
+            $userApatAliment->data = $data;
+            $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($aliment,$arrayKcalNutriApat);
+            $userApatAliment->save();
+        }
 
+        $formatData = substr($request->data, 0,6).substr($request->data, 8, strpos($request->data, "-"));
 
+        return redirect("/calendari/".$formatData);
 
     }
 
+    public function getMesuraCorrecte($aliment, $arrayKcalNutriApat){
+        $kcalPerAliment = $arrayKcalNutriApat[0] / 5;
+        $gramsAliment = 100 *  $kcalPerAliment / $aliment->kilocalories;
+
+        return round($gramsAliment);
+    }
+
+    /**
+     * Funció que retorna una array de 5 aliments: 1 aliment de cada tipus de categoria essencial (proteïnes, hidrats, greixos, làctics i fruites).
+     * @param Object $arrayAlimentsPreferits     Conté una array (Collection) amb tots els AlimentsPreferits de l'Usuari
+     */
     public function getArrayAliments($arrayAlimentsPreferits){
+        /** [proteïnes, hidrats, greixos, lactics, fruites] **/
         $arrAliments = [0,0,0,0,0];
 
-        ddd(Aliment::where("nom","like",$arrayAlimentsPreferits->where('tipus','proteines')->random()->nom.'%')->get()->random());
-        /* $arrAliments[0] =
-        $arrAliments[1] =
-        $arrAliments[2] =
-        $arrAliments[3] =
-        $arrAliments[4] = */
+        /** Obté 5 aliments aleatoris preferits, 1 de cada categoria **/
+        $aProte = $arrayAlimentsPreferits->where('tipus','proteines')->random()->nom;
+        $aHidra = $arrayAlimentsPreferits->where('tipus','hidrats')->random()->nom;
+        $aGreix = $arrayAlimentsPreferits->where('tipus','greixos')->random()->nom;
+        $aLactic = $arrayAlimentsPreferits->where('tipus','lactics')->random()->nom;
+        $aFruita = $arrayAlimentsPreferits->where('tipus','fruites')->random()->nom;
+
+        /** Hi ha algun aliment preferit que engloba tota una sèrie d'aliments com la Carn o el Peix. Quan això passa, busca l'aliment per la categoria
+         *  o exclusivament pel seu nom **/
+
+        /** Filtra els Aliments segons el nom dels 5 Aliments Preferits i agafa un aliment aleatori de tots els possibles **/
+        if($aProte == "Carn" || $aProte == "Peix"){
+            $arrAliments[0] = (Aliment::where("categoria_id",Categoria::where("value",strtolower($aProte))->first()->id)->get()->random());
+        }
+        else{
+            $arrAliments[0] = Aliment::where("nom","like",$aProte."%")->get()->random();
+            $arrAliments[1] = Aliment::where("nom","like",$aHidra."%")->get()->random();
+            $arrAliments[2] = Aliment::where("nom","like",$aGreix."%")->get()->random();
+            $arrAliments[4] = Aliment::where("nom","like",$aFruita."%")->get()->random();
+        }
+
+        if($aLactic == "B.Soja"){
+            $arrAliments[3] = Aliment::where("nom","Beguda de soja")->first();
+        }
+        else if($aLactic == "B.Coco"){
+            $arrAliments[3] = Aliment::where("nom","Beguda de coco")->first();
+        }
+        else if($aLactic == "B.Ametlla"){
+            $arrAliments[3] = Aliment::where("nom","Beguda d'ametlles")->first();
+        }
+        else{
+            $arrAliments[3] = Aliment::where("nom","like",$aLactic."%")->get()->random();
+        }
+        return $arrAliments;
     }
 
     /**

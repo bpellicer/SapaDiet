@@ -35,12 +35,12 @@
                 <div class="grid grid-cols-1 gap-1 lg:px-16">
                     @for ($i = 0; $i < $nombreApats; $i++)
                     <div class="flex justify-end mr-5">
-                        <x-form method="post" action="/randomApat">
+                        <x-form method="post" action="/randomApat" id="formRandom{{$i}}">
                             <input type="hidden" name="apat" value="{{$nomsApats[$i]}}">
                             <input type="hidden" name="nombreApats" value="{{$nombreApats}}">
                             <input type="hidden" name="data" value="{{$data}}">
                             <input type="hidden" name="kcalTotals" value="{{$kcalTotals}}">
-                            <button type="submit"><img src="/imatges/random.png" alt="" class="random"></button>
+                            <button type="submit" onclick="randomApat(event,{{$i}})"><img src="/imatges/random.png" alt="" class="random"></button>
                         </x-form>
                     </div>
                         <div class="bg-white border-2 border-black rounded-3xl p-2.5">
@@ -96,3 +96,24 @@
     </div>
 </div>
 
+<script>
+    /**
+     * Funció que genera una alerta amb confirmació per a generar un àpat aleatori.
+     **/
+    function randomApat(event,i){
+        event.preventDefault();
+        swal({
+            title: "Estàs a punt de generar un àpat aleatori",
+            text: "Si acceptes, els aliments que ja hi havia s'esborraran. N'estàs segur?",
+            icon:'info',
+            buttons:["Cancel·la","Sí, generar àpat"],
+            closeOnClickOutside: false,
+            dangerMode:true
+        }).then((genera) => {
+            if(genera){
+                $("#formRandom"+i).submit();
+            }
+            else return false;
+        });
+    }
+</script>

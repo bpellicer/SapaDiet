@@ -51,7 +51,6 @@ $("#eliminaPerfil").on("click", function(event){
     });
 });
 
-
 $("#eliminaAliment").on("click", function(event){
     event.preventDefault();
     swal({
@@ -87,7 +86,6 @@ $("#eliminaDia").on("click", function(event){
         else return false;
     });
 });
-
 
 /** Amaga el missatge de success després de 3 segons **/
 window.setTimeout(function(){
