@@ -37,7 +37,9 @@
                     <div class="flex justify-end mr-5">
                         <x-form method="post" action="/randomApat">
                             <input type="hidden" name="apat" value="{{$nomsApats[$i]}}">
+                            <input type="hidden" name="nombreApats" value="{{$nombreApats}}">
                             <input type="hidden" name="data" value="{{$data}}">
+                            <input type="hidden" name="kcalTotals" value="{{$kcalTotals}}">
                             <button type="submit"><img src="/imatges/random.png" alt="" class="random"></button>
                         </x-form>
                     </div>

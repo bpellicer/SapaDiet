@@ -505,11 +505,109 @@ class ControladorDieta extends Controller
      * estan condicionats pels Aliments Preferits que tries a la Planificació.
      */
     public function getRandomApat(Request $request){
+        $request->validate([
+            'data'          => ['string','required','date_format:d-m-Y','date','required'],
+            'apat'          => ['string',Rule::exists('apats','nom'),'required'],
+            'kcalTotals'    => ['required','min:0','max:4000','numeric'],
+            'nombreApats'   => ['required','min:2','max:5','numeric']
+        ]);
+
+        /* ddd($request); */
+        $data = $this->giraData($request->data);
         $usuari = User::findOrFail(Auth::id());
         $arrayAlimentsPreferits = $usuari->planificacio->alimentpreferit;
 
-        /**  **/
+        /** Calculem quantes proteïnes, hidrats i greixos necessita l'Usuari per cada àpat **/
+        $proteines = round($request->kcalTotals * 0.25 / 4);
+        $hidrats = round($request->kcalTotals * 0.5 / 4);
+        $greixos = round($request->kcalTotals * 0.25 / 9);
+
+        /** Depenent de l'Àpat que l'Usuari vulgui generar i del nombre d'àpats del dia,
+         *  es necessitaran més o menys kcal, igual amb la resta de nutrients **/
+
+        $arrayKcalNutriApat = $this->getKcalNutrientsOptims($request->nombreApats,$request->kcalTotals,$request->apat,$proteines,$hidrats,$greixos);
+
+        /** Per a fer els Àpats més còmodes, a cada un d'aquests es posarà 1 Aliment de cada categoria (Proteïnes, Hidrats, Greixos, Begudes...) **/
+
+        /* ddd($arrayAlimentsPreferits->where("tipus","proteines")->random()); */
+        $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
+
+
+
 
     }
 
+    public function getArrayAliments($arrayAlimentsPreferits){
+        $arrAliments = [0,0,0,0,0];
+
+        ddd(Aliment::where("nom","like",$arrayAlimentsPreferits->where('tipus','proteines')->random()->nom.'%')->get()->random());
+        /* $arrAliments[0] =
+        $arrAliments[1] =
+        $arrAliments[2] =
+        $arrAliments[3] =
+        $arrAliments[4] = */
+    }
+
+    /**
+     * Funció que retorna una array que conté les kcal, proteïnes, hidrats i greixos òptims per a cada àpat.
+     * @param Int $nombreApats              Conté el nombre d'Àpats de l'Usuari
+     * @param Float $kcalTotals             Conté el nombre de Kcal que ha de consumir l'Usuari
+     * @param String $nomApat               Conté el nom de l'Àpat que l'Usuari ha triat
+     * @param Float $proteines              Conté el nombre de proteïnes
+     * @param Float $hidrats                Conté el nombre d'hidrats
+     * @param Float $greixos                Conté el nombre de greixos
+     * @return Array $arrayKcalNutriOptims
+     */
+    public function getKcalNutrientsOptims($nombreApats, $kcalTotals, $nomApat,$proteines,$hidrats,$greixos){
+        /** Array de resultats [kcal, prot, hidr, greix] */
+        $arrayKcalNutriOptims = [0,0,0,0];
+
+        /** Auxiliars **/
+        $kcalApat = $kcalTotals / $nombreApats;
+        $pApat = $proteines / $nombreApats;
+        $hApat = $hidrats  / $nombreApats;
+        $gApat = $greixos / $nombreApats;
+
+        /** Perquè una dieta sigui equilibrada, es poden dividir les kilocalories diàries de moltes maneres.
+         *  En el meu cas, he decidit que l'Esmorzar, el Dinar i el Sopar han de tenir les mateixes kcal,
+         *  mentre que el Berenar i el Mig Matí han de tenir menys kcal que els tres Àpats anteriors, ja que no són
+         *  àpats tan essencials **/
+
+        if($nombreApats == 2 || $nombreApats == 3){
+            $arrayKcalNutriOptims[0] = $kcalApat;
+            $arrayKcalNutriOptims[1] = $pApat;
+            $arrayKcalNutriOptims[2] = $hApat;
+            $arrayKcalNutriOptims[3] = $gApat;
+        }
+        /** En el cas de $nombreApats > 3, el Berenar i el Mig Matí tenen un 35% menys de kcal i de nutrients del Total de cada per Àpat **/
+        else if($nombreApats == 4){
+            if($nomApat == "Berenar"){
+                $arrayKcalNutriOptims[0] = $kcalApat - ($kcalApat * 0.35);
+                $arrayKcalNutriOptims[1] = $pApat - ($pApat * 0.35);
+                $arrayKcalNutriOptims[2] = $hApat - ($hApat * 0.35);
+                $arrayKcalNutriOptims[3] = $gApat - ($gApat * 0.35);
+            }
+            else{
+                $arrayKcalNutriOptims[0] = ($kcalTotals - ($kcalApat - ($kcalApat * 0.35))) / ($nombreApats - 1) ;
+                $arrayKcalNutriOptims[1] = ($proteines - ($pApat - ($pApat * 0.35))) / ($nombreApats - 1);
+                $arrayKcalNutriOptims[2] = ($hidrats - ($hApat - ($hApat * 0.35))) / ($nombreApats - 1);
+                $arrayKcalNutriOptims[3] = ($greixos - ($gApat - ($gApat * 0.35))) / ($nombreApats - 1);
+            }
+        }
+        else{
+            if($nomApat == "Berenar" || $nomApat == "Mig Matí"){
+                $arrayKcalNutriOptims[0] = $kcalApat - ($kcalApat * 0.35);
+                $arrayKcalNutriOptims[1] = $pApat - ($pApat * 0.35);
+                $arrayKcalNutriOptims[2] = $hApat - ($hApat * 0.35);
+                $arrayKcalNutriOptims[3] = $gApat - ($gApat * 0.35);
+            }
+            else{
+                $arrayKcalNutriOptims[0] = ($kcalTotals - ($kcalApat - ($kcalApat * 0.35)) * 2) / ($nombreApats - 2) ;
+                $arrayKcalNutriOptims[1] = ($proteines - ($pApat - ($pApat * 0.35)) * 2) / ($nombreApats - 2);
+                $arrayKcalNutriOptims[2] = ($hidrats - ($hApat - ($hApat * 0.35)) * 2) / ($nombreApats - 2);
+                $arrayKcalNutriOptims[3] = ($greixos - ($gApat - ($gApat * 0.35)) * 2) / ($nombreApats - 2);
+            }
+        }
+        return $arrayKcalNutriOptims;
+    }
 }
