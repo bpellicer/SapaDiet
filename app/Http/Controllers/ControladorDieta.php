@@ -539,15 +539,8 @@ class ControladorDieta extends Controller
 
         $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
 
-        /** Per a cada aliment, es crea un UserApatAliment i es guarda a la BDD **/
-        foreach($arrayAliments as $aliment){
-            $userApatAliment = new UserApatAliment();
-            $userApatAliment->aliment_id = $aliment->id;
-            $userApatAliment->user_apat_id = $userApat->id;
-            $userApatAliment->data = $data;
-            $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($aliment,$arrayKcalNutriApat);
-            $userApatAliment->save();
-        }
+        $this->generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat);
+
 
         $formatData = substr($request->data, 0,6).substr($request->data, 8, strpos($request->data, "-"));
 
@@ -555,11 +548,58 @@ class ControladorDieta extends Controller
 
     }
 
-    public function getMesuraCorrecte($aliment, $arrayKcalNutriApat){
-        $kcalPerAliment = $arrayKcalNutriApat[0] / 5;
-        $gramsAliment = 100 *  $kcalPerAliment / $aliment->kilocalories;
+    /**
+     * Acció (Void) que s'encarrega de generar els aliments aleatoris amb les mesures corresponents.
+     * @param Array $arrayAliments          Conté l'array dels 5 aliments triats
+     * @param UserApat $userApat            Conté l'Àpat de l'Usuari
+     * @param Date $data                    Conté la data del dia
+     * @param Array $arrayKcalNutriApat     Conté els nutrients que s'han de complir
+     */
+    public function generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat){
+        /** Array auxiliar per facilitar la feina a la funció de getMesuraCorrecte  **/
+        $arrayTipusAliment = ["p","h","g","l","f"];
+        for($i = 0 ; $i < count($arrayAliments); $i++){
+            $userApatAliment = new UserApatAliment();
+            $userApatAliment->aliment_id = $arrayAliments[$i]->id;
+            $userApatAliment->user_apat_id = $userApat->id;
+            $userApatAliment->data = $data;
+            $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($arrayAliments[$i],$arrayKcalNutriApat,$arrayTipusAliment[$i]);
+            $userApatAliment->save();
+        }
+    }
 
-        return round($gramsAliment);
+    /**
+     * Funció que retorna els grams necessaris per a cobrir les kilocalories per tipus d'Aliment suficients.
+     * @param Aliment $aliment              Conté l'Aliment
+     * @param Array $arrayKcalNutriApat     Conté l'Array dels nutrients
+     * @param String $tipusAliment          Conté el tipus d'aliment
+     */
+    public function getMesuraCorrecte($aliment, $arrayKcalNutriApat,$tipusAliment){
+        /** Segons el tipus d'Aliment, es multiplica les kcal per un porcentatge.
+         *  La generació de la dieta no serà perfecta, però normalment un Àpat equilibrat conté entre
+         *  20-40 gr de proteïna, 50-80 d'hidrats i 10-20 de greixos.
+         *  Així que les proteïnes i els hidrats els he multiplicat per un 150-160% mentre que els
+         *  làctics i greixos els he multiplicat per un 40-50% **/
+        $kcalPerAliment = $arrayKcalNutriApat[0] / 5;
+        $gramsXAliment = 0;
+        switch ($tipusAliment){
+            case "p":
+                $gramsXAliment =  100 * $kcalPerAliment * 1.6 / $aliment->kilocalories;
+            break;
+            case "h":
+                $gramsXAliment = 100 * $kcalPerAliment * 1.5 / $aliment->kilocalories;
+            break;
+            case "g":
+                $gramsXAliment =  100 * $kcalPerAliment * 0.4 / $aliment->kilocalories;
+            break;
+            case "l":
+                $gramsXAliment =  100 * $kcalPerAliment * 0.5 / $aliment->kilocalories;
+            break;
+            case "f":
+                $gramsXAliment =  100 * $kcalPerAliment / $aliment->kilocalories;
+            break;
+        }
+        return round($gramsXAliment);
     }
 
     /**
