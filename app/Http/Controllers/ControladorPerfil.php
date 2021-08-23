@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AlimentPropi;
 use App\Models\Imatge;
+use App\Models\PesAltura;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,9 +69,13 @@ class ControladorPerfil extends Controller
         $usuari = User::findOrFail($usuariId);
 
         /** Esborra tots els AlimentsPropis de l'Usuari **/
-        $alimentsPropis = AlimentPropi::all()->where("user_id","=",$usuari->id);
+        $alimentsPropis = AlimentPropi::all()->where("user_id",$usuariId);
         foreach($alimentsPropis as $aliment){
             $aliment->delete();
+        }
+        $pesos = PesAltura::all()->where("user_id",$usuariId);
+        foreach($pesos as $pes){
+            $pes->delete();
         }
 
         /** Esborra l'Usuari i la seva Planificaicó **/
