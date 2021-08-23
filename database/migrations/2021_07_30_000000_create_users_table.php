@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
             $table->foreignId('imatge_id')->default(1)->constrained();
             $table->foreignId('planificacio_id')->default(1)->constrained('planificacions');
             $table->string('nom',30);
-            $table->string('cognoms',255);
-            $table->string('email',255)->unique();
+            $table->string('cognoms',190);
+            $table->string('email',190)->unique();
             $table->enum("sexe",["Home","Dona"]);
             $table->integer("edat");
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('contrasenya',255);
+            $table->string('contrasenya',190);
             $table->boolean('primera_vegada')->default(true);
             $table->rememberToken();
             $table->timestamps();

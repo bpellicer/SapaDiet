@@ -17,7 +17,7 @@ class CreateAlimentPropisTable extends Migration
             $table->id();
             $table->foreignId('categoria_id')->constrained('categories');
             $table->foreignId('user_id')->constrained('users');
-            $table->string('nom',255);
+            $table->string('nom',190);
             $table->double('kilocalories');
             $table->double('hidrats');
             $table->double('proteines');
