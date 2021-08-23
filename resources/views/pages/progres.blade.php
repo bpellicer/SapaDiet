@@ -94,7 +94,7 @@
     let arrayData2 = [];
 
     /** Bucle que guarda en una array objectes del tipus {dia:x, kcal:y} **/
-    for(let i = 0; i < dies.length; i++){
+    for(let i = dies.length - 1; i>=0; i--){
         let data = {};
         data.x = dies[i];
         data.y = kcalDies[i];
