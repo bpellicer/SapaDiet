@@ -29,7 +29,7 @@ class ControladorProgres extends Controller
         /** Obté els últims 7 dies des d'avui i els guarda en una array de dies **/
         $arrayDies = [];
         for($i = 0; $i < 7; $i++){
-            array_push($arrayDies,date('Y-m-d', strtotime(-$i." day")));
+            array_push($arrayDies,date('Y-m-d', strtotime(+$i." day")));
         }
 
         $arrayKcal7Dies = $this->getKcalTotals7dies($arrayUserApats,$arrayDies);
