@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ControladorCalendari extends Controller
 {
+    /**
+     * Funció que retorna la vista del calendari amb el dia, mes i any.
+     */
     public function create(){
         $usuari = User::findOrFail(Auth::id());
 
@@ -42,6 +45,10 @@ class ControladorCalendari extends Controller
 
     }
 
+    /**
+     * Funció que retorna el nom del mes corresponent
+     * @param Int $mes      Conté el número del mes
+     */
     public function getMes($mes){
         $nomMes = "";
         switch ($mes){

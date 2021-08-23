@@ -3,6 +3,9 @@
 @if (session()->has('alimentEsborrat'))
     <x-alerta nom="success2" missatge="{{ session('alimentEsborrat') }}"/>
 @endif
+@if (session()->has('apatAleatori'))
+    <x-alerta nom="success2" missatge="{{ session('apatAleatori') }}"/>
+@endif
 @include("components.content.dieta")
 <script>
     /** Actualitza el gràfic de la barra de progrés **/

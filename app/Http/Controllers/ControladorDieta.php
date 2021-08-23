@@ -32,7 +32,7 @@ class ControladorDieta extends Controller
         }
         /** Controla que l'Usuari només pugui entrar a les dates del mes actual i l'any actual **/
         else if(!$this->comprovaData($data)){
-            session()->flash('dataIncorrecte','Escull una data del mes i any actual');
+            session()->flash('dataIncorrecte','Data Incorrecta!');
             return redirect("/calendari");
         }
         /** Controla que l'Usuari només pugui entrar una vegada ha afegit el seu pes i la seva altura **/
@@ -544,6 +544,7 @@ class ControladorDieta extends Controller
 
         $formatData = substr($request->data, 0,6).substr($request->data, 8, strpos($request->data, "-"));
 
+        session()->flash("apatAleatori","Àpat generat!");
         return redirect("/calendari/".$formatData);
 
     }

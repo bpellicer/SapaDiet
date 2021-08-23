@@ -52,7 +52,7 @@
                             <x-labelCheckbox src="/imatges/aliments/atmetlla.png" value="19" tipus="checkbox" nom="greixos[]" span="Ametlla"/>
                             <x-labelCheckbox src="/imatges/aliments/cacahuet.png" value="20" tipus="checkbox" nom="greixos[]" span="Cacahuet"/>
                             <x-labelCheckbox src="/imatges/aliments/chia.png" value="21" tipus="checkbox" nom="greixos[]" span="Chia"/>
-                            <x-labelCheckbox src="/imatges/aliments/chocolata.png" value="22" tipus="checkbox" nom="greixos[]" span="Chocolata"/>
+                            <x-labelCheckbox src="/imatges/aliments/chocolata.png" value="22" tipus="checkbox" nom="greixos[]" span="Xocolata"/>
                             <x-labelCheckbox src="/imatges/aliments/nous.png" value="23" tipus="checkbox" nom="greixos[]" span="Nous"/>
                             <x-labelCheckbox src="/imatges/aliments/olives.png" value="24" tipus="checkbox" nom="greixos[]" span="Olives"/>
                         </div>
