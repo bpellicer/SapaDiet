@@ -9,7 +9,7 @@
                             <label for="pes" class="inline-block font-bold ">Pes: </label>
                         </div>
                         <div class="divAlturaPes">
-                            <input type="number" name="pes" value="{{$pes}}" class="inputPesAltura">
+                            <input type="number" name="pes" value="{{$pes}}" class="inputPesAltura" step="0.1">
                             <span>Kg</span>
                         </div>
 

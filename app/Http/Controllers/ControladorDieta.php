@@ -515,6 +515,7 @@ class ControladorDieta extends Controller
 
         $usuari = User::findOrFail(Auth::id());
         $arrayAlimentsPreferits = $usuari->planificacio->alimentpreferit;
+
         $userApat = UserApat::where("user_id",Auth::id())->where("apat_id",Apat::where("nom",$request->apat)->first()->id)->first();
         $data = $this->giraData($request->data);
 
@@ -538,7 +539,7 @@ class ControladorDieta extends Controller
         /** Per a fer els Àpats més còmodes, a cada un d'aquests es posarà 1 Aliment de cada categoria (Proteïnes, Hidrats, Greixos, Begudes...) **/
 
         $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
-
+        ddd($arrayAliments);
         $this->generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat);
 
 
@@ -644,6 +645,7 @@ class ControladorDieta extends Controller
         else{
             $arrAliments[3] = Aliment::where("nom","like",$aLactic."%")->get()->random();
         }
+
         return $arrAliments;
     }
 
