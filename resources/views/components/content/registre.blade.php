@@ -44,7 +44,7 @@
                 <div class="mb-2 divContra">
                     <label for="contrasenya" class="block mb-2 text-sm font-bold text-gray-700">Contrasenya</label>
                     <input type="password" name="contrasenya" id="contra1" placeholder="Contrasenya" class="inputClassic contrasenya">
-                    <span class="hidden w-40 bg-gray-500 text-white text-center rounded-md px-1 absolute z-10" style="bottom: 125%; left:50%; opacity:0; transition:opacity 0.3s; margin-left:-60px"></span>
+                    <span class="contraRequeriments"></span>
                 </div>
 
                 @error('contrasenya')
