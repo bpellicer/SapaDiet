@@ -626,17 +626,11 @@ class ControladorDieta extends Controller
 
         /** Filtra els Aliments segons el nom dels 5 Aliments Preferits i agafa un aliment aleatori de tots els possibles **/
         if($aProte == "Carn" || $aProte == "Peix"){
-            $nom = strtolower($aProte);
-            $cat = Categoria::where("value",$nom)->get();
-            $arrAliments[0] = Aliment::where("categoria_id",$cat[0]->id)->get()->random();
+            $arrAliments[0] = Aliment::where("categoria_id",Categoria::where("value",strtolower($aProte))->first()->id)->get()->random();
         }
         else{
             $arrAliments[0] = Aliment::where("nom","like",$aProte."%")->get()->random();
-            $arrAliments[1] = Aliment::where("nom","like",$aHidra."%")->get()->random();
-            $arrAliments[2] = Aliment::where("nom","like",$aGreix."%")->get()->random();
-            $arrAliments[4] = Aliment::where("nom","like",$aFruita."%")->get()->random();
         }
-
         if($aLactic == "B.Soja"){
             $arrAliments[3] = Aliment::where("nom","Beguda de soja")->first();
         }
@@ -649,6 +643,10 @@ class ControladorDieta extends Controller
         else{
             $arrAliments[3] = Aliment::where("nom","like",$aLactic."%")->get()->random();
         }
+
+        $arrAliments[1] = Aliment::where("nom","like",$aHidra."%")->get()->random();
+        $arrAliments[2] = Aliment::where("nom","like",$aGreix."%")->get()->random();
+        $arrAliments[4] = Aliment::where("nom","like",$aFruita."%")->get()->random();
 
         return $arrAliments;
     }
