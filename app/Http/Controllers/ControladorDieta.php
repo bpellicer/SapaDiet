@@ -626,7 +626,9 @@ class ControladorDieta extends Controller
 
         /** Filtra els Aliments segons el nom dels 5 Aliments Preferits i agafa un aliment aleatori de tots els possibles **/
         if($aProte == "Carn" || $aProte == "Peix"){
-            $arrAliments[0] = (Aliment::where("categoria_id",Categoria::where("value",strtolower($aProte))->first()->id)->get()->random());
+            $nom = strtolower($aProte);
+            $cat = Categoria::where("value",$nom)->get();
+            $arrAliments[0] = Aliment::where("categoria_id",$cat[0]->id)->get()->random();
         }
         else{
             $arrAliments[0] = Aliment::where("nom","like",$aProte."%")->get()->random();
