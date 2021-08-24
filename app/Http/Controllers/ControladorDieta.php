@@ -562,7 +562,7 @@ class ControladorDieta extends Controller
         $arrayTipusAliment = ["p","h","g","l","f"];
         for($i = 0 ; $i < count($arrayAliments); $i++){
             $userApatAliment = new UserApatAliment();
-            $userApatAliment->aliment_id = $arrayAliments[$i]->id;
+            $userApatAliment->aliment_id = $arrayAliments[$i]["id"];
             $userApatAliment->user_apat_id = $userApat->id;
             $userApatAliment->data = $data;
             $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($arrayAliments[$i],$arrayKcalNutriApat,$arrayTipusAliment[$i]);
