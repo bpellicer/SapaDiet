@@ -538,7 +538,7 @@ class ControladorDieta extends Controller
         /** Per a fer els Àpats més còmodes, a cada un d'aquests es posarà 1 Aliment de cada categoria (Proteïnes, Hidrats, Greixos, Begudes...) **/
 
         $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
-
+        ddd($arrayAliments);
         $this->generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat);
 
 
@@ -617,7 +617,7 @@ class ControladorDieta extends Controller
         $aGreix = $arrayAlimentsPreferits->where('tipus','greixos')->random()->nom;
         $aLactic = $arrayAlimentsPreferits->where('tipus','lactics')->random()->nom;
         $aFruita = $arrayAlimentsPreferits->where('tipus','fruites')->random()->nom;
-
+        ddd($aGreix);
         /** Hi ha algun aliment preferit que engloba tota una sèrie d'aliments com la Carn o el Peix. Quan això passa, busca l'aliment per la categoria
          *  o exclusivament pel seu nom **/
 
