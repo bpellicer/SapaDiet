@@ -24,7 +24,6 @@ class ControladorLogin extends Controller
      * @param Request $request  Conté les dades de l'Usuari per iniciar sessió.
      */
     public function store(Request $request){
-
         $request->validate([
             'email'         =>['required','max:255','email',Rule::exists('users','email')],
             'contrasenya'   =>['required','min:8','max:255']
@@ -32,7 +31,7 @@ class ControladorLogin extends Controller
 
         if(!Auth::attempt(['email'=>$request->get('email'), 'password'=>$request->get('contrasenya')])){
            throw ValidationException::withMessages([
-                'email' => 'Les credencials no són correctes!',
+                'contrasenya' => 'La contrasenya és incorrecta',
             ]);
         }
 

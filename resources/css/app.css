@@ -237,6 +237,22 @@ input,select,button{
     @apply w-full bg-green4 lg:w-7/12 p-5 rounded-3xl;
 }
 
+.divContra .contraRequeriments::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+#contra1:active .contraRequeriments {
+    visibility: visible;
+    opacity: 1;
+}
+
 /***************    PERFIL   ***************/
 
 .imatgePerfil{
