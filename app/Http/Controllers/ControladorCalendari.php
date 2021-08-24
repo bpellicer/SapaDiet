@@ -28,21 +28,61 @@ class ControladorCalendari extends Controller
         else{
             $title = "Sapa Diet | Calendari";
 
+            /** Variables per obtenir diferents tipus de data **/
             $diesMes = date('t');
             $dia = date('d');
             $mes = date('m');
             $any = date('y');
             $mesNom = $this->getMes($mes);
+            $arrayDies = [];
+
+            /** Bucle per obtenir el nom dels dies del mes */
+            for($i = 1; $i <= $diesMes; $i++){
+                array_push($arrayDies,$this->getDiaNom(date("l",strtotime($i."-".date('m')."-".date("Y")))));
+            }
 
             return view("pages.calendari",[
-                "dies" => $diesMes,
-                "any" => $any,
-                "dia" => $dia,
-                "mesNom" => $mesNom,
-                "mes" => $mes
+                "dies"          => $diesMes,
+                "any"           => $any,
+                "dia"           => $dia,
+                "mesNom"        => $mesNom,
+                "mes"           => $mes,
+                "arrayDies"     => $arrayDies
             ], compact("title"));
         }
 
+    }
+
+    /**
+     * Funció que retorna el nom del dia en català.
+     * @param String $dia       Conté el nom del dia en anglès.
+     */
+    public function getDiaNom($dia){
+        $nom = "";
+        switch ($dia){
+            case "Monday":
+                $nom = "Dilluns";
+            break;
+            case "Tuesday":
+                $nom = "Dimarts";
+            break;
+            case "Wednesday":
+                $nom = "Dimecres";
+            break;
+            case "Thursday":
+                $nom = "Dijous";
+            break;
+            case "Friday":
+                $nom = "Divendres";
+            break;
+            case "Saturday":
+                $nom = "Dissabte";
+            break;
+            case "Sunday":
+                $nom = "Diumenge";
+            break;
+        }
+        return $nom;
     }
 
     /**

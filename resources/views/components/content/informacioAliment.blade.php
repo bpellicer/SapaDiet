@@ -1,6 +1,9 @@
 <div class="contenidor">
     <div class="flex justify-center px-2 sm:px-10 my-12">
         <div class="w-full lg:w-8/12 xl:w-7/12 bg-green4 rounded-3xl border-2 border-black p-5">
+            <div class="w-10">
+                <a href="/cercador/aliments_propis" class="w-10"><img class="w-10  transition ease-in transform hover:scale-110" src="/imatges/arrowleft.png" alt=""></a>
+            </div>
             <div class="w-full rounded-full">
                 <img src="{{$aliment[0]->categoria->imatge->url}}" alt="" class="mx-auto w-20">
             </div>

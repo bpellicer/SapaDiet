@@ -23,7 +23,7 @@
                 </a>
                 <a href="cercador/aliments_propis">
                     <div class="divCerca">
-                        <h2 class="titolCerca">Els teus aliments</h2>
+                        <h2 class="titolCerca">Els meus aliments</h2>
                         <div class="divCercaImatge">
                             <img src="/imatges/cor.png" class="imatgeCerca2">
                             <img src="/imatges/aliments/muffin.png" class="imatgeCerca1">
