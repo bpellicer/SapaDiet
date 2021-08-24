@@ -539,7 +539,7 @@ class ControladorDieta extends Controller
         /** Per a fer els Àpats més còmodes, a cada un d'aquests es posarà 1 Aliment de cada categoria (Proteïnes, Hidrats, Greixos, Begudes...) **/
 
         $arrayAliments = $this->getArrayAliments($arrayAlimentsPreferits);
-        ddd($arrayAliments);
+
         $this->generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat);
 
 
