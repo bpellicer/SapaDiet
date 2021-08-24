@@ -560,12 +560,14 @@ class ControladorDieta extends Controller
     public function generaApat($arrayAliments,$userApat,$data,$arrayKcalNutriApat){
         /** Array auxiliar per facilitar la feina a la funció de getMesuraCorrecte  **/
         $arrayTipusAliment = ["p","h","g","l","f"];
-        for($i = 0 ; $i < count($arrayAliments); $i++){
+        $comptador = 0;
+        foreach($arrayAliments as $aliment){
             $userApatAliment = new UserApatAliment();
-            $userApatAliment->aliment_id = $arrayAliments[$i]["id"];
+            $userApatAliment->aliment_id = $aliment->id;
             $userApatAliment->user_apat_id = $userApat->id;
             $userApatAliment->data = $data;
-            $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($arrayAliments[$i],$arrayKcalNutriApat,$arrayTipusAliment[$i]);
+            $userApatAliment->mesura_quantitat = $this->getMesuraCorrecte($aliment,$arrayKcalNutriApat,$arrayTipusAliment[$comptador]);
+            $comptador++;
             $userApatAliment->save();
         }
     }
