@@ -81,7 +81,7 @@ class ControladorProgres extends Controller
      * @param Float $altura     Conté l'altura de l'Usuari
      */
     public function getImc($pes, $altura){
-        if($pes == 0 && $altura == 0) return 0;
+        if($altura==0 || $pes==0 ) return 0;
         else return round($pes / (($altura/100) * ($altura/100)),2);
     }
 
