@@ -2106,9 +2106,11 @@ $("#showImc").on("click", function () {
     $("#infoImc").html("");
   }
 });
-$("#showAlimentsPropis").on("click", function () {
-  $(this).toggleClass('rota');
-  $("#alimentsPropis").toggleClass("hidden");
+$("#contra1").on("focus", function () {
+  $(".infoPass").show(500);
+});
+$("#contra1").on("blur", function () {
+  $(".infoPass").hide(500);
 });
 
 /***/ }),

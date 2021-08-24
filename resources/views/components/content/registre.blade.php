@@ -40,16 +40,21 @@
                     <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
 
-
-                <div class="mb-2 divContra">
-                    <label for="contrasenya" class="block mb-2 text-sm font-bold text-gray-700">Contrasenya</label>
-                    <input type="password" name="contrasenya" id="contra1" placeholder="Contrasenya" class="inputClassic contrasenya">
-                    <span class="contraRequeriments"></span>
-                </div>
+                <x-input tipus="password" classe="inputClassic contrasenya" nom="contrasenya" id="contra1" placeholder="Contrasenya"/>
 
                 @error('contrasenya')
                     <p class="missatgeError">{{ucfirst($message)}}</p>
                 @enderror
+
+                <div class="mb-2 infoPass hidden">
+                    <h2 class="text-xs text-gray-500 font-bold">La contrasenya ha de contenir com a mínim:</h2>
+                    <ol class="text-xs text-gray-500">
+                        <li>* 1 lletra minúscula</li>
+                        <li>* 1 lletra majúscula</li>
+                        <li>* 1 símbol</li>
+                        <li>* 8 caràcters</li>
+                    </ol>
+                </div>
 
                 <x-input tipus="password" classe="inputClassic contrasenya" nom="password_confirmation" id="contra2" placeholder="Repeteix Contrasenya" />
 
