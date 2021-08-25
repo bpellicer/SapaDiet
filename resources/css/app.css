@@ -453,23 +453,40 @@ td{
 /*************** LLISTES DE LA COMPRA ***************/
 .ploma{
     background:url("/imatges/pBG.png");
+    @apply border-dashed border-yellow-900 border-4;
+}
+
+.titolLlista{
+    text-decoration-style:wavy;
+    text-decoration-color: #BD720D;
+
+}
+.subtitolLlista{
+    text-decoration-style:wavy;
+    text-decoration-color: #BD720D;
+
 }
 
 .loto{
     background:url("/imatges/sBG.png");
+    box-shadow: 10px 10px;
+    @apply border-dotted border-8 border-pink-500;
 }
 
 .classic{
     background:url("/imatges/pentagon.png");
+    @apply border-double border-green3 border-8;
 }
 
 .banana{
     background:url("/imatges/bBG.png");
+    @apply border-solid border-yellow-400 border-4;
 }
 
 .llistaCompra{
     @apply border-2 border-black w-full md:w-3/4 mb-4 mx-auto;
 }
+
 
 /************************* NORMALIZE     *************************/
 
