@@ -61,7 +61,6 @@
                                 @error('nomsProducte.*')
                                     <p class="missatgeError sm:col-start-2">* {{ucfirst($message)}}</p>
                                 @enderror
-
                             </div>
                         </div>
                         <div class="mb-4 mt-4 flex justify-center">

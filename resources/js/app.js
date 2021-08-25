@@ -368,16 +368,16 @@ $("#addProducte").on("click",function(){
     let nouProducte = ` <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10 mt-2" id="infoProducte">
                             <div><h2 class="text-sm sm:text-base md:text-lg font-bold my-3">Quantitat</h2></div>
                             <div id="divQuantitat" class="align-middle flex sm:mr-1">
-                                <input type="number" name="quantitatsProducte[]" id="quantitatProducte" class="w-20 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow my-2 mx-auto">
+                                <input type="number"placeholder="0" name="quantitatsProducte[]" id="quantitatProducte" class="w-20 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow my-2 mx-auto">
                             </div>
 
                             <div><h2 class="text-sm sm:text-base md:text-lg font-bold my-3">Nom</h2></div>
                             <div id="divInput" class="align-middle flex sm:mr-1">
-                                <input type="text" name="nomsProducte[]" id="nomProducte" class="px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-40 2xs:w-60 my-2 mx-auto">
+                                <input type="text" placeholder="Nom" name="nomsProducte[]" id="nomProducte" class="px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-40 2xs:w-60 my-2 mx-auto">
                             </div>
                         </div>`;
 
-    $("#infoProducte").after(nouProducte);
+    $("#infoProducte").append(nouProducte);
 });
 
 $("#banana").on("click",function(){
