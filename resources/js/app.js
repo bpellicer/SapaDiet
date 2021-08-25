@@ -365,5 +365,17 @@ $("#contra1").on("blur",function(){
 });
 
 $("#addProducte").on("click",function(){
-    $("#infoProducte").append("<p>yes</p>");
+    let nouProducte = ` <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-10" id="infoProducte">
+                            <div><h2 class="text-xl font-bold">Quantitat</h2></div>
+                            <div id="divQuantitat" class="align-middle flex sm:mr-1">
+                                <input type="number" name="" id="" class="w-20 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow my-2 mx-auto">
+                            </div>
+
+                            <div><h2 class="text-xl font-bold">Nom</h2></div>
+                            <div id="divInput" class="align-middle flex sm:mr-1">
+                                <input type="text" name="" id="" class="px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-40 2xs:w-60 my-2 mx-auto">
+                            </div>
+                        </div>`;
+
+    $("#infoProducte").after(nouProducte);
 });
