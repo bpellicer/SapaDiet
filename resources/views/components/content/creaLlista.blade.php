@@ -43,7 +43,7 @@
                         </div>
 
 
-                        <div class="grid sm:grid-cols-2">
+                        <div class="grid sm:grid-cols-2" id="divProductes">
                             <div class="sm:col-span-2"><h1 class="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">Productes</h1></div>
                             <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10" id="infoProducte">
                                 <div><h2 class="text-sm sm:text-base md:text-lg font-bold my-3">Quantitat</h2></div>

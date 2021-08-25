@@ -377,7 +377,7 @@ $("#addProducte").on("click",function(){
                             </div>
                         </div>`;
 
-    $("#infoProducte").append(nouProducte);
+    $("#divProductes").append(nouProducte);
 });
 
 $("#banana").on("click",function(){
