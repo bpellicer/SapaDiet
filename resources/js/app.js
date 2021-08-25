@@ -365,6 +365,5 @@ $("#contra1").on("blur",function(){
 });
 
 $("#addProducte").on("click",function(){
-    alert("yes");
-   /*  $("#infoProducte").append("<p>yes</p>"); */
+    $("#infoProducte").append("<p>yes</p>");
 });
