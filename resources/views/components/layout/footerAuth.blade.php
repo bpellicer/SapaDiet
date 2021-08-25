@@ -7,7 +7,7 @@
                     <x-columnaMapaWeb name="Cerca" href="/cercador"/>
                 </div>
                 <div class="w-full sm:w-1/3">
-                    <x-columnaMapaWeb name="Llistes Compra" href="/llistesCompra"/>
+                    <x-columnaMapaWeb name="Llistes Compra" href="/llistes_compra"/>
                     <x-columnaMapaWeb name="Planificació" href="/planificacio"/>
                 </div>
                 <div class="w-full sm:w-1/3">

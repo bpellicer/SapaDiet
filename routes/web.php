@@ -79,7 +79,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post("addPesAltura",[ControladorProgres::class, 'store']);
 
-    Route::get("llistesCompra",[ControladorLlistesCompra::class, 'create']);
+    Route::get("llistes_compra",[ControladorLlistesCompra::class, 'create']);
+
+    Route::get("llistes_compra/crea_llista",[ControladorLlistesCompra::class, 'store']);
 
 });
 

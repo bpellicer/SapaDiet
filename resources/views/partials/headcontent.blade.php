@@ -7,14 +7,14 @@
         <title> {{ $title ?? 'Sapa Diet | Home'}}</title>
 
         <!-- Styles -->
-        <link href="https://sapadiet.herokuapp.com/css/app.css" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="shortcut icon" href="imatges/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/imatges/favicon.ico" type="image/x-icon">
 
         <!-- Scripts -->
         <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script defer src="https://sapadiet.herokuapp.com/js/app.js"></script>
+        <script defer src="{{ asset('js/app.js') }}"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>

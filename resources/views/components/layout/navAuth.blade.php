@@ -4,7 +4,7 @@
             <div class="flex justify-center"><a href="/" class="linksApp ">Inici</a></div>
             <div class="flex justify-center"><a href="/calendari" class="linksApp mt-3 ">Gestió Dieta</a></div>
             <div class="flex justify-center"><a href="/cercador" class="linksApp mt-3 ">Cerca</a></div>
-            <div class="flex justify-center"><a href="/llistesCompra" class="linksApp mt-3 ">Llistes Compra</a></div>
+            <div class="flex justify-center"><a href="/llistes_compra" class="linksApp mt-3 ">Llistes Compra</a></div>
             <div class="flex justify-center"><a href="/planificacio" class="linksApp mt-3 ">Planificació</a></div>
             <div class="flex justify-center"><a href="/progres" class="linksApp mt-3 ">Progrés</a></div>
             <div class="flex justify-center"><a href="/perfil" class="linksApp mt-3 ">Perfil</a></div>

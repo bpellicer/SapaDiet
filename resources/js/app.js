@@ -363,3 +363,8 @@ $("#contra1").on("focus",function(){
 $("#contra1").on("blur",function(){
     $(".infoPass").hide(500);
 });
+
+$("#addProducte").on("click",function(){
+    alert("yes");
+   /*  $("#infoProducte").append("<p>yes</p>"); */
+});
