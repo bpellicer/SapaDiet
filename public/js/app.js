@@ -2134,8 +2134,6 @@ $("#classic").on("click", function () {
 $("#ploma").on("click", function () {
   $("#llistaCompra").removeClass();
   $("#llistaCompra").addClass("ploma");
-  $("#llistaCompra").addClass("titolLlista");
-  $("#llistaCompra").addClass("subtitolLlista");
   $("#llistaCompra").addClass("llistaCompra");
 });
 
