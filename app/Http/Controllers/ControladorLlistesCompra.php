@@ -32,10 +32,11 @@ class ControladorLlistesCompra extends Controller
 
     public function afegirOUpdate(Request $request){
         $request->validate([
-            "titol"                    =>  ['required','string','regex:/^[A-zÀ-ú ]*$/','max:30'],
-            "quantitatsProducte.*"       =>  ['required','numeric','min:1','max:999'],
-            "nomsProducte.*"             =>  ['required','string','regex:/[A-zÀ-ú ]*$/','max:30'],
-            "accio"                    =>  ['required','string','regex:/[A-zÀ-ú ]*$/','min:6','max:6']
+            "titol"                     =>  ['required','string','regex:/^[A-zÀ-ú ]*$/','max:30'],
+            "quantitatsProducte.*"      =>  ['required','numeric','min:1','max:999'],
+            "nomsProducte.*"            =>  ['required','string','regex:/[A-zÀ-ú ]*$/','max:30'],
+            "estil"                    =>  ['required','string','regex:/banana|loto|classic|ploma/'],
+            "accio"                     =>  ['required','string','regex:/[A-zÀ-ú ]*$/','min:6','max:6']
         ]);
 
         ddd($request);

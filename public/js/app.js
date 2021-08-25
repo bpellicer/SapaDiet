@@ -2116,6 +2116,26 @@ $("#addProducte").on("click", function () {
   var nouProducte = " <div class=\"grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10 mt-2\" id=\"infoProducte\">\n                            <div><h2 class=\"text-xl font-bold my-3\">Quantitat</h2></div>\n                            <div id=\"divQuantitat\" class=\"align-middle flex sm:mr-1\">\n                                <input type=\"number\" name=\"quantitatsProducte[]\" id=\"quantitatProducte\" class=\"w-20 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow my-2 mx-auto\">\n                            </div>\n\n                            <div><h2 class=\"text-xl font-bold my-3\">Nom</h2></div>\n                            <div id=\"divInput\" class=\"align-middle flex sm:mr-1\">\n                                <input type=\"text\" name=\"nomsProducte[]\" id=\"nomProducte\" class=\"px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow w-40 2xs:w-60 my-2 mx-auto\">\n                            </div>\n                        </div>";
   $("#infoProducte").after(nouProducte);
 });
+$("#banana").on("click", function () {
+  $("#llistaCompra").removeClass();
+  $("#llistaCompra").addClass("banana");
+  $("#llistaCompra").addClass("llistaCompra");
+});
+$("#loto").on("click", function () {
+  $("#llistaCompra").removeClass();
+  $("#llistaCompra").addClass("loto");
+  $("#llistaCompra").addClass("llistaCompra");
+});
+$("#classic").on("click", function () {
+  $("#llistaCompra").removeClass();
+  $("#llistaCompra").addClass("classic");
+  $("#llistaCompra").addClass("llistaCompra");
+});
+$("#ploma").on("click", function () {
+  $("#llistaCompra").removeClass();
+  $("#llistaCompra").addClass("ploma");
+  $("#llistaCompra").addClass("llistaCompra");
+});
 
 /***/ }),
 

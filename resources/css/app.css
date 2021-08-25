@@ -450,6 +450,27 @@ td{
     @apply text-mini xs:text-xs sm:text-sm text-red-500 font-bold;
 }
 
+/*************** LLISTES DE LA COMPRA ***************/
+.ploma{
+    background:url("/imatges/pBG.png");
+}
+
+.loto{
+    background:url("/imatges/sBG.png");
+}
+
+.classic{
+    background:url("/imatges/pentagon.png");
+}
+
+.banana{
+    background:url("/imatges/bBG.png");
+}
+
+.llistaCompra{
+    @apply border-2 border-black w-full md:w-3/4 mb-4 mx-auto;
+}
+
 /************************* NORMALIZE     *************************/
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

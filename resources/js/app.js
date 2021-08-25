@@ -379,3 +379,28 @@ $("#addProducte").on("click",function(){
 
     $("#infoProducte").after(nouProducte);
 });
+
+$("#banana").on("click",function(){
+    $("#llistaCompra").removeClass();
+    $("#llistaCompra").addClass("banana");
+    $("#llistaCompra").addClass("llistaCompra");
+});
+
+$("#loto").on("click",function(){
+    $("#llistaCompra").removeClass();
+    $("#llistaCompra").addClass("loto");
+    $("#llistaCompra").addClass("llistaCompra");
+});
+
+$("#classic").on("click",function(){
+    $("#llistaCompra").removeClass();
+    $("#llistaCompra").addClass("classic");
+    $("#llistaCompra").addClass("llistaCompra");
+});
+
+$("#ploma").on("click",function(){
+    $("#llistaCompra").removeClass();
+    $("#llistaCompra").addClass("ploma");
+    $("#llistaCompra").addClass("llistaCompra");
+});
+
