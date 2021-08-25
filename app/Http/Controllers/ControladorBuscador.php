@@ -16,6 +16,14 @@ class ControladorBuscador extends Controller
      * Funció que retorna la vista de "Cerca"
      */
     public function create(){
+
+        $usuari = User::findOrFail(Auth::id());
+        /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
         $title = "Sapa Diet | Cerca";
         return view("pages.cerca", compact("title"));
     }
@@ -24,6 +32,14 @@ class ControladorBuscador extends Controller
      * Funció que retorna la vista de "Crea Aliment" amb una array de totes les Categories
      */
     public function createAfegir(){
+
+        $usuari = User::findOrFail(Auth::id());
+        /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
         $title = "Sapa Diet | Crea Aliment";
         return view("pages.afegeixAliment",[
             'categories' => Categoria::orderBy('nom')->get()
@@ -61,6 +77,14 @@ class ControladorBuscador extends Controller
      * Funció que retorna la vista de "Els Teus Aliments" que conté una array d'aliments propis de l'User
      */
     public function createPropis(){
+
+        $usuari = User::findOrFail(Auth::id());
+        /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
         $usuari = User::findOrFail(Auth::id());
         $title = "Sapa Diet | Els Meus Aliments";
         return view("pages.alimentsPropis",[
@@ -85,6 +109,14 @@ class ControladorBuscador extends Controller
     }
 
     public function createBuscador(){
+
+        $usuari = User::findOrFail(Auth::id());
+        /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
+        if($usuari->planificacio_id == 1){
+            session()->flash("planificacioDefecte","Guarda la planificació primer!");
+            return redirect("/planificacio");
+        }
+
         $title = "Sapa Diet | Buscador d'aliments";
         return view("pages.buscador",[
             'aliments'          => Aliment::orderBy('id')->get(),

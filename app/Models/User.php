@@ -95,4 +95,8 @@ class User extends Authenticatable
     public function pesAltura(){
         return $this->hasMany(PesAltura::class);
     }
+
+    public function llistaCompra(){
+        return $this->hasMany(LlistaCompra::class);
+    }
 }

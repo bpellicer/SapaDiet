@@ -4,6 +4,7 @@ use App\Http\Controllers\ControladorAliment;
 use App\Http\Controllers\ControladorBuscador;
 use App\Http\Controllers\ControladorCalendari;
 use App\Http\Controllers\ControladorDieta;
+use App\Http\Controllers\ControladorLlistesCompra;
 use App\Http\Controllers\ControladorLogin;
 use App\Http\Controllers\ControladorRegistre;
 use App\Http\Controllers\ControladorPerfil;
@@ -77,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('progres',[ControladorProgres::class, 'create']);
 
     Route::post("addPesAltura",[ControladorProgres::class, 'store']);
+
+    Route::get("llistesCompra",[ControladorLlistesCompra::class, 'create']);
 
 });
 

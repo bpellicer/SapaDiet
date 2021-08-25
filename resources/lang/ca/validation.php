@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Validation\Rules\Password;
+
 return [
     'accepted'             => ':attribute ha de ser acceptat.',
     'active_url'           => ':attribute no és un URL vàlid.',
@@ -129,6 +131,7 @@ return [
         ],
         'password' => [
             'min' => 'La :attribute ha de contenir més de :min caràcters',
+            'mixedCase' => 'La :attribute ha de contenir una lletra minúscula i una majúscula'
         ],
     ],
     'attributes'           => [

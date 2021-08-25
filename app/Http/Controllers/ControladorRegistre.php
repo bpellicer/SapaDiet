@@ -25,11 +25,11 @@ class ControladorRegistre extends Controller
     public function store(Request $request){
         $atributs = $request->validate([
             'nom'                   => ['required','max:30','alpha'],
-            'cognoms'               => ['required','max:255','string','regex:/[A-zÀ-ú ]*$/'],
-            'email'                 => ['required','max:255','email',Rule::unique('users','email')],
-            'contrasenya'           => ['required','max:255','same:password_confirmation',Password::min(8)->mixedCase()->symbols()],
+            'cognoms'               => ['required','max:190','string','regex:/[A-zÀ-ú ]*$/'],
+            'email'                 => ['required','max:190','email',Rule::unique('users','email')],
+            'contrasenya'           => ['required','max:190','same:password_confirmation',Password::min(8)->mixedCase()->symbols()],
             'sexe'                  => ['required','string','alpha'],
-            'password_confirmation' => ['required','min:8','max:255'],
+            'password_confirmation' => ['required','min:8','max:190'],
             'edat'                  => ['required','min:12','max:100','numeric']
         ]);
 

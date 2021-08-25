@@ -47,6 +47,12 @@ class ControladorPerfil extends Controller
             return redirect("/perfil");
         }
 
+        /** Comprova que el camp Sexe sigui Home o Dona i si no és cap, torna enrere **/
+        if($request->sexe != "Home" && $request->sexe != "Dona"){
+            session()->flash("errorSexe","Escull un Sexe de la llista!");
+            return redirect()->back()->withInput();
+        }
+
         /** Altrament, canvia els valors de l'usuari i redirigeix al perfil amb un missatge **/
         $usuari->nom = $request->get('nom');
         $usuari->cognoms = $request->get('cognoms');

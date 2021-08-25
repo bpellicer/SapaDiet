@@ -28,7 +28,7 @@
                         <option value="Dona" @if(auth()->user()->sexe == "Dona") selected @endif>Dona</option>
                     </select>
                     @if(session()->has("errorSexe"))
-                        <p class="text-xs text-red-500 mb-2">{{ session('errorSexe') }}</p>
+                        <p class="missatgeError text-left">{{ session('errorSexe') }}</p>
                     @endif
 
                     <x-inputPerfil tipus="email" classe="inputPerfil" id="email" nom="email" placeholder="Email"/>
