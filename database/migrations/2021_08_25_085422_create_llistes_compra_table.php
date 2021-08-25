@@ -17,9 +17,7 @@ class CreateLlistesCompraTable extends Migration
             $table->id();
             $table->foreignId("user_id")->constrained();
             $table->string("titol");
-            $table->string("contingut");
-            $table->string("contingut_aux");
-            $table->enum("classe",["classic","modern","gradient","shadow"]);
+            $table->enum("classe",["banana","loto","classic","ploma"]);
             $table->timestamps();
         });
     }

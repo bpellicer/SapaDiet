@@ -8,6 +8,9 @@
             @endif
            <div class="mx-auto">
                 <x-form method="post" action="/createUpdateList" class="mx-auto">
+                    @if ($accio == "modificar")
+                        <input type="hidden" name="idLlista" value="{{$idLlista}}">
+                    @endif
                     <input type="hidden" name="accio" value="{{$accio}}">
                     <div id="llistaCompra" class="llistaCompra border-double border-green-900 border-2">
                         <div class="grid sm:grid-cols-2">

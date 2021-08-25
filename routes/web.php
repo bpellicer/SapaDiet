@@ -81,7 +81,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("llistes_compra",[ControladorLlistesCompra::class, 'create']);
 
-    Route::get("llistes_compra/modifica_llista/{nom}",[ControladorLlistesCompra::class, 'editaView']);
+    Route::get("llistes_compra/modifica_llista/{nom}",[ControladorLlistesCompra::class, 'modificaView']);
 
     Route::get("llistes_compra/crea_llista",[ControladorLlistesCompra::class, 'creaView']);
 

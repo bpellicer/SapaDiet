@@ -9,10 +9,10 @@
                     @foreach ($llistesCompra as $llista)
                         <div class="{{$llista->classe}}">
                             <div class="">
-                                <h1></h1>
+                                <h1>{{$llista->titol}}</h1>
                             </div>
                             <div class="">
-                                <p></p>
+                                <a href="/llistes_compra/modifica_llista/{{$llista->titol}}">Clica</a>
                             </div>
                         </div>
                     @endforeach
