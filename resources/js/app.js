@@ -51,6 +51,10 @@ $("#eliminaPerfil").on("click", function(event){
     });
 });
 
+/**
+ * Event Onclick que s'activa al premer el botó d'eliminar Aliment. L'event submit del form s'atura i es demana una confirmació
+ * en base a una JS promise. Si es compleix, es fa submit al form, altrament retorna fals (Llibreria Sweet Alert per les alertes estilitzades)
+ */
 $("#eliminaAliment").on("click", function(event){
     event.preventDefault();
     swal({
@@ -69,7 +73,10 @@ $("#eliminaAliment").on("click", function(event){
 });
 
 
-
+/**
+ * Event Onclick que s'activa al premer el botó d'eliminar el dia. L'event submit del form s'atura i es demana una confirmació
+ * en base a una JS promise. Si es compleix, es fa submit al form, altrament retorna fals (Llibreria Sweet Alert per les alertes estilitzades)
+ */
 $("#eliminaDia").on("click", function(event){
     event.preventDefault();
     swal({
@@ -95,33 +102,41 @@ window.setTimeout(function(){
     $('#error2').stop().fadeOut('slow');
 },3000);
 
-
+/** Event que ensenya el divIntern quan es clica a la Imatge de perfil **/
 $("#imatgePerfil").on("click", function(){
     $("#divIntern").show();
 });
 
-
+/** Event que amaga el divIntern quan es clica a la creu **/
 $("#creu").on("click",function(){
     $("#divIntern").hide();
 });
 
-
+/** Fa que aparegui el divIntern2 amb un fadeIn slow **/
 $('#divIntern2').fadeIn('slow');
 
+/** Event que amaga el divIntern2 i el divIntern2 **/
 $("#creu2").on("click",function(){
     $("#divIntern2").hide();
     $("#divExtern2").hide();
 });
 
+/** Consulta AJAX que s'encarrega d'enviar una petició al servidor per obtenir els Aliments de la BDD **/
 $("#cercaDiv").on("submit",function(e){
     e.preventDefault();
+    /** Cada vegada que fa submit al form, s'esborra el contingut del div content **/
     $("#content").html("");
+
+    /** Variables **/
     let form = $(this);
     let nom = $("#buscadorNom").val();
     let categoria = $("#categoria").val();
     let url = form.attr('action');
+    /** Comptador per controlar els ID's dels divs dels Aliments **/
     let comptador = 1;
 
+    /** Si el nom està buit i la categoria és la per defecte, es mostra un missatge dins del div content amb un Timeout de 100ms
+     *  perquè aparegui més lent que sent instantani **/
     if(nom=="" && categoria =="-- Cap --"){
         setTimeout(function(){
             $("#content").append(`<p class="text-red-600 font-bold mt-4 text-xs sm:text-base">*Entra un nom o escull una categoria!</p>`);
@@ -143,20 +158,30 @@ $("#cercaDiv").on("submit",function(e){
             dataType:"json",
             success:function(dades){
                 if(dades.length == 0){
+                    /**  Si no troba cap resultat a la BDD mostra un missatge d'error al div de content **/
                     setTimeout(function(){
                         $("#content").append(`<p class="text-red-600 font-bold mt-4 text-xs sm:text-base">*No s'ha trobat cap resultat!</p>`);
                     },100)
                 }
                 else{
                     $(dades).each(function(index){
+                        /** Variable auxiliar que conté el nom de la Categoria i la seva Imatge **/
                         let categoria = ["categoriaNom","urlImatge"];
                         categoria[0] = getCategoria(dades[index].categoria_id);
                         categoria[1] = getImatge(categoria[0]);
+
+                        /**  Afegeix al div content un div per cada Aliment que es troba amb el nom i la imatge **/
                         $("#content").append(`<div class="flex justify-center sm:inline-block"><div class="cartaAliment2" id="aliment`+comptador+`">
                                                 <img src="`+categoria[1]+`" alt="" class="inline-block">
                                                 <p class="font-bold mt-2">`+dades[index].nom+`</p>
                                                 <p class="mt-2">Categoria: `+categoria[0]+`</p>
                                             </div></div>`);
+
+                        /** Per cada #alimentComptador, es genera un event que quan es clica al div mostra tota la informació de l'Aliment
+                         *  dins d'un div centrat a la pantalla, el qual consta d'un petit formulari per afegir aquest Aliment a una data i
+                         *  a un àpat en específic. També genera un script tag per a controlar l'event dels grams i així canviar la informació
+                         *  nutricional de l'Aliment cada vegada que l'input dels grams es canvia. Finalment posa la data del dia d'avui a
+                         *  l'input DATE **/
                         $("#aliment"+comptador).on("click", function(e){
                             let info = `<div class="divExtern" id="divExtern2">
                             <div class="divIntern2 w-64 xs:w-72 2xs:w-80 sm:w-100 md:w-100 h-110" id="divIntern2">
@@ -262,6 +287,10 @@ $("#cercaDiv").on("submit",function(e){
             }
         });
     }
+    /**
+     * Funció que retorna el nom de la Categoria de l'Aliment
+     * @param {*} id    Conté l'id de la categoria
+     */
     function getCategoria(id){
         let categoriaNom = "";
         switch(id){
@@ -301,6 +330,12 @@ $("#cercaDiv").on("submit",function(e){
         }
         return categoriaNom;
     }
+
+    /**
+     * Funció que retorna la imatge de la categoria
+     * @param {*} categoria     Conté el nom de la categoria
+     *
+     */
     function getImatge(categoria){
         let src ="";
         switch(categoria){
@@ -342,6 +377,9 @@ $("#cercaDiv").on("submit",function(e){
     }
 });
 
+/** Event que gira la imatge de #showImc utilitzant el toggleClass i la classe rota. Si la imatge té la classe rota, afegeix la taula
+ *  de l'IMC al div d'infoIMC de manera lenta. Altrament esborra el contingut del div.
+ */
 $("#showImc").on("click",function(){
     $(this).toggleClass('rota');
     let info = `<div><table class="table-fixed"><thead><tr class="bg-green5"><th class=" w-96">IMC</th><th class=" w-96">Classificació</th></tr></thead>
@@ -357,13 +395,17 @@ $("#showImc").on("click",function(){
     }
 });
 
+/** Event Focus que ensenya el div d'infoPass amb la informació per a crear una contrasenya segura **/
 $("#contra1").on("focus",function(){
     $(".infoPass").show(500);
 });
+
+/** Event Blur que amaga el div d'infoPass quan deixa de tenir el focus l'input de contra1 **/
 $("#contra1").on("blur",function(){
     $(".infoPass").hide(500);
 });
 
+/** Event Click que s'activa quan cliques a la imatge d'addProducte i afegeix un nouProducte dins del divProductes **/
 $("#addProducte").on("click",function(){
     let nouProducte = ` <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10 mb-6 infoProducte" id="infoProducte">
                             <div><h2 class="text-sm sm:text-base md:text-lg font-bold my-3">Quantitat</h2></div>
@@ -381,12 +423,18 @@ $("#addProducte").on("click",function(){
 });
 
 
+/** Event Click que s'activa quan es clica la imatge de deleteProducte i esborra l'ultim fill del divProductes sempre i quan el length
+ *  d'infoProducte sigui superior a 1 (Per evitar que s'esborri el primer producte) **/
 $("#deleteProducte").on("click",function(){
     if($("#divProductes").find(".infoProducte").length > 1){
         $('#divProductes').children().last().remove();
     }
 });
 
+
+/** EVENTS CLICK que s'activen quan es clica als diferents inpuRadio del formulari de la llista de la compra.
+*   Esborren les classes anteriors i afegeixen les noves classes, les quals canvien el fons de la llista.
+*/
 $("#banana").on("click",function(){
     $("#llistaCompra").removeClass();
     $("#llistaCompra").addClass("banana");

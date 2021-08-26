@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\PesAltura;
 use App\Models\User;
 use App\Models\UserApat;
-use App\Models\UserApatAliment;
-use App\Models\UserApatAlimentPropi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
 
 class ControladorProgres extends Controller
 {
     /**
-     * Funció que retorna
+     * Funció que retorna la vista del progrés de l'Usuari amb diferents variables
+     * que contenen la informació necessaria per les gràfiques.
      */
     public function create(){
         $title = "SapaDiet | Progrés";
@@ -45,6 +43,11 @@ class ControladorProgres extends Controller
         ],compact("title"));
     }
 
+    /**
+     * Funció que retorna un array amb les kcal totals per dia que l'Usuari ha consumit en els últims 7 dies.
+     * @param Array $arrayUserApats     Conté una array amb els Àpats de l'Usuari
+     * @param Array $arrayDies          Conté una array amb els últims 7 dies.
+     */
     public function getKcalTotals7dies($arrayUserApats,$arrayDies){
         $arrayKcalTotals = [];
         foreach($arrayDies as $dia){
@@ -53,6 +56,11 @@ class ControladorProgres extends Controller
         return $arrayKcalTotals;
     }
 
+    /**
+     * Funció que retorna les kcal calculades del dia passat per paràmetre
+     * @param $arrayUserApats   Conté l'array dels Àpats de l'Usuari
+     * @param $dia              Conté el dia dels Àpats
+     */
     public function getKcalDia($arrayUserApats,$dia){
         /**  Bucle que recorre l'array dels àpats de l'Usuari **/
         $sumaKcalDia = 0;

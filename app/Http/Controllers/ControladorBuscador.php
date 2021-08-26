@@ -16,7 +16,6 @@ class ControladorBuscador extends Controller
      * Funció que retorna la vista de "Cerca"
      */
     public function create(){
-
         $usuari = User::findOrFail(Auth::id());
         /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
         if($usuari->planificacio_id == 1){
@@ -108,8 +107,10 @@ class ControladorBuscador extends Controller
         return $alimentPropi;
     }
 
+    /**
+     * Funció que retorna la vista del buscador i envia l'array de categories
+     */
     public function createBuscador(){
-
         $usuari = User::findOrFail(Auth::id());
         /** Controla que l'Usuari només pugui entrar al dia de la dieta si ha guardat la planificació **/
         if($usuari->planificacio_id == 1){
@@ -119,9 +120,7 @@ class ControladorBuscador extends Controller
 
         $title = "Sapa Diet | Buscador d'aliments";
         return view("pages.buscador",[
-            'aliments'          => Aliment::orderBy('id')->get(),
-            'categories'        => Categoria::orderBy('nom')->get(),
-            'alimentsPropis'   => User::findOrFail(Auth::id())->alimentpropi
+            'categories'        => Categoria::orderBy('nom')->get()
         ],compact("title"));
     }
 

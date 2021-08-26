@@ -46,10 +46,10 @@ class ControladorLlistesCompra extends Controller
         }
 
         /** Obté totes les llistes de la compra **/
-        $arrayllistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
+        $arrayLlistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
 
         /** Obté la llista que coincideix amb el nom **/
-        $llistaJson = $this->getLlista($arrayllistesCompra,$nom);
+        $llistaJson = $this->getLlista($arrayLlistesCompra,$nom);
 
         /** Array que conté el contingut de la llista, explode amb asterisc, ja que el contingut es guarda
          *  d'aquesta manera = 1*Peix*2*Plats*15*Plats... **/
