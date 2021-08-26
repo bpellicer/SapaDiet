@@ -67,7 +67,7 @@ class ControladorPerfil extends Controller
     /**
      * Funció que esborra totes les dades relacionades amb l'Usuari
      */
-    public function delete(){
+    public function delete($request){
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
 
@@ -78,6 +78,10 @@ class ControladorPerfil extends Controller
          *  mateixa planificació per defecte. Si l'user_id estigués a la taula de planificacions amb un onDelete(cascade), l'Usuari podría
          *  esborrar la planificació per defecte) **/
         $usuari->deletePlanificacio();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         session()->flash('perfilEsborrat','Dades esborrades!');
 

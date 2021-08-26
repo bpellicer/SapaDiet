@@ -17,5 +17,10 @@
     <x-alerta nom="success2" missatge="{{ session('llistaCreada') }}"/>
 @endif
 
+@if (session()->has('llistaModificada'))
+    <x-alerta nom="success2" missatge="{{ session('llistaModificada') }}"/>
+@endif
+
 @include('components.content.llistesCompra')
+
 <x-layout.footerAuth/>

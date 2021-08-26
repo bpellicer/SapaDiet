@@ -95,6 +95,11 @@ class ControladorLlistesCompra extends Controller
             return redirect()->back();
         }
 
+        /** Comprova que la llista amb el mateix títol no existeixi i que l'acció sigui la d'afegir, perquè sinò no es podria modificar **/
+        if(LlistaCompra::where("titol",$request->titol)->where("user_id",Auth::id())->first() && $request->accio == "afegir"){
+            session()->flash("errorTitol","Titol repetit");
+            return redirect()->back()->withInput();
+        }
         /** Els Strings a la BDD tenen una llargada màxima de 190 caràcters fent servir ClearDB, així que he de guardar la informació de les
          *  llistes a un altre lloc. Per això, faré servir un fitxer JSON que contindrà l'User_ID, el títol de la llista i el contingut d'aquesta.
          *  Lo altre ho guardaré a la BDD.

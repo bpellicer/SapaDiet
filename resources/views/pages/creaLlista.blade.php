@@ -3,6 +3,11 @@
 @if (session()->has('errorLlista'))
     <x-alerta nom="error2" missatge="{{ session('errorLlista') }}"/>
 @endif
+
+@if (session()->has('errorTitol'))
+    <x-alerta nom="error2" missatge="{{ session('errorTitol') }}"/>
+@endif
+
 @include('components.content.creaLlista')
 <script>
     let accio = {!! json_encode($accio) !!};

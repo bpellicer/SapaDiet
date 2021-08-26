@@ -8,7 +8,7 @@
                 <div class="grid sm:grid-cols-2 gap-4 mb-8">
                     @foreach ($llistesCompra as $llista)
                         <div class="{{$llista->classe}} border-2 border-black h-20 md:w-64 xl:w-96 lg:mx-auto">
-                            <div class="">
+                            <div>
                                 <h1 class="text-sm font-bold">{{$llista->titol}}</h1>
                             </div>
                             <div class="grid grid-cols-2">

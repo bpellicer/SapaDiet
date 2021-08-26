@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Apat;
 use App\Models\Planificacio;
 use App\Models\User;
 use App\Models\UserApat;
