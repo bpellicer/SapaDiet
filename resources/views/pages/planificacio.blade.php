@@ -23,7 +23,7 @@
 
     /** El select amb id objectiu selecciona l'opció que l´usuari té guardada a la BDD **/
     $("#objectiu").val(planificacio.objectius);
-    /** El selcet amb id esport selecciona l'opció que l'usuari té guardada a la BDD **/
+    /** El select amb id esport selecciona l'opció que l'usuari té guardada a la BDD **/
     $("#esport").val(planificacio.esport);
     /** El nombre d'àpats de la planificació escull el radio button corresponent **/
     $("#apat"+planificacio.nombre_apats).prop("checked",true);

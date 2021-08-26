@@ -20,22 +20,37 @@ class ControladorLlistesCompra extends Controller
     public function creaView(){
         $title = "Sapa Diet | Crea una Llista";
         return view("pages.creaLlista",[
-            "accio" => "afegir"
+            "accio" => "afegir",
+            "llista" => [0]
         ],compact("title"));
     }
 
     public function modificaView($nom){
         $title = "Sapa Diet | Modifica la Llista";
-
-        if(!LlistaCompra::where("user_id",Auth::id())->where("titol",$nom)->first()){
+        $llista = LlistaCompra::where("user_id",Auth::id())->where("titol",$nom)->first();
+        if(!$llista){
             session()->flash("errorLlista","Llista no existent");
             return redirect()->back();
         }
 
+        $arrayllistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
+        $llistaJson = $this->getLlista($arrayllistesCompra,$nom);
+
+        $arrayContingut = [];
+
+        $arrayContingut = explode("*",$llistaJson->contingut);
+
         return view("pages.creaLlista",[
-            "accio" => "modificar",
-            "idLlista" => LlistaCompra::where("user_id",Auth::id())->where("titol",$nom)->first()->id
+            "accio"             => "modificar",
+            "llista"            => $llista,
+            "arrayContingut"    => $arrayContingut
         ],compact("title"));
+    }
+
+    public function getLlista($arrayLlistes,$titol){
+        foreach($arrayLlistes as $llista){
+            if($llista->user_id == Auth::id() && $llista->titol === $titol) return $llista;
+        }
     }
 
     public function afegirOUpdate(Request $request){
@@ -100,7 +115,7 @@ class ControladorLlistesCompra extends Controller
 
 
 
-       /* return redirect("/llistes_compra"); */
+       return redirect("/llistes_compra");
     }
 
     /**
