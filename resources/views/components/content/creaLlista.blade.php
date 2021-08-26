@@ -66,11 +66,17 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-4 mt-4 flex justify-center">
-                            <img src="/imatges/add.png" class="w-5 cursor-pointer" alt="" id="addProducte">
+
+                        <div class="flex justify-center">
+                            <div class="mb-4 mt-4 mr-2">
+                                <img src="/imatges/add.png" class="w-5 cursor-pointer" alt="" id="addProducte">
+                            </div>
+                            <div class="mb-4 mt-4 ml-2">
+                                <img src="/imatges/minus.png" class="w-5 mt-2 cursor-pointer" alt="" id="deleteProducte">
+                            </div>
                         </div>
                     </div>
-                    <div id="deleteProducte" class="w-20 h-20 bg-black"></div>
+
                     <div class="mb-4 mt-8">
                         <button type="submit" class="botoEstandar">Guardar</button>
                     </div>
@@ -81,10 +87,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $("#deleteProducte").on("click",function(){
-        alert($("#divProductes").find(".infoProducte").length);
-});
-
-</script>

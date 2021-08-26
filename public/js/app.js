@@ -2117,7 +2117,9 @@ $("#addProducte").on("click", function () {
   $("#divProductes").append(nouProducte);
 });
 $("#deleteProducte").on("click", function () {
-  $('#divProductes').children().last().remove();
+  if ($("#divProductes").find(".infoProducte").length > 1) {
+    $('#divProductes').children().last().remove();
+  }
 });
 $("#banana").on("click", function () {
   $("#llistaCompra").removeClass();
