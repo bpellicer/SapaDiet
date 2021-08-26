@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="contenidor mb-10" id="infoWeb">
+<div class="contenidor mb-10 mt-4" id="infoWeb">
     <div class="w-full text-center font-bold">
         <h1 class=" text-xl xs:text-2xl sm:text-3xl">Coneix l'aplicació!</h1>
     </div>
