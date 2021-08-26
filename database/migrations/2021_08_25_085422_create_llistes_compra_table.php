@@ -15,7 +15,7 @@ class CreateLlistesCompraTable extends Migration
     {
         Schema::create('llistes_compra', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained();
+            $table->foreignId("user_id")->constrained()->onDelete('cascade');
             $table->string("titol");
             $table->enum("classe",["banana","loto","classic","ploma"]);
             $table->timestamps();

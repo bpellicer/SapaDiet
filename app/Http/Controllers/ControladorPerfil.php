@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AlimentPropi;
 use App\Models\Imatge;
-use App\Models\PesAltura;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,18 +24,17 @@ class ControladorPerfil extends Controller
      * @param Request $request  Conté el nou nom i cognoms de l'Usuari
      */
     public function update(Request $request){
-
-        /** Busca l'usuari per Id **/
-        $usuariId = Auth::id();
-        $usuari = User::findOrFail($usuariId);
-
-        /** Validem les dades del request **/
         $request->validate([
             'nom'       => ['required','max:30','string','alpha'],
             'cognoms'   => ['required','max:255','string','regex:/[A-zÀ-ú ]*$/'],
             'sexe'      => ['required','string','alpha'],
             'edat'      => ['required','min:12','max:100','numeric']
         ]);
+
+        /** Busca l'usuari per Id **/
+        $usuariId = Auth::id();
+        $usuari = User::findOrFail($usuariId);
+
 
         /** Si les dades no han canviat, redirect al perfil**/
         if($usuari->nom == $request->get('nom') && $usuari->cognoms == $request->get('cognoms')
@@ -70,22 +67,16 @@ class ControladorPerfil extends Controller
     /**
      * Funció que esborra totes les dades relacionades amb l'Usuari
      */
-    public function delete(Request $request){
+    public function delete(){
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
 
-        /** Esborra tots els AlimentsPropis de l'Usuari **/
-        $alimentsPropis = AlimentPropi::all()->where("user_id",$usuariId);
-        foreach($alimentsPropis as $aliment){
-            $aliment->delete();
-        }
-        $pesos = PesAltura::all()->where("user_id",$usuariId);
-        foreach($pesos as $pes){
-            $pes->delete();
-        }
-
-        /** Esborra l'Usuari i la seva Planificaicó **/
+        /** Esborra l'Usuari **/
         $usuari->delete();
+
+        /** Esborra la Planificació (S'esborra després perquè l'id de la planificació està a la taula users i perquè tots els Usuaris tenen la
+         *  mateixa planificació per defecte. Si l'user_id estigués a la taula de planificacions amb un onDelete(cascade), l'Usuari podría
+         *  esborrar la planificació per defecte) **/
         $usuari->deletePlanificacio();
 
         session()->flash('perfilEsborrat','Dades esborrades!');
