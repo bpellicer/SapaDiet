@@ -90,12 +90,12 @@
 
 <script>
     $("#deleteProducte").on("click",function(){
-    alert("div");
+    alert($("#divProductes").find(".infoProducte").length > 1);
     if($("#divProductes").find(".infoProducte").length > 1){
         $('#divProductes').children().last().remove();
     }
     else{
-        alert($('#divProductes').children().last().remove());
+
     }
 });
 

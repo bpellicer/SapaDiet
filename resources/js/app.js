@@ -381,8 +381,11 @@ $("#addProducte").on("click",function(){
 });
 
 
-
-
+$("#deleteProducte").on("click",function(){
+    if($("#divProductes").find(".infoProducte").length > 1){
+        $('#divProductes').children().last().remove();
+    }
+});
 
 $("#banana").on("click",function(){
     $("#llistaCompra").removeClass();
