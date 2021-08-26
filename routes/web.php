@@ -87,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post("createUpdateList", [ControladorLlistesCompra::class, 'afegirOUpdate']);
 
+    Route::post("esborraLlista",[ControladorLlistesCompra::class, 'deleteLlista']);
+
 });
 
 Route::middleware(['guest'])->group(function () {

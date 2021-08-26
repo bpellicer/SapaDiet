@@ -6,5 +6,16 @@
 @if (session()->has('errorLlista'))
     <x-alerta nom="error2" missatge="{{ session('errorLlista') }}"/>
 @endif
+@if (session()->has('errorEsborrar'))
+    <x-alerta nom="error2" missatge="{{ session('errorEsborrar') }}"/>
+@endif
+@if (session()->has('llistaEsborrada'))
+    <x-alerta nom="success2" missatge="{{ session('llistaEsborrada') }}"/>
+@endif
+
+@if (session()->has('llistaCreada'))
+    <x-alerta nom="success2" missatge="{{ session('llistaCreada') }}"/>
+@endif
+
 @include('components.content.llistesCompra')
 <x-layout.footerAuth/>

@@ -365,7 +365,7 @@ $("#contra1").on("blur",function(){
 });
 
 $("#addProducte").on("click",function(){
-    let nouProducte = ` <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10 infoProducte" id="infoProducte">
+    let nouProducte = ` <div class="grid sm:grid-cols-2 sm:col-span-2 border-2 border-black mx-3 sm:mx-10 mb-6 infoProducte" id="infoProducte">
                             <div><h2 class="text-sm sm:text-base md:text-lg font-bold my-3">Quantitat</h2></div>
                             <div id="divQuantitat" class="align-middle flex sm:mr-1">
                                 <input type="number"placeholder="0" name="quantitatsProducte[]" id="quantitatProducte" class="w-20 px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow my-2 mx-auto">

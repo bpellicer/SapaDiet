@@ -1,11 +1,14 @@
 <div class="container mx-auto my-auto">
     <div class="flex justify-center px-2 sm:px-5 md:px-10 my-12">
         <div class="w-full lg:w-9/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black px-2 2xs:p-4 md:p-6 text-center">
+            <a href="/llistes_compra" class="w-10 block"><img class="w-10 mt-2 transition ease-in transform hover:scale-110" src="/imatges/arrowleft.png" alt=""></a>
+
             @if ($accio == "afegir")
-                <h1 class="font-bold text-xl sm:text-2xl md:text-3xl">Crea la Llista</h1>
+                <h1 class="font-bold text-xl sm:text-2xl md:text-3xl mt-0">Crea la Llista</h1>
             @elseif ($accio == "modificar")
-                <h1 class="font-bold text-xl sm:text-2xl md:text-3xl">Modifica la Llista</h1>
+                <h1 class="font-bold text-xl sm:text-2xl md:text-3xl mt-0">Modifica la Llista</h1>
             @endif
+
            <div class="mx-auto">
                 <x-form method="post" action="/createUpdateList" class="mx-auto">
                     @if ($accio == "modificar")
