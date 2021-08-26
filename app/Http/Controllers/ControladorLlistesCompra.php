@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LlistaCompra;
+use App\Models\Producte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,7 @@ class ControladorLlistesCompra extends Controller
         $title = "Sapa Diet | Crea una Llista";
         return view("pages.creaLlista",[
             "accio"             => "afegir",
-            "arrayContingut"    => [0],
+            "arrayProductes"    => [0],
             "llista"            => ""
         ],compact("title"));
     }
@@ -45,21 +46,13 @@ class ControladorLlistesCompra extends Controller
             return view("errors.404");
         }
 
-        /** Obté totes les llistes de la compra **/
-        $arrayLlistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
-
-        /** Obté la llista que coincideix amb el nom **/
-        $llistaJson = $this->getLlista($arrayLlistesCompra,$nom);
-
-        /** Array que conté el contingut de la llista, explode amb asterisc, ja que el contingut es guarda
-         *  d'aquesta manera = 1*Peix*2*Plats*15*Plats... **/
-        $arrayContingut = [];
-        $arrayContingut = explode("*",$llistaJson->contingut);
+        /** Array de productes de la llista **/
+        $arrayProductes = $llista->producte;
 
         return view("pages.creaLlista",[
             "accio"             => "modificar",
             "llista"            => $llista,
-            "arrayContingut"    => $arrayContingut
+            "arrayProductes"    => $arrayProductes
         ],compact("title"));
     }
 
@@ -84,8 +77,8 @@ class ControladorLlistesCompra extends Controller
             "titol"                     =>  ['required','string','regex:/^[A-zÀ-ú ]*$/','max:30'],
             "quantitatsProducte.*"      =>  ['required','numeric','min:1','max:999'],
             "nomsProducte.*"            =>  ['required','string','regex:/[A-zÀ-ú ]*$/','max:30'],
-            "estil"                    =>   ['required','string','regex:/banana|loto|classic|ploma/'],
-            "accio"                     =>  ['required','string','regex:/[A-zÀ-ú ]*$/','min:6','max:9'],
+            "estil"                     =>  ['required','string','regex:/banana|loto|classic|ploma/'],
+            "accio"                     =>  ['required','string','regex:/[A-zÀ-ú ]*$/','min:6','max:9']
         ]);
 
 
@@ -94,27 +87,11 @@ class ControladorLlistesCompra extends Controller
             session()->flash("errorAccio","Acció errònia!");
             return redirect()->back();
         }
-
         /** Comprova que la llista amb el mateix títol no existeixi i que l'acció sigui la d'afegir, perquè sinò no es podria modificar **/
-        if(LlistaCompra::where("titol",$request->titol)->where("user_id",Auth::id())->first() && $request->accio == "afegir"){
+        else if(LlistaCompra::where("titol",$request->titol)->where("user_id",Auth::id())->first() && $request->accio == "afegir"){
             session()->flash("errorTitol","Titol repetit");
             return redirect()->back()->withInput();
         }
-        /** Els Strings a la BDD tenen una llargada màxima de 190 caràcters fent servir ClearDB, així que he de guardar la informació de les
-         *  llistes a un altre lloc. Per això, faré servir un fitxer JSON que contindrà l'User_ID, el títol de la llista i el contingut d'aquesta.
-         *  Lo altre ho guardaré a la BDD.
-         */
-
-        $contingut = $this->getContingut($request->quantitatsProducte,$request->nomsProducte);
-        /** Array amb la informació de la llista pel fitxer JSON **/
-        $dades = [
-            "user_id"   => Auth::id(),
-            "titol"     => $request->titol,
-            "contingut" => $contingut
-        ];
-
-        /** Obté l'array del fitxer JSON, altrament array buit **/
-        $arrayLlistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
 
         if($request->accio == "afegir"){
             $llistaCompra = new LlistaCompra();
@@ -126,34 +103,28 @@ class ControladorLlistesCompra extends Controller
                 session()->flash("errorLlista","Llista no existent");
                 return redirect()->back();
             }
-            /** Comptador **/
-            $i = 0;
-
-            foreach($arrayLlistesCompra as $llistaCompraArray){
-                /** Si coincideix, esborra la llista de l'Array **/
-                if($llistaCompraArray->user_id == Auth::id() && $llistaCompraArray->titol == $dades["titol"]){
-                    unset($arrayLlistesCompra[$i]);
-                }
-                $i++;
-            }
-
-            /** Obté els valors de la llista ordenats **/
-            $arrayLlistesCompra = array_values($arrayLlistesCompra);
 
             /** Obté la llista de la BDD **/
             $llistaCompra = LlistaCompra::where("id",$request->idLlista)->first();
+            Producte::where("llista_compra_id",$llistaCompra->id)->delete();
+
             session()->flash("llistaModificada","Llista modificada!");
         }
-
-        /** Afegeix la nova llista a l'array de llistes i ho guarda al fitxer JSON **/
-        array_push($arrayLlistesCompra,$dades);
-        Storage::disk('public')->put('llistesCompra.json', json_encode($arrayLlistesCompra));
 
         /** Actualitza o insereix els camps de la Llista de la Compra a la BDD **/
         $llistaCompra->titol = $request->titol;
         $llistaCompra->classe = $request->estil;
         $llistaCompra->user_id = Auth::id();
         $llistaCompra->save();
+
+        /** Crea un producte per cada element de l'array de productes **/
+        for($i = 0; $i < count($request->quantitatsProducte); $i++) {
+            $producte = new Producte();
+            $producte->quantitat = $request->quantitatsProducte[$i];
+            $producte->nom = $request->nomsProducte[$i];
+            $producte->llista_compra_id = $llistaCompra->id;
+            $producte->save();
+        }
 
         return redirect("/llistes_compra");
     }
@@ -175,7 +146,7 @@ class ControladorLlistesCompra extends Controller
     }
 
     /**
-     * Funció que esborra una Llista de la BDD i del fitxer JSON
+     * Funció que esborra una Llista de la BDD
      * @param Request $request      Conté el nom de la Llista de la Compra
      */
     public function deleteLlista(Request $request){
@@ -190,23 +161,6 @@ class ControladorLlistesCompra extends Controller
             session()->flash("errorEsborrar","Llista no existent");
             return redirect()->back();
         }
-        /** Obtenim les llistes del fitxer JSON **/
-        $arrayLlistesCompra = Storage::disk('public')->exists('llistesCompra.json') ? json_decode(Storage::disk('public')->get('llistesCompra.json')) : [];
-        /** Comptador **/
-        $i = 0;
-        foreach($arrayLlistesCompra as $llistaCompraArray){
-            /**  Si la troba, fa un unset dins l'array **/
-            if($llistaCompraArray->user_id == Auth::id() && $llistaCompraArray->titol == $request->nom){
-                unset($arrayLlistesCompra[$i]);
-            }
-            $i++;
-        }
-
-        /** Retorna tots els valors ordenats de l'Array de les Llistes de la compra **/
-        $arrayLlistesCompra = array_values($arrayLlistesCompra);
-
-        /** Guarda el nou array dins el fitxer JSON **/
-        Storage::disk('public')->put('llistesCompra.json', json_encode($arrayLlistesCompra));
 
         /** Esborra la llista de la BDD **/
         $llista->delete();

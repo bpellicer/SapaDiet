@@ -18,4 +18,11 @@ class LlistaCompra extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Funció que assigna una relació 1:N amb la classe Producte
+     */
+    public function producte(){
+        return $this->hasMany(Producte::class);
+    }
 }
