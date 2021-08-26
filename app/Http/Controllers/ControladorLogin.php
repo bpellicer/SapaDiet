@@ -46,8 +46,13 @@ class ControladorLogin extends Controller
     /**
      * Funció que destrueix la sessió de l'Usuari i el redirecciona a la pàgina principal
      */
-    public function destroy(){
+    public function destroy(Request $request){
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }
