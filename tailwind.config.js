@@ -4,6 +4,7 @@ module.exports = {
   purge: [
       './resources/**/*.blade.php',
       './resources/**/*.js',
+      './resources/**/*.css'
   ],
   presets: [],
   darkMode: false, // or 'media' or 'class'

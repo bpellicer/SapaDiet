@@ -5,7 +5,7 @@
 <div class="flex flex-wrap mainPage">
     <div class="w-full flex">
         <div class="mx-auto">
-            <img class="cuate" src="/imatges/homePageGuy.svg" alt="Un noi menjant una amanida">
+            <img class="cuate" width=600 height=auto src="/imatges/homePageGuy.svg" alt="Un noi menjant una amanida">
             <h1 class="titolHomePage">Controlar el que
                 menges mai havia
                 sigut tan fàcil</h1>
