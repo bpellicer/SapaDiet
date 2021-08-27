@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
@@ -43,6 +44,10 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if (!$request->expectsJson() && $exception instanceof MethodNotAllowedHttpException) {
+            return redirect('/');
+        }
+
+        if ($exception instanceof TokenMismatchException && $request->getRequestUri() === '/logout') {
             return redirect('/');
         }
 
