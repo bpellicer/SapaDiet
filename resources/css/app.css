@@ -19,7 +19,6 @@ a{
 }
 
 /***************    NORMES GENERALS ***************/
-
 input,select,button{
 @apply focus:outline-none focus:ring focus:border-blue-300;
 }
