@@ -67,7 +67,7 @@ class ControladorPerfil extends Controller
     /**
      * Funció que esborra totes les dades relacionades amb l'Usuari
      */
-    public function delete($request){
+    public function delete(Request $request){
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
 
