@@ -15,8 +15,7 @@ class ControladorRegistre extends Controller
      */
     public function create(){
         $title = "Sapa Diet | Registre";
-        $descripcio ="Registra't a Sapa Diet omplint un formulari amb informació personal. De forma ràpida i senzilla.";
-        return view('pages.registre',compact("title","descripcio"));
+        return view('pages.registre',compact("title"));
     }
 
     /**

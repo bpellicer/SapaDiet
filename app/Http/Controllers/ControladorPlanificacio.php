@@ -15,7 +15,6 @@ class ControladorPlanificacio extends Controller
      */
     public function create(){
         $title = "Sapa Diet | Planificació";
-        $descripcio ="La Planificació és un formulari que has d'omplir obligatoriament per a poder fer servir l'aplicació de Sapa Diet. Escull el nombre d'àpats, els aliments preferits i els teus objectius.";
         $usuariId = Auth::id();
         $usuari = User::findOrFail($usuariId);
         $planificacio =  $usuari->planificacio;
@@ -23,7 +22,7 @@ class ControladorPlanificacio extends Controller
         return view("pages.planificacio",[
             'planificacio'=> $planificacio,
             'aliments' => $aliments->pluck('id')->toArray()
-        ],compact("title","descripcio"));
+        ],compact("title"));
     }
 
     /**

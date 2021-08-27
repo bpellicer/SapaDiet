@@ -48,9 +48,7 @@ class ControladorDieta extends Controller
             /** Posa la data del dia seleccionat al títol amb el format DD-MM-YYYY **/
             $dataAvui = date("m")."-20".date("y");
             $dataAvui = strlen($this->getDia("-",$data)) < 2 ? $dataAvui = "0".$this->getDia("-",$data)."-".$dataAvui : $this->getDia("-",$data)."-".$dataAvui;
-
             $title = "Sapa Diet | $dataAvui";
-            $descripcio = "Benvingut al Gestor de la teva Dieta. Aquí podràs veure tots els aliments que has afegit al dia seleccionat, júntament amb una barra de progrés i amb les kilocalories del dia.";
 
             /** Rep els apats que té l'Usuari i els guarda en una array **/
             $arrayUserApats = UserApat::where('user_id',$usuari->id)->get();
@@ -107,7 +105,7 @@ class ControladorDieta extends Controller
                 "arrayNutrientsTotals"  => $arrayNutrientsTotals,
                 "arrayImatges"          => $arrayImatges,
                 "kcalTotals"            => $kcalTotals
-                ],compact("title","descripcio"));
+                ],compact("title"));
             }
     }
 

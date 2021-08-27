@@ -14,10 +14,9 @@ class ControladorPerfil extends Controller
      */
     public function create(){
         $title = "Sapa Diet | Perfil";
-        $descripcio ="Benvingut al teu Perfil. Aquí podràs veure la teva informació personal i una imatge que et representa. Pots canviar-ho sempre que vulguis i també pots esborrar el teu compte!";
         return view('pages.perfil',[
             'imatges' => Imatge::where('tipus','=','perfil')->get(),
-        ],compact("title","descripcio"));
+        ],compact("title"));
     }
 
     /**

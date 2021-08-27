@@ -15,14 +15,13 @@ class ControladorAliment extends Controller
      */
     public function create($nom){
         $title = 'Sapa Diet | Informació '.$nom;
-        $descripcio = "Pàgina que conté tota la informació nutricional de l'Aliment Propi ".$nom." i en la qual podràs modificar els seus valors o afegir l'aliment a un àpat d'un dia de la dieta";
         $alimentPropi = AlimentPropi::where("nom","=",$nom)->where('user_id','=',Auth::id())->get();
         if($alimentPropi->count() == 0){
             return view("errors.404");
         }
         return view('pages.informacioAliment',[
-            "aliment"       => $alimentPropi
-        ], compact('title','descripcio'));
+            "aliment" => $alimentPropi
+        ], compact('title'));
     }
 
     /**

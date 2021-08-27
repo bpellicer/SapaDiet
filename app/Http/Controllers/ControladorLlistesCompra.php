@@ -16,11 +16,10 @@ class ControladorLlistesCompra extends Controller
      */
     public function create(){
         $title = "Sapa Diet | Llistes de la Compra";
-        $descripcio ="Les Llistes de la Compra són una eina per apuntar tot allò que vols comprar al supermercat. En aquesta pàgina pots crear, modificar i esborrar les teves llistes.";
         $llistes = LlistaCompra::all()->where("user_id",Auth::id());
         return view("pages.llistesCompra",[
             "llistesCompra"     => $llistes
-        ],compact("title","descripcio"));
+        ],compact("title"));
     }
 
     /**
@@ -29,12 +28,11 @@ class ControladorLlistesCompra extends Controller
      */
     public function creaView(){
         $title = "Sapa Diet | Crea una Llista";
-        $descripcio ="Crea la teva llista de la compra omplint un petit formulari amb el títol, l'estil i els productes.";
         return view("pages.creaLlista",[
             "accio"             => "afegir",
             "arrayProductes"    => [0],
             "llista"            => ""
-        ],compact("title","descripcio"));
+        ],compact("title"));
     }
 
     /**
@@ -43,7 +41,6 @@ class ControladorLlistesCompra extends Controller
      */
     public function modificaView($nom){
         $title = "Sapa Diet | Modifica la Llista";
-        $descripcio ="Modificar la llista és una opció que tens si vols afegir o treure productes d'aquesta.";
         $llista = LlistaCompra::where("user_id",Auth::id())->where("titol",$nom)->first();
         if(!$llista){
             return view("errors.404");
@@ -56,7 +53,7 @@ class ControladorLlistesCompra extends Controller
             "accio"             => "modificar",
             "llista"            => $llista,
             "arrayProductes"    => $arrayProductes
-        ],compact("title","descripcio"));
+        ],compact("title"));
     }
 
     /**
