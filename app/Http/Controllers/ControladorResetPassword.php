@@ -17,7 +17,9 @@ class ControladorResetPassword extends Controller
      * Funció que retorna la vista d'OblidaContrasenya
      */
     public function createFormContra(){
-        return view("auth.oblidaContra");
+        $title = "Sapa Diet | Recuperació Contrasenya";
+        $descripcio ="Recupera la teva contrasenya omplint un formulari amb el teu email";
+        return view("auth.oblidaContra",compact("title","descripcio"));
     }
 
     /**
@@ -54,7 +56,9 @@ class ControladorResetPassword extends Controller
      * @param String $token     Conté un token de 64 caràcters de longitud
      */
     public function createReiniciaContra($token){
-        return view('auth.reiniciaContra', ['token' => $token]);
+        $title ="Sapa Diet | Reinicia Contrasenya";
+        $descripcio ="Reinicia la contrasenya del teu usuari omplint un formulari.";
+        return view('auth.reiniciaContra', ['token' => $token],compact("title","descripcio"));
     }
 
     /**

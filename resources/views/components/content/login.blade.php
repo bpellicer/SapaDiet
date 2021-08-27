@@ -18,8 +18,8 @@
                     @enderror
 
                     <input id="btnPass" type="checkbox" name="checkbox" class="mr-1 mb-4"><label for="checkbox" id="labelPass">Mostra contrasenya</label>
-                    <div class="text-center">
-                        <x-boto tipus="submit" classe="botoForm w-full" text="Entra"/>
+                    <div class="flex justify-center">
+                        <x-boto tipus="submit" classe="botoEstandar cursor-pointer w-100" text="Entra"/>
                     </div>
                 </x-form>
                 <div class=" mt-2 md:ml-8">

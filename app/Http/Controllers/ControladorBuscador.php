@@ -22,9 +22,9 @@ class ControladorBuscador extends Controller
             session()->flash("planificacioDefecte","Guarda la planificació primer!");
             return redirect("/planificacio");
         }
-
+        $descripcio = "Pàgina de Cerca que conté les tres opcions disponibles: Buscar Aliment, Crear Aliment o Aliments Propis";
         $title = "Sapa Diet | Cerca";
-        return view("pages.cerca", compact("title"));
+        return view("pages.cerca", compact("title","descripcio"));
     }
 
     /**
@@ -40,9 +40,10 @@ class ControladorBuscador extends Controller
         }
 
         $title = "Sapa Diet | Crea Aliment";
+        $descripcio = "Pàgina en la qual pots crear un Aliment Propi amb tota la informació nutricional que vulguis i amb un nom";
         return view("pages.afegeixAliment",[
             'categories' => Categoria::orderBy('nom')->get()
-        ],compact("title"));
+        ],compact("title","descripcio"));
     }
 
     /**
@@ -86,9 +87,10 @@ class ControladorBuscador extends Controller
 
         $usuari = User::findOrFail(Auth::id());
         $title = "Sapa Diet | Els Meus Aliments";
+        $descripcio = "Pàgina des d'on pots veure tots els Aliments Propis que has creat. Si encara no has creat cap, se't mostra un missatge per començar a crear-ne.";
         return view("pages.alimentsPropis",[
             'aliments' => $usuari->alimentpropi
-        ],compact("title"));
+        ],compact("title","descripcio"));
     }
 
     /**
@@ -119,9 +121,10 @@ class ControladorBuscador extends Controller
         }
 
         $title = "Sapa Diet | Buscador d'aliments";
+        $descripcio = "Pàgina que et retorna un buscador d'Aliments en la qual pots filtrar aquests pel nom o per la seva categoria";
         return view("pages.buscador",[
             'categories'        => Categoria::orderBy('nom')->get()
-        ],compact("title"));
+        ],compact("title","descripcio"));
     }
 
     /**

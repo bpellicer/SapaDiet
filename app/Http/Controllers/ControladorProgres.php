@@ -16,6 +16,7 @@ class ControladorProgres extends Controller
      */
     public function create(){
         $title = "SapaDiet | Progrés";
+        $descripcio ="El Progrés és la secció on pots veure l'evolució de la teva dieta i veure si estas fent les coses bé. Hi ha gràfiques i una taula de l'IMC.";
         $usuari = User::findOrFail(Auth::id());
         $pesAltura = PesAltura::where("user_id",Auth::id())->orderBy("data","DESC")->first();
 
@@ -40,7 +41,7 @@ class ControladorProgres extends Controller
             'dies'           => $arrayDies,
             'arrayKcal7Dies' => $arrayKcal7Dies
 
-        ],compact("title"));
+        ],compact("title","descripcio"));
     }
 
     /**

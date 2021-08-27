@@ -15,7 +15,8 @@ class ControladorLogin extends Controller
      */
     public function create(){
         $title = "Sapa Diet | Login";
-        return view("pages.login",compact("title"));
+        $descripcio ="Loguejat a l'aplicació de Sapa Diet de forma ràpida i senzilla. Només fa falta el teu e-mail i la contrasenya.";
+        return view("pages.login",compact("title","descripcio"));
     }
 
     /**

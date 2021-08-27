@@ -27,7 +27,7 @@ class ControladorCalendari extends Controller
         }
         else{
             $title = "Sapa Diet | Calendari";
-
+            $descripcio = "Calendari de l'aplicació. Conté els dies del mes i any actuals. Tria qualsevol dia i comença a crear la teva dieta";
             /** Variables per obtenir diferents tipus de data **/
             $diesMes = date('t');
             $dia = date('d');
@@ -48,7 +48,7 @@ class ControladorCalendari extends Controller
                 "mesNom"        => $mesNom,
                 "mes"           => $mes,
                 "arrayDies"     => $arrayDies
-            ], compact("title"));
+            ], compact("title","descripcio"));
         }
 
     }
