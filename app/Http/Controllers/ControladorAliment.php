@@ -51,12 +51,19 @@ class ControladorAliment extends Controller
      */
     public function update(Request $request){
         $atributs = $request->validate([
-            'kilocalories' => ['required','numeric','max:1000','min:0'],
-            'proteines' => ['required','numeric', 'max:1000', 'min:0'],
-            'hidrats' => ['required','numeric', 'max:1000', 'min:0'],
-            'greixos' => ['required','numeric', 'max:1000', 'min:0']
+            'kilocalories'  => ['required','numeric','max:1000','min:0'],
+            'proteines'     => ['required','numeric', 'max:1000', 'min:0'],
+            'hidrats'       => ['required','numeric', 'max:1000', 'min:0'],
+            'greixos'       => ['required','numeric', 'max:1000', 'min:0'],
+            'id'            => ['required','numeric','min:0']
         ]);
         $alimentPropi = AlimentPropi::find($request->get("id"));
+
+        if(!$alimentPropi){
+            session()->flash('errorId','Aliment no existent');
+            return redirect()->back();
+        }
+
         $this->updateDadesAliment($atributs,$alimentPropi);
         session()->flash('alimentActualitzat','Aliment actualitzat!');
         return redirect("/cercador/aliments_propis");
