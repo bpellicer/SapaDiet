@@ -20,6 +20,13 @@ class Categoria extends Model
     }
 
     /**
+     * Funció que assigna una relació 1:N amb la classe AlimentPropi
+     */
+    public function alimentpropi(){
+        return $this->hasMany(AlimentPropi::class);
+    }
+
+    /**
      * Funció que assigna una classe 1:1 amb la classe Imatge
      */
     public function imatge(){
