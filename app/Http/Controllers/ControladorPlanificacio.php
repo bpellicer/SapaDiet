@@ -88,8 +88,7 @@ class ControladorPlanificacio extends Controller
             $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
 
-            /* Guarda els àpats de l'Usuari */
-            if ($planificacio->nombre_apats != $request->get("apat"))$this->updateApats($request->get("apat"));
+            $this->updateApats($request->get("apat"));
         }
 
         session()->flash('novaPlanificacio','Planificació guardada!');
