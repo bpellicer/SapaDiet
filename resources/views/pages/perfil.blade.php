@@ -1,6 +1,10 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
 
+@error("imatge")
+    <x-alerta nom="error2" missatge="Imatge incorrecta"/>
+@enderror
+
 @if (session()->has('perfilActualitzat'))
     <x-alerta nom="success2" missatge="{{ session('perfilActualitzat') }}"/>
 @endif

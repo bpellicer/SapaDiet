@@ -5,6 +5,18 @@
     <x-alerta nom="error2" missatge="{{ session('formulariInvalid') }}"/>
 @endif
 
+@if (session()->has('formulariInvalid1'))
+    <x-alerta nom="error2" missatge="{{ session('formulariInvalid1') }}"/>
+@endif
+
+@if (session()->has('formulariInvalid2'))
+<x-alerta nom="error2" missatge="{{ session('formulariInvalid2') }}"/>
+@endif
+
+@if (session()->has('formulariInvalid3'))
+<x-alerta nom="error2" missatge="{{ session('formulariInvalid3') }}"/>
+@endif
+
 @if (session()->has('novaPlanificacio'))
     <x-alerta nom="success2" missatge="{{ session('novaPlanificacio') }}"/>
 @endif

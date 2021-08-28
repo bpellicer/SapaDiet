@@ -1,6 +1,11 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
 @include('components.content.informacioAliment')
+
+@if (session()->has('alimentError'))
+    <x-alerta nom="error2" missatge="{{ session('alimentError') }}"/>
+@endif
+
 <script>
     /** Quan el document es carregui posa la data d'avui a l'input #dataInput **/
     $(document).ready(function(){

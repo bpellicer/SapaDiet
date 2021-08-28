@@ -93,6 +93,10 @@ class ControladorPerfil extends Controller
      * @param Request $request  Conté la nova imatge de perfil de l'Usuari
      */
     public function updateImatgePerfil(Request $request){
+        $request->validate([
+            "imatge"    => ['numeric','min:1','max:12']
+        ]);
+
         $usuari = User::findOrFail(Auth::id());
         $usuari->imatge_id = $request->get("imatge");
         $usuari->save();

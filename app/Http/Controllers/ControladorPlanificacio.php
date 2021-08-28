@@ -30,12 +30,31 @@ class ControladorPlanificacio extends Controller
      * @param Request $request  Conté totes les dades per a la Planificació de l'Usuari
      */
     public function storePlanificacio(Request $request){
+
+        $request->validate([
+            "apat"          => ['required'],
+            "objectius"     => ['required','string'],
+            "esport"        => ['required','string']
+        ]);
+
+        if($request->apat != "2"  && $request->apat != "3" && $request->apat != "4" && $request->apat != "5"){
+            session()->flash('formulariInvalid','Mínim 1 aliment per grup');
+            return redirect()->back();
+        }
         /* Comprova que cap array estigui buida */
-        if ($request->get("proteines") == null || $request->get("hidrats") == null ||
+        else if ($request->get("proteines") == null || $request->get("hidrats") == null ||
             $request->get("greixos") == null  || $request->get("lactics") == null ||
             $request->get("fruites") == null){
-                session()->flash('formulariInvalid','Mínim 1 aliment per grup');
+                session()->flash('formulariInvalid1','Mínim 1 aliment per grup');
                 return redirect()->back();
+        }
+        else if($request->objectius != "perdre pes" && $request->objectius != "guanyar pes" && $request->objectius != "mantenir pes"){
+            session()->flash('formulariInvalid2','Objectiu invàlid');
+            return redirect()->back();
+        }
+        else if($request->esport != "Poc" && $request->esport != "Cap" && $request->esport != "Normal" && $request->esport != "Molt"){
+            session()->flash('formulariInvalid3','Activitat invàlida');
+            return redirect()->back();
         }
 
         /* Busca l'usuari */

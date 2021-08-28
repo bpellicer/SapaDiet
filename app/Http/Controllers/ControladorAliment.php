@@ -29,7 +29,17 @@ class ControladorAliment extends Controller
      * @param Request $request  Conté el Id de l'Aliment a esborrar
      */
     public function delete(Request $request){
-        $aliment = AlimentPropi::findOrFail($request->get("alimentId"));
+        $request->validate([
+            "alimentId"     => ['required','numeric','min:0']
+        ]);
+
+        $aliment = AlimentPropi::where("id",$request->get("alimentId"))->where("user_id",Auth::id())->first();
+
+        if(!$aliment){
+            session()->flash('alimentError',"Error al borrar");
+            return redirect()->back();
+        }
+
         $aliment->delete();
         session()->flash('alimentEsborrat','Aliment esborrat!');
         return redirect("/cercador/aliments_propis");
