@@ -6,6 +6,24 @@
 @if (session()->has('apatAleatori'))
     <x-alerta nom="success2" missatge="{{ session('apatAleatori') }}"/>
 @endif
+
+@error('kcalTotals')
+    <x-alerta nom="error2" missatge=" {{ucfirst($message)}} " />
+@enderror
+
+@error('apat')
+    <x-alerta nom="error2" missatge=" {{ucfirst($message)}} " />
+@enderror
+
+@error('data')
+    <x-alerta nom="error2" missatge=" {{ucfirst($message)}} " />
+@enderror
+
+@error('nombreApats')
+    <x-alerta nom="error2" missatge=" {{ucfirst($message)}} " />
+@enderror
+
+
 @include("components.content.dieta")
 <script>
     /** Actualitza el gràfic de la barra de progrés **/

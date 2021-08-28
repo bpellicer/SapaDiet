@@ -2,7 +2,7 @@
     <div class="flex justify-center px-2 sm:px-5 lg: my-12">
         <div class="w-full lg:w-11/12 xl:w-9/12 bg-green4 rounded-3xl border-2 border-black p-1 2xs:p-2 sm:p-5 text-center">
             <div class="w-10 mt-2">
-                <a href="/calendari" class="w-10"><img class="w-10  transition ease-in transform hover:scale-110" src="/imatges/arrowleft.png" alt=""></a>
+                <a href="/calendari" class="w-10"><img class="w-10 transition ease-in transform hover:scale-110" style="z-index: 0" src="/imatges/arrowleft.png" alt=""></a>
             </div>
             <div class="px-2">
                 <h1 class="text-base xs:text-lg sm:text-2xl md:text-3xl mb-0 font-bold">Gestió Dieta: {{$data}}</h1>

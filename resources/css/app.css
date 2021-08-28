@@ -306,6 +306,7 @@ input,select,button{
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index:10;
 }
 
 .error2{
@@ -313,6 +314,7 @@ input,select,button{
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 /***************    ELEMENTS ESPECÍFICS   ***************/
