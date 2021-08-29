@@ -81,14 +81,17 @@ class ControladorPlanificacio extends Controller
         /* Modifica la planificació de l'Usuari i els seus aliments */
         else{
             $planificacio = Planificacio::findOrFail($usuari->planificacio_id);
-            $planificacio->nombre_apats = $request->get("apat");
+            if($planificacio->nombre_apats != $request->apat){
+                $this->updateApats($request->get("apat"));
+                $planificacio->nombre_apats = $request->get("apat");
+            }
             $planificacio->objectius = $request->get("objectius");
             $planificacio->esport = $request->get("esport");
             $planificacio->save();
             $planificacio->alimentpreferit()->detach();             //Esborra tots els camps de la taula pivot
             $planificacio->alimentpreferit()->attach($aliments);    //Insereix els nous camps a la taula pivot
 
-            $this->updateApats($request->get("apat"));
+
         }
 
         session()->flash('novaPlanificacio','Planificació guardada!');

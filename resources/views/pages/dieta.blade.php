@@ -1,8 +1,10 @@
 @include('partials.headcontent')
 <x-layout.navAuth/>
+
 @if (session()->has('alimentEsborrat'))
     <x-alerta nom="success2" missatge="{{ session('alimentEsborrat') }}"/>
 @endif
+
 @if (session()->has('apatAleatori'))
     <x-alerta nom="success2" missatge="{{ session('apatAleatori') }}"/>
 @endif
