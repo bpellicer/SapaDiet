@@ -31,8 +31,7 @@
                         <p class="missatgeError text-left">{{ session('errorSexe') }}</p>
                     @endif
 
-                    <x-inputPerfil tipus="email" classe="inputPerfil" id="email" nom="email" placeholder="Email"/>
-                    <div class="flex justify-center"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
+                    <div class="flex justify-center mt-4"><x-boto tipus="submit" classe="botoPerfil w-full md:w-1/2" text="Actualitzar Dades"></x-boto></div>
                 </x-form>
                 <x-form method="post" action="/esborraUsuari" class="mt-2" id="eliminaForm">
                     <div class="flex justify-center">
